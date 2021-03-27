@@ -1,23 +1,22 @@
+import React, { useEffect, useState } from 'react'
 import './App.css'
 
+import { getEthPrice } from './utils/ApiCalls'
+
 function App() {
-  const fetchETH = () => {
-    fetch('/api/ethprice', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json(res))
-      .then((data) => console.log(data.data.result.ethusd))
-      .catch((err) => console.log(err))
-  }
+  const [ethPrice, setEthPrice] = useState()
+
+  useEffect(() => {
+    getEthPrice(setEthPrice)
+    const interval = setInterval(() => {
+      getEthPrice(setEthPrice)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <>
-      <h1>HELLO</h1>
-      <button onClick={fetchETH}>Fetch Data</button>
+      <h1>ETH: {ethPrice} USD</h1>
     </>
   )
 }
