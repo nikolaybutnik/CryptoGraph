@@ -32,7 +32,22 @@ const run = async () => {
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
-run()
+// run()
+
+// Get current ETH/USD price
+app.get('/api/ethprice', async (req, res) => {
+  const ethPrice = await axios
+    .get(
+      `https://api.etherscan.io/api?module=stats&action=ethprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
+    )
+    .then((data) => {
+      const retrievedData = data.data
+      res.status(200).send({ data: retrievedData })
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    })
+})
 
 // Send every other request to the React app
 // Define any API routes before this runs
