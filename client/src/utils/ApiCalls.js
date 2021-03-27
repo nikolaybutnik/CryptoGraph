@@ -1,3 +1,7 @@
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
 const getEthPrice = (func) => {
   fetch('/api/ethprice', {
     method: 'GET',
@@ -9,7 +13,7 @@ const getEthPrice = (func) => {
     .then((res) => res.json(res))
     .then((data) => {
       console.log(data.data.result.ethusd)
-      func(data.data.result.ethusd)
+      func(numberWithCommas(data.data.result.ethusd))
     })
     .catch((err) => console.log(err))
 }
