@@ -15,14 +15,15 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
 
+const binanceClient = new ccxt.binance({
+  apiKey: process.env.REACT_APP_API_KEY,
+  secret: process.env.REACT_APP_API_SECRET,
+})
+
 // Define API routes here
 const tick = async (config, binanceClient) => {}
 
 const run = async () => {
-  const binanceClient = new ccxt.binance({
-    apiKey: process.env.REACT_APP_API_KEY,
-    secret: process.env.REACT_APP_API_SECRET,
-  })
   const balanceETH = await binanceClient.fetchBalance()
   console.log(balanceETH.total.ETH)
   // console.log(binanceClient.has)
@@ -47,6 +48,11 @@ app.get('/api/ethprice', async (req, res) => {
     .catch((err) => {
       res.status(400).json(err)
     })
+})
+
+app.get('/api/chart', async (req, res) => {
+  const chartData = await binanceClient.fetchTicker('ETH/USDT')
+  console.log(chartData)
 })
 
 // Send every other request to the React app
