@@ -21,8 +21,6 @@ const binanceClient = new ccxt.binance({
 })
 
 // Define API routes here
-const tick = async (config, binanceClient) => {}
-
 const run = async () => {
   const balanceETH = await binanceClient.fetchBalance()
   console.log(balanceETH.total.ETH)
@@ -37,7 +35,7 @@ const run = async () => {
 
 // Get current ETH/USD price
 app.get('/api/ethprice', async (req, res) => {
-  const ethPrice = await axios
+  axios
     .get(
       `https://api.etherscan.io/api?module=stats&action=ethprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
     )
@@ -50,6 +48,7 @@ app.get('/api/ethprice', async (req, res) => {
     })
 })
 
+// Get ticker data on ETH/USDT
 app.get('/api/chart', async (req, res) => {
   const chartData = await binanceClient.fetchTicker('ETH/USDT')
   console.log(chartData)
