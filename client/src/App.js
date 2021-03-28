@@ -1,22 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 
-import { getEthPrice } from './utils/ApiCalls'
+import { getEthPriceUSD, getExchangeRate } from './utils/ApiCalls'
 
 function App() {
+  const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
 
+  const numberWithCommas = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
   useEffect(() => {
-    getEthPrice(setEthPrice)
+    const getData = async () => {
+      await getExchangeRate(setExchangeRate)
+    }
+    getData()
+  }, [])
+
+  useEffect(() => {
+    getEthPriceUSD(setEthPrice)
     const interval = setInterval(() => {
-      getEthPrice(setEthPrice)
+      getEthPriceUSD(setEthPrice)
     }, 5000)
     return () => clearInterval(interval)
   }, [])
 
   return (
     <>
-      <h1>ETH: {ethPrice} USD</h1>
+      <h1>
+        ETH: {ethPrice && numberWithCommas(ethPrice)} USD{' '}
+        {exchangeRate &&
+          numberWithCommas((exchangeRate.rates.CAD * ethPrice).toFixed(2))}{' '}
+        CAD
+      </h1>
     </>
   )
 }

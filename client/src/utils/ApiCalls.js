@@ -1,8 +1,4 @@
-const numberWithCommas = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-}
-
-const getEthPrice = (func) => {
+const getEthPriceUSD = (func) => {
   fetch('/api/ethprice', {
     method: 'GET',
     headers: {
@@ -13,9 +9,17 @@ const getEthPrice = (func) => {
     .then((res) => res.json(res))
     .then((data) => {
       console.log(data.data.result.ethusd)
-      func(numberWithCommas(data.data.result.ethusd))
+      func(data.data.result.ethusd)
     })
     .catch((err) => console.log(err))
 }
 
-export { getEthPrice }
+const getExchangeRate = (func) => {
+  fetch('https://api.exchangeratesapi.io/latest?base=USD')
+    .then((res) => res.json())
+    .then((data) => {
+      func(data)
+    })
+}
+
+export { getEthPriceUSD, getExchangeRate }
