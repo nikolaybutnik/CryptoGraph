@@ -22,4 +22,19 @@ const getExchangeRate = (func) => {
     })
 }
 
-export { getEthPriceUSD, getExchangeRate }
+const getLast90Days = () => {
+  fetch('/api/chart', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json(res))
+    .then((data) => {
+      console.log(data.data)
+    })
+    .catch((err) => console.log(err))
+}
+
+export { getEthPriceUSD, getExchangeRate, getLast90Days }

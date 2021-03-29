@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 
-import { getEthPriceUSD, getExchangeRate } from './utils/ApiCalls'
+import {
+  getEthPriceUSD,
+  getExchangeRate,
+  getLast90Days,
+} from './utils/ApiCalls'
 
 function App() {
   const [exchangeRate, setExchangeRate] = useState()
@@ -26,21 +30,6 @@ function App() {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  const getChartData = () => {
-    fetch('/api/chart', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json(res))
-      .then((data) => {
-        console.log(data)
-      })
-      .catch((err) => console.log(err))
-  }
-
   return (
     <>
       <h1>
@@ -49,7 +38,7 @@ function App() {
           numberWithCommas((exchangeRate.rates.CAD * ethPrice).toFixed(2))}{' '}
         CAD
       </h1>
-      <button onClick={getChartData}>Get Chart Data</button>
+      <button onClick={getLast90Days}>Get Chart Data</button>
     </>
   )
 }
