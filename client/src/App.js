@@ -33,6 +33,18 @@ function App() {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
+  const labels =
+    last90Days &&
+    last90Days.map((data) => {
+      return data.timestamp
+    })
+
+  const datasets =
+    last90Days &&
+    last90Days.map((data) => {
+      return data.closingPrice
+    })
+
   return (
     <>
       <h1>
@@ -48,15 +60,9 @@ function App() {
       >
         Get Chart Data
       </button>
-      <Chart />
-      {last90Days &&
-        last90Days.map((x, index) => {
-          return (
-            <div key={index}>
-              {x.timestamp}, {x.closingPrice}
-            </div>
-          )
-        })}
+      {last90Days && (
+        <Chart labels={labels && labels} datasets={datasets && datasets} />
+      )}
     </>
   )
 }
