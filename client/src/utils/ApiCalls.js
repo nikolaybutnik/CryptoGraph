@@ -8,7 +8,7 @@ const getEthPriceUSD = (func) => {
   })
     .then((res) => res.json(res))
     .then((data) => {
-      console.log(data.data.result.ethusd)
+      // console.log(data.data.result.ethusd)
       func(data.data.result.ethusd)
     })
     .catch((err) => console.log(err))
