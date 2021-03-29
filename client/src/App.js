@@ -7,6 +7,8 @@ import {
   getLast90Days,
 } from './utils/ApiCalls'
 
+import Chart from './components/Chart'
+
 function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
@@ -39,6 +41,7 @@ function App() {
         CAD
       </h1>
       <button onClick={getLast90Days}>Get Chart Data</button>
+      <Chart />
     </>
   )
 }
