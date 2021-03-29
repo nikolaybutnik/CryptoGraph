@@ -51,13 +51,22 @@ app.get('/api/ethprice', async (req, res) => {
 // Get ticker data on ETH/USDT
 app.get('/api/chart', async (req, res) => {
   const index = 4 // [ timestamp, open, high, low, close, volume ]
-  const chartData = await binanceClient.fetchOHLCV('ETH/USDT', '1d') //1 day increments
-  const lastPrice = chartData[chartData.length - 1][index] // closing price
-  const series = chartData.slice(-90).map((x) => x[index]) // closing price for the last 90 results
+  binanceClient
+    .fetchOHLCV('ETH/USDT', '1d') //1 day increments
+    .then((data) => {
+      const series = data.slice(-90).map((x) => {
+        return { timestamp: x[0], closingPrice: x[4] }
+      }) // timestamp and closing price objects for the last 90 results
+      console.log(series)
+      res.status(200).send({ data: series })
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    })
+  // const lastPrice = chartData[chartData.length - 1][index] // closing price
   // const timestamps = series.map((timestamp) => {
   //   return new Date(timestamp).toGMTString()
   // })
-  console.log(series)
 })
 
 // Send every other request to the React app
