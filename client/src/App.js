@@ -12,6 +12,7 @@ import Chart from './components/Chart'
 function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
+  const [last90Days, setLast90Days] = useState()
 
   useEffect(() => {
     const getData = async () => {
@@ -40,8 +41,22 @@ function App() {
           numberWithCommas((exchangeRate.rates.CAD * ethPrice).toFixed(2))}{' '}
         CAD
       </h1>
-      <button onClick={getLast90Days}>Get Chart Data</button>
+      <button
+        onClick={() => {
+          getLast90Days(setLast90Days)
+        }}
+      >
+        Get Chart Data
+      </button>
       <Chart />
+      {last90Days &&
+        last90Days.map((x, index) => {
+          return (
+            <div key={index}>
+              {x.timestamp}, {x.closingPrice}
+            </div>
+          )
+        })}
     </>
   )
 }

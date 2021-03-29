@@ -22,7 +22,7 @@ const getExchangeRate = (func) => {
     })
 }
 
-const getLast90Days = () => {
+const getLast90Days = (func) => {
   fetch('/api/chart', {
     method: 'GET',
     headers: {
@@ -32,7 +32,8 @@ const getLast90Days = () => {
   })
     .then((res) => res.json(res))
     .then((data) => {
-      console.log(data.data)
+      func(data.data)
+      // console.log(data.data)
     })
     .catch((err) => console.log(err))
 }
