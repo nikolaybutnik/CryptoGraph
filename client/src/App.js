@@ -53,13 +53,13 @@ function App() {
           numberWithCommas((exchangeRate.rates.CAD * ethPrice).toFixed(2))}{' '}
         CAD
       </h1>
-      <button
-        onClick={() => {
-          getLast90Days(setLast90Days)
-        }}
-      >
-        Get Chart Data
-      </button>
+      <form onSubmit={(e) => getLast90Days(e, setLast90Days)}>
+        <label htmlFor="coins">Choose a coin:</label>
+        <select name="coins">
+          <option value="ethereum">ETH</option>
+        </select>
+        <input type="submit" value="Submit"></input>
+      </form>
       {last90Days && (
         <Chart labels={labels && labels} datasets={datasets && datasets} />
       )}

@@ -50,7 +50,6 @@ const Chart = ({ labels, datasets }) => {
             ],
             xAxes: [
               {
-                display: true,
                 ticks: {
                   autoSkip: true,
                   maxTicksLimit: 12,
