@@ -28,11 +28,10 @@ const Chart = ({ labels, datasets }) => {
       },
     ],
   }
-  console.log(data)
 
   return (
     <div>
-      <h2>Bar Example (custom size)</h2>
+      <h2>Price of Ethereum in USD over the last three months</h2>
       <Line
         data={data}
         // width={100}
@@ -40,6 +39,15 @@ const Chart = ({ labels, datasets }) => {
         options={{
           maintainAspectRatio: true,
           scales: {
+            yAxes: [
+              {
+                ticks: {
+                  callback: function (value, index, values) {
+                    return '$' + value
+                  },
+                },
+              },
+            ],
             xAxes: [
               {
                 display: true,

@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 const getEthPriceUSD = (func) => {
   fetch('/api/ethprice', {
     method: 'GET',
@@ -32,8 +34,10 @@ const getLast90Days = (func) => {
   })
     .then((res) => res.json(res))
     .then((data) => {
-      func(data.data)
-      // console.log(data.data)
+      const processedData = data.data.map((obj) => {
+        return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
+      })
+      func(processedData)
     })
     .catch((err) => console.log(err))
 }

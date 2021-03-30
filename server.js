@@ -55,7 +55,10 @@ app.get('/api/chart', async (req, res) => {
     .fetchOHLCV('ETH/USDT', '1d') //1 day increments
     .then((data) => {
       const series = data.slice(-90).map((x) => {
-        return { timestamp: new Date(x[0]), closingPrice: x[4] }
+        return {
+          timestamp: x[0],
+          closingPrice: x[4],
+        }
       }) // timestamp and closing price objects for the last 90 results
       console.log(series)
       res.status(200).send({ data: series })
