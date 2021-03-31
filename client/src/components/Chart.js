@@ -1,7 +1,7 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 
-const Chart = ({ labels, datasets, symbol }) => {
+const Chart = ({ chartData: { labels, datasets, symbol } }) => {
   const data = {
     labels: labels,
     datasets: [

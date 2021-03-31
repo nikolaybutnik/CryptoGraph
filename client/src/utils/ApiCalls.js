@@ -35,10 +35,11 @@ const getLast90Days = (e, symbol, func) => {
   })
     .then((res) => res.json(res))
     .then((data) => {
-      const processedData = data.data.map((obj) => {
+      console.log(data)
+      const processedData = data.data.series.map((obj) => {
         return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
       })
-      func(processedData)
+      func({ symbol: data.data.symbol, data: processedData })
     })
     .catch((err) => console.log(err))
 }

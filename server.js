@@ -62,7 +62,7 @@ app.get('/api/chart/:symbol', async (req, res) => {
           closingPrice: x[index],
         }
       })
-      res.status(200).send({ data: series })
+      res.status(200).send({ data: { symbol: symbol, series: series } })
     })
     .catch((err) => {
       res.status(400).json(err)

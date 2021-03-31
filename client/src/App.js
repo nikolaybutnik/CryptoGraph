@@ -15,6 +15,10 @@ function App() {
   const [last90Days, setLast90Days] = useState()
   const [symbol, setSymbol] = useState('ETH')
 
+  // useEffect(() => {
+  //   ;(e) => getLast90Days(e, symbol, setLast90Days)
+  // })
+
   useEffect(() => {
     const getData = async () => {
       await getExchangeRate(setExchangeRate)
@@ -34,17 +38,19 @@ function App() {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  const labels =
-    last90Days &&
-    last90Days.map((data) => {
-      return data.timestamp
-    })
-
-  const datasets =
-    last90Days &&
-    last90Days.map((data) => {
-      return data.closingPrice
-    })
+  const chartData = {
+    labels:
+      last90Days &&
+      last90Days.data.map((data) => {
+        return data.timestamp
+      }),
+    datasets:
+      last90Days &&
+      last90Days.data.map((data) => {
+        return data.closingPrice
+      }),
+    symbol: last90Days && last90Days.symbol,
+  }
 
   return (
     <>
@@ -68,13 +74,7 @@ function App() {
         </select>
         <input type="submit" value="Get Data"></input>
       </form>
-      {last90Days && (
-        <Chart
-          labels={labels && labels}
-          datasets={datasets && datasets}
-          symbol={symbol}
-        />
-      )}
+      {last90Days && <Chart chartData={chartData} />}
     </>
   )
 }
