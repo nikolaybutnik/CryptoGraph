@@ -13,6 +13,7 @@ function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
   const [last90Days, setLast90Days] = useState()
+  const [symbol, setSymbol] = useState('ETH')
 
   useEffect(() => {
     const getData = async () => {
@@ -53,15 +54,26 @@ function App() {
           numberWithCommas((exchangeRate.rates.CAD * ethPrice).toFixed(2))}{' '}
         CAD
       </h1>
-      <form onSubmit={(e) => getLast90Days(e, setLast90Days)}>
+      <form onSubmit={(e) => getLast90Days(e, symbol, setLast90Days)}>
         <label htmlFor="coins">Choose a coin:</label>
-        <select name="coins">
-          <option value="ethereum">ETH</option>
+        <select
+          name="coins"
+          id="coins"
+          defaultValue={symbol}
+          onChange={(e) => setSymbol(e.target.value)}
+        >
+          <option value="ADA">ADA</option>
+          <option value="TRX">TRX</option>
+          <option value="ETH">ETH</option>
         </select>
-        <input type="submit" value="Submit"></input>
+        <input type="submit" value="Get Data"></input>
       </form>
       {last90Days && (
-        <Chart labels={labels && labels} datasets={datasets && datasets} />
+        <Chart
+          labels={labels && labels}
+          datasets={datasets && datasets}
+          symbol={symbol}
+        />
       )}
     </>
   )

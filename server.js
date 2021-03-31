@@ -49,18 +49,19 @@ app.get('/api/ethprice', async (req, res) => {
 })
 
 // Get ticker data on ETH/USDT
-app.get('/api/chart', async (req, res) => {
+app.get('/api/chart/:symbol', async (req, res) => {
+  const symbol = req.params.symbol
   const index = 4 // [ timestamp, open, high, low, close, volume ]
   binanceClient
-    .fetchOHLCV('ETH/USDT', '1d') //1 day increments
+    .fetchOHLCV(`${symbol}/USDT`, '1d') //1 day increments
     .then((data) => {
+      // timestamp and closing price objects for the last 90 results
       const series = data.slice(-90).map((x) => {
         return {
           timestamp: x[0],
-          closingPrice: x[4],
+          closingPrice: x[index],
         }
-      }) // timestamp and closing price objects for the last 90 results
-      console.log(series)
+      })
       res.status(200).send({ data: series })
     })
     .catch((err) => {

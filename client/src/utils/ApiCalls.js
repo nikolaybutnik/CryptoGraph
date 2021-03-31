@@ -24,9 +24,9 @@ const getExchangeRate = (func) => {
     })
 }
 
-const getLast90Days = (e, func) => {
+const getLast90Days = (e, symbol, func) => {
   e.preventDefault()
-  fetch('/api/chart', {
+  fetch(`/api/chart/${symbol}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',

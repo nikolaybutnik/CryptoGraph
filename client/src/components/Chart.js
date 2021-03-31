@@ -1,12 +1,12 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 
-const Chart = ({ labels, datasets }) => {
+const Chart = ({ labels, datasets, symbol }) => {
   const data = {
     labels: labels,
     datasets: [
       {
-        label: 'ETH/USDT',
+        label: `${symbol}/USDT`,
         data: datasets,
         fill: false,
         lineTension: 0.1,
