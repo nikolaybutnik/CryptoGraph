@@ -55,7 +55,7 @@ app.get('/api/chart/:symbol', async (req, res) => {
   const symbol = req.params.symbol
   const index = 4 // [ timestamp, open, high, low, close, volume ]
   binanceClient
-    .fetchOHLCV(`${symbol}/USDT`, '1d') //1 day increments
+    .fetchOHLCV(`${symbol}/USDT`, '1d') // 1 day increments
     .then((data) => {
       // timestamp and closing price objects for the last 90 results
       const series = data.slice(-90).map((x) => {
