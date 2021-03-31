@@ -34,6 +34,7 @@ const run = async () => {
 // run()
 
 // Get current ETH/USD price
+// Payload sent: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
 app.get('/api/ethprice', async (req, res) => {
   axios
     .get(
@@ -48,7 +49,8 @@ app.get('/api/ethprice', async (req, res) => {
     })
 })
 
-// Get ticker data on ETH/USDT
+// Get ticker data on symbol/USDT
+// Payload sent: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
 app.get('/api/chart/:symbol', async (req, res) => {
   const symbol = req.params.symbol
   const index = 4 // [ timestamp, open, high, low, close, volume ]

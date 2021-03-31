@@ -68,9 +68,9 @@ function App() {
           defaultValue={symbol}
           onChange={(e) => setSymbol(e.target.value)}
         >
+          <option value="ETH">ETH</option>
           <option value="ADA">ADA</option>
           <option value="TRX">TRX</option>
-          <option value="ETH">ETH</option>
         </select>
         <input type="submit" value="Get Data"></input>
       </form>
