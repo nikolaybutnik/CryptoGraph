@@ -31,7 +31,7 @@ const Chart = ({ chartData: { labels, datasets, symbol } }) => {
 
   return (
     <div>
-      <h2>Price of Ethereum in USD over the last three months</h2>
+      <h2>Price of {symbol} in USD over the last three months</h2>
       <Line
         data={data}
         // width={100}
