@@ -11,7 +11,7 @@ const getEthPriceUSD = (func) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((res) => res.json(res))
+    .then((res) => res.json())
     .then((data) => {
       func(data.data.result.ethusd)
     })
@@ -39,7 +39,7 @@ const getLast90Days = (e, symbol, func) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((res) => res.json(res))
+    .then((res) => res.json())
     .then((data) => {
       const processedData = data.data.series.map((obj) => {
         return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
@@ -49,4 +49,16 @@ const getLast90Days = (e, symbol, func) => {
     .catch((err) => console.log(err))
 }
 
-export { getEthPriceUSD, getExchangeRate, getLast90Days }
+const getCurrencies = () => {
+  fetch('/api/getcurrencies', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+}
+
+export { getEthPriceUSD, getExchangeRate, getLast90Days, getCurrencies }

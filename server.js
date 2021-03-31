@@ -22,16 +22,31 @@ const binanceClient = new ccxt.binance({
 
 // Define API routes here
 const run = async () => {
-  const balanceETH = await binanceClient.fetchBalance()
+  // const balanceETH = await binanceClient.fetchBalance()
   // console.log(balanceETH.total.ETH)
-  console.log(binanceClient.has)
-  // binanceClient.loadMarkets().then((res) => console.log(binanceClient.markets))
+  // console.log(binanceClient.has)
+  // console.log(await binanceClient)
+  binanceClient
+    .loadMarkets()
+    .then((res) => console.log(binanceClient.currencies))
   // console.log(await binanceClient.fetchTrades('TRX/ETH'))
   // console.log(await binanceClient.fetchDepositAddress('ETH'))
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
 // run()
+
+// Get all currencies available on the exchange
+app.get('/api/getcurrencies', async (req, res) => {
+  binanceClient
+    .loadMarkets()
+    .then((data) => {
+      res.status(200).send({ data: binanceClient.currencies })
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    })
+})
 
 // Get current ETH/USD price
 // Payload sent: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 
 import {
+  getCurrencies,
   getEthPriceUSD,
   getExchangeRate,
   getLast90Days,
@@ -77,6 +78,7 @@ function App() {
         </select>
         <input type="submit" value="Get Data"></input>
       </form>
+      <button onClick={getCurrencies}>HELLO</button>
       {last90Days && <Chart chartData={chartData} />}
     </>
   )
