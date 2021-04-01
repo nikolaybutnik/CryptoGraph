@@ -43,7 +43,9 @@ app.get('/api/getcurrencies', async (req, res) => {
     .loadMarkets()
     .then((data) => {
       const processedData = Object.values(binanceClient.currencies).map(
-        (currency) => currency.id
+        (currency) => {
+          return { value: currency.id, label: currency.id }
+        }
       )
       res.status(200).send({ data: processedData })
     })

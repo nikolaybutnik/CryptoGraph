@@ -9,12 +9,13 @@ import {
 } from './utils/ApiCalls'
 
 import Chart from './components/Chart'
+import Select from 'react-select'
 
 function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
   const [last90Days, setLast90Days] = useState()
-  const [symbol, setSymbol] = useState('ETH')
+  const [symbol, setSymbol] = useState()
   const [allCurrencies, setAllCurrencies] = useState()
 
   useEffect(() => {
@@ -61,21 +62,13 @@ function App() {
       </h1>
       <form onSubmit={(e) => getLast90Days(e, symbol, setLast90Days)}>
         <label htmlFor="coins">Choose a coin:</label>
-        <select
+        <Select
           name="coins"
           id="coins"
-          defaultValue={symbol}
-          onChange={(e) => setSymbol(e.target.value)}
-        >
-          {allCurrencies &&
-            allCurrencies.map((currency) => {
-              return (
-                <option key={currency} value={currency}>
-                  {currency}
-                </option>
-              )
-            })}
-        </select>
+          options={allCurrencies && allCurrencies}
+          onChange={(e) => setSymbol(e.value)}
+        />
+
         <input type="submit" value="Get Data"></input>
       </form>
       {last90Days && <Chart chartData={chartData} />}
