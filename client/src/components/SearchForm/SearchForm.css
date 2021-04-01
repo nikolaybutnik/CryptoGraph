@@ -1,0 +1,23 @@
+form .searchBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+form .searchBar #coins {
+  min-width: 150px;
+}
+
+form .searchBar #submitBtn {
+  border: solid 2px #2684ff;
+  border-radius: 5px;
+  background: none;
+  width: 40px;
+  margin-left: 5px;
+  padding: auto;
+}
+
+form .searchBar #submitBtn svg {
+  display: block;
+}
+/*# sourceMappingURL=SearchForm.css.map */

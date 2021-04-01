@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import './SearchForm.css'
+
 import Select from 'react-select'
+import { HiOutlineSearchCircle } from 'react-icons/hi'
 
 import { getCurrencies } from '../../utils/ApiCalls'
 
@@ -17,14 +20,17 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
   return (
     <form onSubmit={(e) => getLast90Days(e, symbol, setLast90Days)}>
       <label htmlFor="coins">Choose a coin:</label>
-      <Select
-        name="coins"
-        id="coins"
-        options={allCurrencies && allCurrencies}
-        onChange={(e) => setSymbol(e.value)}
-      />
-
-      <input type="submit" value="Get Data"></input>
+      <div className="searchBar">
+        <Select
+          name="coins"
+          id="coins"
+          options={allCurrencies && allCurrencies}
+          onChange={(e) => setSymbol(e.value)}
+        />
+        <button id="submitBtn" type="submit">
+          <HiOutlineSearchCircle size={26} />
+        </button>
+      </div>
     </form>
   )
 }

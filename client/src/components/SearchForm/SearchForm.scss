@@ -1,0 +1,19 @@
+form {
+  .searchBar {
+    display: flex;
+    #coins {
+      min-width: 150px;
+    }
+    #submitBtn {
+      border: solid 2px #2684ff;
+      border-radius: 5px;
+      background: none;
+      width: 40px;
+      margin-left: 5px;
+      padding: auto;
+      svg {
+        display: block;
+      }
+    }
+  }
+}
