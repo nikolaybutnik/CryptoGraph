@@ -58,12 +58,7 @@ const getCurrencies = (func) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const processedData = Object.values(data.data).map(
-        (currency) => currency.id
-      )
-      func(processedData)
-    })
+    .then((data) => func(data.data))
 }
 
 export { getEthPriceUSD, getExchangeRate, getLast90Days, getCurrencies }
