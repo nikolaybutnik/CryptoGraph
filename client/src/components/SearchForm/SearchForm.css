@@ -1,23 +1,35 @@
-form .searchBar {
+.searchFormContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 
-form .searchBar #coins {
+.searchFormContainer label {
+  margin-right: 5px;
+}
+
+.searchFormContainer .searchBar {
   min-width: 150px;
+  margin-right: 10px;
 }
 
-form .searchBar #submitBtn {
+.searchFormContainer #submitBtn {
   border: solid 2px #2684ff;
   border-radius: 5px;
   background: none;
   width: 40px;
-  margin-left: 5px;
+  height: 40px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   padding: auto;
+  margin-top: 10px;
 }
 
-form .searchBar #submitBtn svg {
+.searchFormContainer #submitBtn svg {
   display: block;
 }
 /*# sourceMappingURL=SearchForm.css.map */

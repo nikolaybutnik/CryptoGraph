@@ -1,19 +1,24 @@
-form {
+.searchFormContainer {
+  display: flex;
+  flex-flow: row wrap;
+  label {
+    margin-right: 5px;
+  }
   .searchBar {
-    display: flex;
-    #coins {
-      min-width: 150px;
-    }
-    #submitBtn {
-      border: solid 2px #2684ff;
-      border-radius: 5px;
-      background: none;
-      width: 40px;
-      margin-left: 5px;
-      padding: auto;
-      svg {
-        display: block;
-      }
+    min-width: 150px;
+    margin-right: 10px;
+  }
+  #submitBtn {
+    border: solid 2px #2684ff;
+    border-radius: 5px;
+    background: none;
+    width: 40px;
+    height: 40px;
+    align-self: flex-end;
+    padding: auto;
+    margin-top: 10px;
+    svg {
+      display: block;
     }
   }
 }

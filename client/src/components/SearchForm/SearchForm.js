@@ -19,14 +19,29 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
 
   return (
     <form onSubmit={(e) => getLast90Days(e, symbol, setLast90Days)}>
-      <label htmlFor="coins">Choose a coin:</label>
-      <div className="searchBar">
-        <Select
-          name="coins"
-          id="coins"
-          options={allCurrencies && allCurrencies}
-          onChange={(e) => setSymbol(e.value)}
-        />
+      <div className="searchFormContainer">
+        <div>
+          <label htmlFor="coins">CURRENCY:</label>
+          <div className="searchBar">
+            <Select
+              name="coins"
+              id="coins"
+              options={allCurrencies && allCurrencies}
+              onChange={(e) => setSymbol(e.value)}
+            />
+          </div>
+        </div>
+        <div>
+          <label htmlFor="coinPair">PAIR:</label>
+          <div className="searchBar">
+            <Select
+              name="coinPair"
+              id="coinPair"
+              options={allCurrencies && allCurrencies}
+              onChange={(e) => setSymbol(e.value)}
+            />
+          </div>
+        </div>
         <button id="submitBtn" type="submit">
           <HiOutlineSearchCircle size={26} />
         </button>
