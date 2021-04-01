@@ -8,7 +8,12 @@ import { getCurrencies } from '../../utils/ServerCalls'
 
 const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
   const [symbol, setSymbol] = useState()
+  const [pairSymbol, setPairSymbol] = useState()
   const [allCurrencies, setAllCurrencies] = useState()
+
+  useEffect(() => {
+    console.log(symbol)
+  }, [symbol])
 
   useEffect(() => {
     const getData = async () => {
@@ -17,8 +22,22 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
     getData()
   }, [])
 
+  const coinPairSampleData = [
+    { value: 'ETH', label: 'ETH' },
+    { value: 'BTC', label: 'BTC' },
+  ]
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    if (symbol && pairSymbol) {
+      getLast90Days(symbol, pairSymbol, setLast90Days)
+    } else {
+      console.log(symbol, pairSymbol, 'NOPE')
+    }
+  }
+
   return (
-    <form onSubmit={(e) => getLast90Days(e, symbol, setLast90Days)}>
+    <form onSubmit={(e) => handleFormSubmit(e)}>
       <div className="searchFormContainer">
         <div>
           <label htmlFor="coins">CURRENCY:</label>
@@ -37,8 +56,8 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
             <Select
               name="coinPair"
               id="coinPair"
-              options={allCurrencies && allCurrencies}
-              onChange={(e) => setSymbol(e.value)}
+              options={coinPairSampleData}
+              onChange={(e) => setPairSymbol(e.value)}
             />
           </div>
         </div>

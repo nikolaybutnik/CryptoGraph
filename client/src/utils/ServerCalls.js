@@ -44,8 +44,7 @@ const getExchangeRate = (func) => {
 // Get ticker data on selected symbol from server
 // Payload received: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
 // Action: set last90Days state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
-const getLast90Days = (e, symbol, func) => {
-  e.preventDefault()
+const getLast90Days = (symbol, pairSymbol, func) => {
   fetch(`/api/chart/${symbol}`, {
     method: 'GET',
     headers: {
