@@ -25,8 +25,6 @@ function App() {
     getData()
   }, [])
 
-  allCurrencies && console.log(allCurrencies)
-
   useEffect(() => {
     getEthPriceUSD(setEthPrice)
     const interval = setInterval(() => {
@@ -69,12 +67,20 @@ function App() {
           defaultValue={symbol}
           onChange={(e) => setSymbol(e.target.value)}
         >
-          <option value="ETH">ETH</option>
+          {allCurrencies &&
+            allCurrencies.map((currency) => {
+              return (
+                <option key={currency} value={currency}>
+                  {currency}
+                </option>
+              )
+            })}
+          {/* <option value="ETH">ETH</option>
           <option value="ADA">ADA</option>
           <option value="IOTA">IOTA</option>
           <option value="XRP">XRP</option>
           <option value="XLM">XLM</option>
-          <option value="TRX">TRX</option>
+          <option value="TRX">TRX</option> */}
         </select>
         <input type="submit" value="Get Data"></input>
       </form>
