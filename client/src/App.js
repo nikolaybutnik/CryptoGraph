@@ -15,17 +15,17 @@ function App() {
   const [ethPrice, setEthPrice] = useState()
   const [last90Days, setLast90Days] = useState()
   const [symbol, setSymbol] = useState('ETH')
-
-  // useEffect(() => {
-  //   ;(e) => getLast90Days(e, symbol, setLast90Days)
-  // })
+  const [allCurrencies, setAllCurrencies] = useState()
 
   useEffect(() => {
     const getData = async () => {
       await getExchangeRate(setExchangeRate)
+      await getCurrencies(setAllCurrencies)
     }
     getData()
   }, [])
+
+  allCurrencies && console.log(allCurrencies)
 
   useEffect(() => {
     getEthPriceUSD(setEthPrice)

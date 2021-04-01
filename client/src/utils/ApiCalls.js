@@ -49,7 +49,7 @@ const getLast90Days = (e, symbol, func) => {
     .catch((err) => console.log(err))
 }
 
-const getCurrencies = () => {
+const getCurrencies = (func) => {
   fetch('/api/getcurrencies', {
     method: 'GET',
     headers: {
@@ -58,7 +58,12 @@ const getCurrencies = () => {
     },
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      const processedData = Object.values(data.data).map(
+        (currency) => currency.id
+      )
+      func(processedData)
+    })
 }
 
 export { getEthPriceUSD, getExchangeRate, getLast90Days, getCurrencies }
