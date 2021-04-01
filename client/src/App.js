@@ -34,20 +34,6 @@ function App() {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  const chartData = {
-    labels:
-      last90Days &&
-      last90Days.data.map((data) => {
-        return data.timestamp
-      }),
-    datasets:
-      last90Days &&
-      last90Days.data.map((data) => {
-        return data.closingPrice
-      }),
-    symbol: last90Days && last90Days.symbol,
-  }
-
   return (
     <>
       <h1>
@@ -64,7 +50,7 @@ function App() {
         }}
       />
 
-      {last90Days && <Chart chartData={chartData} />}
+      {last90Days && <Chart last90Days={last90Days} />}
     </>
   )
 }

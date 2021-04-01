@@ -1,7 +1,15 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 
-const Chart = ({ chartData: { labels, datasets, symbol } }) => {
+const Chart = ({ last90Days }) => {
+  const labels = last90Days.data.map((data) => {
+    return data.timestamp
+  })
+  const datasets = last90Days.data.map((data) => {
+    return data.closingPrice
+  })
+  const symbol = last90Days.symbol
+
   const data = {
     labels: labels,
     datasets: [
