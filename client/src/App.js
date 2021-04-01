@@ -35,7 +35,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="container">
       <h1>
         ETH: {ethPrice && numberWithCommas(ethPrice)} USD{' '}
         {exchangeRate && numberWithCommas((exchangeRate * ethPrice).toFixed(2))}{' '}
@@ -50,7 +50,7 @@ function App() {
       />
 
       {last90Days && <Chart last90Days={last90Days} />}
-    </>
+    </div>
   )
 }
 
