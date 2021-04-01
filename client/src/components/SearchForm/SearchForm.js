@@ -4,7 +4,7 @@ import './SearchForm.css'
 import Select from 'react-select'
 import { HiOutlineSearchCircle } from 'react-icons/hi'
 
-import { getCurrencies } from '../../utils/ApiCalls'
+import { getCurrencies } from '../../utils/ServerCalls'
 
 const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
   const [symbol, setSymbol] = useState()

@@ -36,7 +36,6 @@ const getExchangeRate = (func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.USD_CAD)
       func(data.data.USD_CAD)
     })
     .catch((err) => console.log(err))

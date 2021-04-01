@@ -5,7 +5,7 @@ import {
   getEthPriceUSD,
   getExchangeRate,
   getLast90Days,
-} from './utils/ApiCalls'
+} from './utils/ServerCalls'
 
 import Chart from './components/Chart/Chart'
 import SearchForm from './components/SearchForm/SearchForm'
