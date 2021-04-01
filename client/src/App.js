@@ -38,8 +38,7 @@ function App() {
     <>
       <h1>
         ETH: {ethPrice && numberWithCommas(ethPrice)} USD{' '}
-        {exchangeRate &&
-          numberWithCommas((exchangeRate.rates.CAD * ethPrice).toFixed(2))}{' '}
+        {exchangeRate && numberWithCommas((exchangeRate * ethPrice).toFixed(2))}{' '}
         CAD
       </h1>
 

@@ -19,12 +19,27 @@ const getEthPriceUSD = (func) => {
 }
 
 // Get exhange rates based on USD
-// Payload received: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
-// Action: set exhangeRate state as object {base: string, date: string, rates: multiple properties {string: number}}
+// Payload received: {USD_CAD: number}
+// Action: set exhangeRate state as number
+// FREE API LIMITS
+// Currency Pairs per Request: 2
+// Number of Requests per Hour: 100
+// Date Range in History: 8 Days
+// Allowed Back in History: 1 Year(s)
 const getExchangeRate = (func) => {
-  fetch('https://api.exchangeratesapi.io/latest?base=USD')
+  fetch('/api/exchangerate', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
     .then((res) => res.json())
-    .then((data) => func(data))
+    .then((data) => {
+      console.log(data.data.USD_CAD)
+      func(data.data.USD_CAD)
+    })
+    .catch((err) => console.log(err))
 }
 
 // Get ticker data on selected symbol from server

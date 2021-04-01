@@ -70,6 +70,22 @@ app.get('/api/ethprice', async (req, res) => {
     })
 })
 
+// Get USD/CAD conversion
+// Payload sent: {USD_CAD: number}
+app.get('/api/exchangerate', async (req, res) => {
+  axios
+    .get(
+      `https://free.currconv.com/api/v7/convert?q=USD_CAD&compact=ultra&apiKey=${process.env.REACT_APP_CURRENCY_EXCHANGE_API}`
+    )
+    .then((data) => {
+      const retrievedData = data.data
+      res.status(200).send({ data: retrievedData })
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    })
+})
+
 // Get ticker data on symbol/USDT
 // Payload sent: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
 app.get('/api/chart/:symbol', async (req, res) => {
