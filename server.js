@@ -37,6 +37,7 @@ const run = async () => {
 // run()
 
 // Get all currencies available on the exchange
+// Payload sent [array of 'string']
 app.get('/api/getcurrencies', async (req, res) => {
   binanceClient
     .loadMarkets()

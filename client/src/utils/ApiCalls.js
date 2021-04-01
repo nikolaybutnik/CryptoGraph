@@ -49,6 +49,9 @@ const getLast90Days = (e, symbol, func) => {
     .catch((err) => console.log(err))
 }
 
+// Get all available currencies on the exchange
+// Payload received [array of 'string']
+// Action: set allCurrencies state as array of strings containing currency codes
 const getCurrencies = (func) => {
   fetch('/api/getcurrencies', {
     method: 'GET',
