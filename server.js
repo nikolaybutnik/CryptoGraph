@@ -26,15 +26,19 @@ const run = async () => {
   // console.log(balanceETH.total.ETH)
   // console.log(binanceClient.has)
   // console.log(await binanceClient)
-  binanceClient
-    .loadMarkets()
-    .then((res) => console.log(binanceClient.currencies))
+  binanceClient.loadMarkets().then((res) => {
+    const allMarkets = binanceClient.markets
+    const filtered = Object.keys(allMarkets).filter((pair) => {
+      return pair.includes('ETH') && pair.split('/')[0] === 'ETH' // user input first param, so we need the first one to match to the pair
+    })
+    console.log(filtered)
+  })
   // console.log(await binanceClient.fetchTrades('TRX/ETH'))
   // console.log(await binanceClient.fetchDepositAddress('ETH'))
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
-// run()
+run()
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']

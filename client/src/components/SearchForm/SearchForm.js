@@ -12,10 +12,6 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
   const [allCurrencies, setAllCurrencies] = useState()
 
   useEffect(() => {
-    console.log(symbol)
-  }, [symbol])
-
-  useEffect(() => {
     const getData = async () => {
       await getCurrencies(setAllCurrencies)
     }
@@ -46,7 +42,10 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
               name="coins"
               id="coins"
               options={allCurrencies && allCurrencies}
-              onChange={(e) => setSymbol(e.value)}
+              onChange={(e) => {
+                setSymbol(e.value)
+                // NEXT: handle the setting of coin pair options
+              }}
             />
           </div>
         </div>
