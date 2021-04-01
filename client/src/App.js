@@ -75,16 +75,9 @@ function App() {
                 </option>
               )
             })}
-          {/* <option value="ETH">ETH</option>
-          <option value="ADA">ADA</option>
-          <option value="IOTA">IOTA</option>
-          <option value="XRP">XRP</option>
-          <option value="XLM">XLM</option>
-          <option value="TRX">TRX</option> */}
         </select>
         <input type="submit" value="Get Data"></input>
       </form>
-      <button onClick={getCurrencies}>HELLO</button>
       {last90Days && <Chart chartData={chartData} />}
     </>
   )
