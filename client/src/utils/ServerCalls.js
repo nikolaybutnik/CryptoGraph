@@ -41,6 +41,21 @@ const getExchangeRate = (func) => {
     .catch((err) => console.log(err))
 }
 
+const getPairs = (currency, func) => {
+  fetch(`/api/getpairs/${currency}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      func(data.data)
+    })
+    .catch((err) => console.log(err))
+}
+
 // Get ticker data on selected symbol from server
 // Payload received: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
 // Action: set last90Days state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
@@ -77,4 +92,10 @@ const getCurrencies = (func) => {
     .then((data) => func(data.data))
 }
 
-export { getEthPriceUSD, getExchangeRate, getLast90Days, getCurrencies }
+export {
+  getEthPriceUSD,
+  getExchangeRate,
+  getPairs,
+  getLast90Days,
+  getCurrencies,
+}

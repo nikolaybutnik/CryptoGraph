@@ -38,7 +38,7 @@ const run = async () => {
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
-run()
+// run()
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
@@ -84,6 +84,32 @@ app.get('/api/exchangerate', async (req, res) => {
     .then((data) => {
       const retrievedData = data.data
       res.status(200).send({ data: retrievedData })
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    })
+})
+
+// Get all available trade pairs for the currently selected currency
+// Payload sent: [array of 'string']
+app.get('/api/getpairs/:currency', async (req, res) => {
+  const currency = req.params.currency
+  binanceClient
+    .loadMarkets()
+    .then((data) => {
+      const allMarkets = binanceClient.markets
+      const availablePairs = Object.keys(allMarkets).filter((pair) => {
+        // user input first param, so we need the first one to match to the pair
+        return pair.includes(currency) && pair.split('/')[0] === currency
+      })
+      const pairOptions = availablePairs
+        .map((pair) => {
+          return pair.split('/')[1]
+        })
+        .map((data) => {
+          return { value: data, label: data }
+        })
+      res.status(200).send({ data: pairOptions })
     })
     .catch((err) => {
       res.status(400).json(err)

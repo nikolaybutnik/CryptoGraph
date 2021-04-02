@@ -4,12 +4,13 @@ import './SearchForm.css'
 import Select from 'react-select'
 import { HiOutlineSearchCircle } from 'react-icons/hi'
 
-import { getCurrencies } from '../../utils/ServerCalls'
+import { getCurrencies, getPairs } from '../../utils/ServerCalls'
 
 const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
   const [symbol, setSymbol] = useState()
   const [pairSymbol, setPairSymbol] = useState()
   const [allCurrencies, setAllCurrencies] = useState()
+  const [pairOptions, setPairOptions] = useState()
 
   useEffect(() => {
     const getData = async () => {
@@ -17,11 +18,6 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
     }
     getData()
   }, [])
-
-  const coinPairSampleData = [
-    { value: 'ETH', label: 'ETH' },
-    { value: 'BTC', label: 'BTC' },
-  ]
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -44,7 +40,8 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
               options={allCurrencies && allCurrencies}
               onChange={(e) => {
                 setSymbol(e.value)
-                // NEXT: handle the setting of coin pair options
+                getPairs(e.value, setPairOptions)
+                setPairSymbol(null)
               }}
             />
           </div>
@@ -55,8 +52,13 @@ const SearchForm = ({ props: { getLast90Days, setLast90Days } }) => {
             <Select
               name="coinPair"
               id="coinPair"
-              options={coinPairSampleData}
-              onChange={(e) => setPairSymbol(e.value)}
+              value={{ label: pairSymbol }}
+              isDisabled={!symbol && true}
+              isLoading={!pairOptions && true}
+              options={pairOptions && pairOptions}
+              onChange={(e) => {
+                setPairSymbol(e.value)
+              }}
             />
           </div>
         </div>
