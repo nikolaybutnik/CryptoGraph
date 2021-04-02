@@ -118,11 +118,12 @@ app.get('/api/getpairs/:currency', async (req, res) => {
 
 // Get ticker data on symbol/USDT
 // Payload sent: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
-app.get('/api/chart/:symbol', async (req, res) => {
+app.get('/api/chart/:symbol/:pairsymbol', async (req, res) => {
   const symbol = req.params.symbol
+  const pairSymbol = req.params.pairsymbol
   const index = 4 // [ timestamp, open, high, low, close, volume ]
   binanceClient
-    .fetchOHLCV(`${symbol}/USDT`, '1d') // 1 day increments
+    .fetchOHLCV(`${symbol}/${pairSymbol}`, '1d') // 1 day increments
     .then((data) => {
       // timestamp and closing price objects for the last 90 results
       const series = data.slice(-90).map((x) => {

@@ -60,7 +60,7 @@ const getPairs = (currency, func) => {
 // Payload received: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
 // Action: set last90Days state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
 const getLast90Days = (symbol, pairSymbol, func) => {
-  fetch(`/api/chart/${symbol}`, {
+  fetch(`/api/chart/${symbol}/${pairSymbol}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -72,7 +72,11 @@ const getLast90Days = (symbol, pairSymbol, func) => {
       const processedData = data.data.series.map((obj) => {
         return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
       })
-      func({ symbol: data.data.symbol, data: processedData })
+      func({
+        symbol: data.data.symbol,
+        pairSymbol: pairSymbol,
+        data: processedData,
+      })
     })
     .catch((err) => console.log(err))
 }

@@ -9,12 +9,13 @@ const Chart = ({ last90Days }) => {
     return data.closingPrice
   })
   const symbol = last90Days.symbol
+  const pairSymbol = last90Days.pairSymbol
 
   const data = {
     labels: labels,
     datasets: [
       {
-        label: `${symbol}/USDT`,
+        label: `${symbol}/${pairSymbol}`,
         data: datasets,
         fill: false,
         lineTension: 0.1,
