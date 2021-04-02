@@ -40,7 +40,9 @@ const Chart = ({ last90Days }) => {
 
   return (
     <div>
-      <h2>Price of {symbol} in USD over the last three months</h2>
+      <h2>
+        {symbol}/{pairSymbol}: last 90 days
+      </h2>
       <Line
         data={data}
         // width={100}
