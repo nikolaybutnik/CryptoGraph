@@ -48,15 +48,6 @@ const Chart = ({ last90Days }) => {
         options={{
           maintainAspectRatio: true,
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  callback: function (value, index, values) {
-                    return '$' + value
-                  },
-                },
-              },
-            ],
             xAxes: [
               {
                 ticks: {
