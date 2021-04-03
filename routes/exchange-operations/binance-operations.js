@@ -45,27 +45,24 @@ const getPairs = (req, res) => {
     })
 }
 
-const getGraphData = (req, res, symbol, pairSymbol) => {
+const getGraphData = (symbol, pairSymbol) => {
   const index = 4 // [ timestamp, open, high, low, close, volume ]
-  binanceClient
+  return binanceClient
     .fetchOHLCV(`${symbol}/${pairSymbol}`, '1d') // 1 day increments
     .then((data) => {
       // timestamp and closing price objects for the last 90 results
-      const series = data.slice(-90).map((x) => {
+      const binanceData = data.slice(-90).map((x) => {
         return {
           timestamp: x[0],
           closingPrice: x[index],
         }
       })
-      res.status(200).send({ data: { symbol: symbol, series: series } })
+      return binanceData
     })
     .catch((err) => {
-      res.status(400).json(err)
+      console.log(err)
+      return null
     })
-  // const lastPrice = chartData[chartData.length - 1][index] // closing price
-  // const timestamps = series.map((timestamp) => {
-  //   return new Date(timestamp).toGMTString()
-  // })
 }
 
 module.exports = { getCurrencies, getPairs, getGraphData }

@@ -57,7 +57,7 @@ const getPairs = (currency, func) => {
 }
 
 // Get ticker data on selected symbol from server
-// Payload received: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
+// Payload received: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
 // Action: set last90Days state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
 const getLast90Days = (symbol, pairSymbol, func) => {
   fetch(`/api/graph/getgraphdata/${symbol}/${pairSymbol}`, {
@@ -69,13 +69,21 @@ const getLast90Days = (symbol, pairSymbol, func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      const processedData = data.data.series.map((obj) => {
-        return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
-      })
+      const binanceProcessedData = data.data.binanceData
+        ? data.data.binanceData.map((obj) => {
+            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
+          })
+        : null
+      const kucoinProcessedData = data.data.kucoinData
+        ? data.data.kucoinData.map((obj) => {
+            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
+          })
+        : null
       func({
         symbol: data.data.symbol,
         pairSymbol: pairSymbol,
-        data: processedData,
+        binanceData: binanceProcessedData,
+        kucoinData: kucoinProcessedData,
       })
     })
     .catch((err) => console.log(err))

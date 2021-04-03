@@ -9,21 +9,36 @@ const kucoin = require('./exchange-operations/kucoin-operations')
 // Payload sent [array of 'string']
 router.get('/getcurrencies', (req, res) => {
   binance.getCurrencies(req, res)
+  // kucoin.getCurrencies(req, res)
 })
 
 // Get all available trade pairs for the currently selected currency
 // Payload sent: [array of 'string']
 router.get('/getpairs/:currency', (req, res) => {
   binance.getPairs(req, res)
+  // kucoin.getPairs(req, res)
 })
 
 // Get ticker data on symbol/USDT
-// Payload sent: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
+// Payload sent: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
 router.get('/getgraphdata/:symbol/:pairsymbol', async (req, res) => {
   const symbol = req.params.symbol
   const pairSymbol = req.params.pairsymbol
-
-  binance.getGraphData(req, res, symbol, pairSymbol)
+  try {
+    const binanceGraphData = await binance.getGraphData(symbol, pairSymbol)
+    const kucoinGraphData = await kucoin.getGraphData(symbol, pairSymbol)
+    // console.log(binanceGraphData)
+    // console.log(kucoinGraphData)
+    res.status(200).send({
+      data: {
+        symbol: symbol,
+        binanceData: binanceGraphData,
+        kucoinData: kucoinGraphData,
+      },
+    })
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 module.exports = router
