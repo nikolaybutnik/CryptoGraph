@@ -42,7 +42,7 @@ const getExchangeRate = (func) => {
 }
 
 const getPairs = (currency, func) => {
-  fetch(`/api/getpairs/${currency}`, {
+  fetch(`/api/graph/getpairs/${currency}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -60,7 +60,7 @@ const getPairs = (currency, func) => {
 // Payload received: {symbol: string, series: [array of objects {timestamp: number, closingPrice: number}]}
 // Action: set last90Days state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
 const getLast90Days = (symbol, pairSymbol, func) => {
-  fetch(`/api/chart/${symbol}/${pairSymbol}`, {
+  fetch(`/api/graph/getgraphdata/${symbol}/${pairSymbol}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -85,7 +85,7 @@ const getLast90Days = (symbol, pairSymbol, func) => {
 // Payload received [array of 'string']
 // Action: set allCurrencies state as array of strings containing currency codes
 const getCurrencies = (func) => {
-  fetch('/api/getcurrencies', {
+  fetch('/api/graph/getcurrencies', {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
