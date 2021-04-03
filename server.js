@@ -15,30 +15,37 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
 
+// API calls to aquire price of ETH and USD/CAD exchance rate
+app.use('/api/info', require('./routes/api-general-info.routes'))
+
 const binanceClient = new ccxt.binance({
-  apiKey: process.env.REACT_APP_API_KEY,
-  secret: process.env.REACT_APP_API_SECRET,
+  apiKey: process.env.REACT_APP_BINANCE_API_KEY,
+  secret: process.env.REACT_APP_BINANCE_API_SECRET,
+})
+const kucoinClient = new ccxt.kucoin({
+  apiKey: process.env.REACT_APP_KUCOIN_API_KEY,
+  secret: process.env.REACT_APP_KUCOIN_API_SECRET,
 })
 
-// Define API routes here
 const run = async () => {
   // const balanceETH = await binanceClient.fetchBalance()
   // console.log(balanceETH.total.ETH)
   // console.log(binanceClient.has)
   // console.log(await binanceClient)
-  binanceClient.loadMarkets().then((res) => {
-    const allMarkets = binanceClient.markets
-    const filtered = Object.keys(allMarkets).filter((pair) => {
-      return pair.includes('ETH') && pair.split('/')[0] === 'ETH' // user input first param, so we need the first one to match to the pair
-    })
-    console.log(filtered)
-  })
+  // binanceClient.loadMarkets().then((res) => {
+  //   const allMarkets = binanceClient.markets
+  //   const filtered = Object.keys(allMarkets).filter((pair) => {
+  //     return pair.includes('ETH') && pair.split('/')[0] === 'ETH' // user input first param, so we need the first one to match to the pair
+  //   })
+  //   console.log(filtered)
+  // })
   // console.log(await binanceClient.fetchTrades('TRX/ETH'))
+  console.log(kucoinClient.has)
   // console.log(await binanceClient.fetchDepositAddress('ETH'))
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
-// run()
+run()
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
@@ -52,38 +59,6 @@ app.get('/api/getcurrencies', async (req, res) => {
         }
       )
       res.status(200).send({ data: processedData })
-    })
-    .catch((err) => {
-      res.status(400).json(err)
-    })
-})
-
-// Get current ETH/USD price
-// Payload sent: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
-app.get('/api/ethprice', async (req, res) => {
-  axios
-    .get(
-      `https://api.etherscan.io/api?module=stats&action=ethprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
-    )
-    .then((data) => {
-      const retrievedData = data.data
-      res.status(200).send({ data: retrievedData })
-    })
-    .catch((err) => {
-      res.status(400).json(err)
-    })
-})
-
-// Get USD/CAD conversion
-// Payload sent: {USD_CAD: number}
-app.get('/api/exchangerate', async (req, res) => {
-  axios
-    .get(
-      `https://free.currconv.com/api/v7/convert?q=USD_CAD&compact=ultra&apiKey=${process.env.REACT_APP_CURRENCY_EXCHANGE_API}`
-    )
-    .then((data) => {
-      const retrievedData = data.data
-      res.status(200).send({ data: retrievedData })
     })
     .catch((err) => {
       res.status(400).json(err)

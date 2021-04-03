@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 // Payload received: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
 // Action: set ethPrice state as number
 const getEthPriceUSD = (func) => {
-  fetch('/api/ethprice', {
+  fetch('/api/info/ethprice', {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -27,7 +27,7 @@ const getEthPriceUSD = (func) => {
 // Date Range in History: 8 Days
 // Allowed Back in History: 1 Year(s)
 const getExchangeRate = (func) => {
-  fetch('/api/exchangerate', {
+  fetch('/api/info/exchangerate', {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
