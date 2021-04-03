@@ -23,7 +23,7 @@ const getCurrencies = () => {
 
 const getPairs = (req, res) => {
   const currency = req.params.currency
-  kucoinClient
+  return kucoinClient
     .loadMarkets()
     .then((data) => {
       const allMarkets = kucoinClient.markets
@@ -38,10 +38,10 @@ const getPairs = (req, res) => {
         .map((data) => {
           return { value: data, label: data }
         })
-      res.status(200).send({ data: pairOptions })
+      return pairOptions
     })
     .catch((err) => {
-      res.status(400).json(err)
+      console.log(err)
     })
 }
 

@@ -2,9 +2,17 @@ import React from 'react'
 import { Line } from 'react-chartjs-2'
 
 const Chart = ({ last90Days }) => {
-  const labels = last90Days.binanceData.map((data) => {
-    return data.timestamp
-  })
+  let labels
+  if (last90Days.binanceData) {
+    labels = last90Days.binanceData.map((data) => {
+      return data.timestamp
+    })
+  } else if (last90Days.kucoinData) {
+    labels = last90Days.kucoinData.map((data) => {
+      return data.timestamp
+    })
+  }
+
   const binanceData = last90Days.binanceData
     ? last90Days.binanceData.map((data) => {
         return data.closingPrice
@@ -22,7 +30,7 @@ const Chart = ({ last90Days }) => {
     labels: labels,
     datasets: [
       {
-        label: 'Binance',
+        label: binanceData ? 'Binance' : 'N/A',
         data: binanceData,
         fill: false,
         lineTension: 0.1,
@@ -43,7 +51,7 @@ const Chart = ({ last90Days }) => {
         pointHitRadius: 10,
       },
       {
-        label: 'KuCoin',
+        label: kucoinData ? 'KuCoin' : 'N/A',
         data: kucoinData,
         fill: false,
         lineTension: 0.1,
