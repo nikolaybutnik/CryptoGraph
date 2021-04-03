@@ -7,9 +7,18 @@ const kucoin = require('./exchange-operations/kucoin-operations')
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
-router.get('/getcurrencies', (req, res) => {
-  binance.getCurrencies(req, res)
-  // kucoin.getCurrencies(req, res)
+router.get('/getcurrencies', async (req, res) => {
+  try {
+    const binanceCurrencies = await binance.getCurrencies()
+    const kucoinCurrencies = await kucoin.getCurrencies()
+    const mergedArrays = [...binanceCurrencies, ...kucoinCurrencies]
+    const uniqueSelections = [
+      ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
+    ]
+    res.status(200).send({ data: uniqueSelections })
+  } catch (err) {
+    res.status(400).json(err)
+  }
 })
 
 // Get all available trade pairs for the currently selected currency
@@ -27,8 +36,6 @@ router.get('/getgraphdata/:symbol/:pairsymbol', async (req, res) => {
   try {
     const binanceGraphData = await binance.getGraphData(symbol, pairSymbol)
     const kucoinGraphData = await kucoin.getGraphData(symbol, pairSymbol)
-    // console.log(binanceGraphData)
-    // console.log(kucoinGraphData)
     res.status(200).send({
       data: {
         symbol: symbol,
@@ -37,7 +44,7 @@ router.get('/getgraphdata/:symbol/:pairsymbol', async (req, res) => {
       },
     })
   } catch (err) {
-    console.log(err)
+    res.status(400).json(err)
   }
 })
 

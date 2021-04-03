@@ -5,8 +5,8 @@ const kucoinClient = new ccxt.kucoin({
   secret: process.env.REACT_APP_KUCOIN_API_SECRET,
 })
 
-const getCurrencies = (req, res) => {
-  kucoinClient
+const getCurrencies = () => {
+  return kucoinClient
     .loadMarkets()
     .then((data) => {
       const processedData = Object.values(kucoinClient.currencies).map(
@@ -14,10 +14,10 @@ const getCurrencies = (req, res) => {
           return { value: currency.id, label: currency.id }
         }
       )
-      res.status(200).send({ data: processedData })
+      return processedData
     })
     .catch((err) => {
-      res.status(400).json(err)
+      console.log(err)
     })
 }
 

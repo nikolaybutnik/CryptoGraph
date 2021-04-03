@@ -18,13 +18,11 @@ const Chart = ({ last90Days }) => {
   const symbol = last90Days.symbol
   const pairSymbol = last90Days.pairSymbol
 
-  kucoinData && console.log('YUPPERS')
-
   const data = {
     labels: labels,
     datasets: [
       {
-        label: `Binance: ${symbol}/${pairSymbol}`,
+        label: 'Binance',
         data: binanceData,
         fill: false,
         lineTension: 0.1,
@@ -45,7 +43,7 @@ const Chart = ({ last90Days }) => {
         pointHitRadius: 10,
       },
       {
-        label: `KuCoin: ${symbol}/${pairSymbol}`,
+        label: 'KuCoin',
         data: kucoinData,
         fill: false,
         lineTension: 0.1,

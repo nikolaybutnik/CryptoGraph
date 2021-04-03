@@ -5,8 +5,8 @@ const binanceClient = new ccxt.binance({
   secret: process.env.REACT_APP_BINANCE_API_SECRET,
 })
 
-const getCurrencies = (req, res) => {
-  binanceClient
+const getCurrencies = () => {
+  return binanceClient
     .loadMarkets()
     .then((data) => {
       const processedData = Object.values(binanceClient.currencies).map(
@@ -14,10 +14,10 @@ const getCurrencies = (req, res) => {
           return { value: currency.id, label: currency.id }
         }
       )
-      res.status(200).send({ data: processedData })
+      return processedData
     })
     .catch((err) => {
-      res.status(400).json(err)
+      console.log(err)
     })
 }
 

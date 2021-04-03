@@ -101,7 +101,9 @@ const getCurrencies = (func) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => func(data.data))
+    .then((data) => {
+      func(data.data)
+    })
 }
 
 export {
