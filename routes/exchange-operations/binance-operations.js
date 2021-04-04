@@ -60,8 +60,11 @@ const getGraphData = (symbol, pairSymbol) => {
       return binanceData
     })
     .catch((err) => {
-      console.log(err)
-      return null
+      if (err.name === 'BadSymbol') {
+        return null
+      } else {
+        console.log(err)
+      }
     })
 }
 
