@@ -40,32 +40,38 @@ router.get('/getpairs/:currency', async (req, res) => {
 
 // Get ticker data on symbol/USDT
 // Payload sent: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
-router.get('/getgraphdata/:symbol/:pairsymbol/:timerange', async (req, res) => {
-  const symbol = req.params.symbol
-  const pairSymbol = req.params.pairsymbol
-  const timeRange = req.params.timerange
-  try {
-    const binanceGraphData = await binance.getGraphData(
-      symbol,
-      pairSymbol,
-      timeRange
-    )
-    const kucoinGraphData = await kucoin.getGraphData(
-      symbol,
-      pairSymbol,
-      timeRange
-    )
-    res.status(200).send({
-      data: {
-        symbol: symbol,
-        binanceData: binanceGraphData,
-        kucoinData: kucoinGraphData,
-      },
-    })
-  } catch (err) {
-    res.status(400).json(err)
+router.get(
+  '/getgraphdata/:symbol/:pairsymbol/:timerange/:increment',
+  async (req, res) => {
+    const symbol = req.params.symbol
+    const pairSymbol = req.params.pairsymbol
+    const timeRange = req.params.timerange
+    const increment = req.params.increment
+    try {
+      const binanceGraphData = await binance.getGraphData(
+        symbol,
+        pairSymbol,
+        timeRange,
+        increment
+      )
+      const kucoinGraphData = await kucoin.getGraphData(
+        symbol,
+        pairSymbol,
+        timeRange,
+        increment
+      )
+      res.status(200).send({
+        data: {
+          symbol: symbol,
+          binanceData: binanceGraphData,
+          kucoinData: kucoinGraphData,
+        },
+      })
+    } catch (err) {
+      res.status(400).json(err)
+    }
   }
-})
+)
 
 module.exports = router
 

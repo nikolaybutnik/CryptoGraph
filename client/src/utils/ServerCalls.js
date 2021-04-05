@@ -59,14 +59,17 @@ const getPairs = (currency, func) => {
 // Get ticker data on selected symbol from server
 // Payload received: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
 // Action: set graphData state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
-const getGraphData = (symbol, pairSymbol, func, timeRange) => {
-  fetch(`/api/graph/getgraphdata/${symbol}/${pairSymbol}/${timeRange}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
+const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
+  fetch(
+    `/api/graph/getgraphdata/${symbol}/${pairSymbol}/${timeRange}/${increment}`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    }
+  )
     .then((res) => res.json())
     .then((data) => {
       const binanceProcessedData = data.data.binanceData

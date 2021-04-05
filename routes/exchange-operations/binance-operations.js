@@ -45,18 +45,33 @@ const getPairs = (req) => {
     })
 }
 
-const getGraphData = (symbol, pairSymbol, timeRange) => {
+const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
   const index = 4 // [ timestamp, open, high, low, close, volume ]
   return binanceClient
-    .fetchOHLCV(`${symbol}/${pairSymbol}`, timeRange)
+    .fetchOHLCV(`${symbol}/${pairSymbol}`, increment)
     .then((data) => {
-      // timestamp and closing price objects for the last 90 results
-      const binanceData = data.slice(-90).map((x) => {
-        return {
-          timestamp: x[0],
-          closingPrice: x[index],
-        }
-      })
+      let binanceData
+      switch (timeRange) {
+        // timestamp and closing price objects for the last 90 days
+        case '90days':
+          binanceData = data.slice(-90).map((x) => {
+            return {
+              timestamp: x[0],
+              closingPrice: x[index],
+            }
+          })
+          break
+        // timestamp and closing price objects for the last 30 days
+        case '30days':
+          binanceData = data.slice(-30).map((x) => {
+            return {
+              timestamp: x[0],
+              closingPrice: x[index],
+            }
+          })
+          break
+      }
+      // console.log(binanceData)
       return binanceData
     })
     .catch((err) => {

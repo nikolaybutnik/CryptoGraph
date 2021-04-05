@@ -14,6 +14,8 @@ function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
   const [graphData, setGraphData] = useState()
+  const [symbol, setSymbol] = useState()
+  const [pairSymbol, setPairSymbol] = useState()
 
   useEffect(() => {
     const getData = async () => {
@@ -46,6 +48,10 @@ function App() {
         props={{
           getGraphData,
           setGraphData,
+          symbol,
+          setSymbol,
+          pairSymbol,
+          setPairSymbol,
         }}
       />
 
@@ -54,12 +60,26 @@ function App() {
           <div className="chart">
             <Chart graphData={graphData} />
           </div>
+
           <div className="chartControls">
-            <button>1min</button>
-            <button>1hr</button>
-            <button>1wk</button>
-            <button>1mn</button>
-            <button className="threeMonths">3mn</button>
+            <button onClick={() => console.log('placeholder for getGraphData')}>
+              1min
+            </button>
+            <button onClick={() => console.log('placeholder for getGraphData')}>
+              1hr
+            </button>
+            <button onClick={() => console.log('placeholder for getGraphData')}>
+              1wk
+            </button>
+            <button onClick={() => console.log('placeholder for getGraphData')}>
+              1mn
+            </button>
+            <button
+              className="threeMonths"
+              onClick={() => console.log('placeholder for getGraphData')}
+            >
+              3mn
+            </button>
           </div>
         </>
       )}

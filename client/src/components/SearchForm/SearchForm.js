@@ -6,9 +6,16 @@ import { HiOutlineSearchCircle } from 'react-icons/hi'
 
 import { getCurrencies, getPairs } from '../../utils/ServerCalls'
 
-const SearchForm = ({ props: { getGraphData, setGraphData } }) => {
-  const [symbol, setSymbol] = useState()
-  const [pairSymbol, setPairSymbol] = useState()
+const SearchForm = ({
+  props: {
+    getGraphData,
+    setGraphData,
+    symbol,
+    setSymbol,
+    pairSymbol,
+    setPairSymbol,
+  },
+}) => {
   const [allCurrencies, setAllCurrencies] = useState()
   const [pairOptions, setPairOptions] = useState()
 
@@ -22,7 +29,7 @@ const SearchForm = ({ props: { getGraphData, setGraphData } }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     if (symbol && pairSymbol) {
-      getGraphData(symbol, pairSymbol, setGraphData, '1d')
+      getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
     } else {
       console.log(symbol, pairSymbol, 'NOPE')
     }
