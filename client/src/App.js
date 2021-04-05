@@ -49,7 +49,11 @@ function App() {
         }}
       />
 
-      {last90Days && <Chart last90Days={last90Days} />}
+      {last90Days && (
+        <div className="chart">
+          <Chart last90Days={last90Days} />
+        </div>
+      )}
     </div>
   )
 }

@@ -1,0 +1,16 @@
+.chart {
+  max-width: 800px;
+}
+
+.chart .chartControls .threeMonths {
+  border-right: 1px solid grey;
+}
+
+.chart .chartControls button {
+  color: grey;
+  background: none;
+  border: none;
+  border-left: 1px solid grey;
+  cursor: pointer;
+}
+/*# sourceMappingURL=Chart.css.map */

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import './Chart.css'
 
 const Chart = ({ last90Days }) => {
   let labels
@@ -97,6 +98,13 @@ const Chart = ({ last90Days }) => {
           },
         }}
       />
+      <div className="chartControls">
+        <button>1min</button>
+        <button>1hr</button>
+        <button>1wk</button>
+        <button>1mn</button>
+        <button className="threeMonths">3mn</button>
+      </div>
     </div>
   )
 }
