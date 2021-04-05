@@ -71,7 +71,6 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
           })
           break
       }
-      // console.log(binanceData)
       return binanceData
     })
     .catch((err) => {

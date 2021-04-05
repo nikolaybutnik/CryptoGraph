@@ -71,12 +71,18 @@ function App() {
             <button onClick={() => console.log('placeholder for getGraphData')}>
               1wk
             </button>
-            <button onClick={() => console.log('placeholder for getGraphData')}>
+            <button
+              onClick={() =>
+                getGraphData(symbol, pairSymbol, setGraphData, '30days', '1d')
+              }
+            >
               1mn
             </button>
             <button
               className="threeMonths"
-              onClick={() => console.log('placeholder for getGraphData')}
+              onClick={() =>
+                getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
+              }
             >
               3mn
             </button>
