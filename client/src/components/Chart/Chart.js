@@ -2,30 +2,30 @@ import React from 'react'
 import { Line } from 'react-chartjs-2'
 import './Chart.css'
 
-const Chart = ({ last90Days }) => {
+const Chart = ({ graphData }) => {
   let labels
-  if (last90Days.binanceData) {
-    labels = last90Days.binanceData.map((data) => {
+  if (graphData.binanceData) {
+    labels = graphData.binanceData.map((data) => {
       return data.timestamp
     })
-  } else if (last90Days.kucoinData) {
-    labels = last90Days.kucoinData.map((data) => {
+  } else if (graphData.kucoinData) {
+    labels = graphData.kucoinData.map((data) => {
       return data.timestamp
     })
   }
 
-  const binanceData = last90Days.binanceData
-    ? last90Days.binanceData.map((data) => {
+  const binanceData = graphData.binanceData
+    ? graphData.binanceData.map((data) => {
         return data.closingPrice
       })
     : null
-  const kucoinData = last90Days.kucoinData
-    ? last90Days.kucoinData.map((data) => {
+  const kucoinData = graphData.kucoinData
+    ? graphData.kucoinData.map((data) => {
         return data.closingPrice
       })
     : null
-  const symbol = last90Days.symbol
-  const pairSymbol = last90Days.pairSymbol
+  const symbol = graphData.symbol
+  const pairSymbol = graphData.pairSymbol
 
   const data = {
     labels: labels,
@@ -98,13 +98,6 @@ const Chart = ({ last90Days }) => {
           },
         }}
       />
-      <div className="chartControls">
-        <button>1min</button>
-        <button>1hr</button>
-        <button>1wk</button>
-        <button>1mn</button>
-        <button className="threeMonths">3mn</button>
-      </div>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import './App.css'
 import {
   getEthPriceUSD,
   getExchangeRate,
-  getLast90Days,
+  getGraphData,
 } from './utils/ServerCalls'
 
 import Chart from './components/Chart/Chart'
@@ -13,7 +13,7 @@ import SearchForm from './components/SearchForm/SearchForm'
 function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
-  const [last90Days, setLast90Days] = useState()
+  const [graphData, setGraphData] = useState()
 
   useEffect(() => {
     const getData = async () => {
@@ -44,15 +44,24 @@ function App() {
 
       <SearchForm
         props={{
-          getLast90Days,
-          setLast90Days,
+          getGraphData,
+          setGraphData,
         }}
       />
 
-      {last90Days && (
-        <div className="chart">
-          <Chart last90Days={last90Days} />
-        </div>
+      {graphData && (
+        <>
+          <div className="chart">
+            <Chart graphData={graphData} />
+          </div>
+          <div className="chartControls">
+            <button>1min</button>
+            <button>1hr</button>
+            <button>1wk</button>
+            <button>1mn</button>
+            <button className="threeMonths">3mn</button>
+          </div>
+        </>
       )}
     </div>
   )

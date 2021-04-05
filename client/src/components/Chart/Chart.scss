@@ -1,15 +1,16 @@
 .chart {
   max-width: 800px;
-  .chartControls {
-    .threeMonths {
-      border-right: 1px solid grey;
-    }
-    button {
-      color: grey;
-      background: none;
-      border: none;
-      border-left: 1px solid grey;
-      cursor: pointer;
-    }
+}
+
+.chartControls {
+  .threeMonths {
+    border-right: 1px solid grey;
+  }
+  button {
+    color: grey;
+    background: none;
+    border: none;
+    border-left: 1px solid grey;
+    cursor: pointer;
   }
 }

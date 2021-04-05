@@ -2,11 +2,11 @@
   max-width: 800px;
 }
 
-.chart .chartControls .threeMonths {
+.chartControls .threeMonths {
   border-right: 1px solid grey;
 }
 
-.chart .chartControls button {
+.chartControls button {
   color: grey;
   background: none;
   border: none;

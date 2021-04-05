@@ -58,9 +58,9 @@ const getPairs = (currency, func) => {
 
 // Get ticker data on selected symbol from server
 // Payload received: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
-// Action: set last90Days state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
-const getLast90Days = (symbol, pairSymbol, func) => {
-  fetch(`/api/graph/getgraphdata/${symbol}/${pairSymbol}`, {
+// Action: set graphData state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
+const getGraphData = (symbol, pairSymbol, func, timeRange) => {
+  fetch(`/api/graph/getgraphdata/${symbol}/${pairSymbol}/${timeRange}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -110,6 +110,6 @@ export {
   getEthPriceUSD,
   getExchangeRate,
   getPairs,
-  getLast90Days,
+  getGraphData,
   getCurrencies,
 }

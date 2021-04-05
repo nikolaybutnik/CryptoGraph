@@ -45,10 +45,10 @@ const getPairs = (req, res) => {
     })
 }
 
-const getGraphData = (symbol, pairSymbol) => {
+const getGraphData = (symbol, pairSymbol, timeRange) => {
   const index = 4 // [ timestamp, open, high, low, close, volume ]
   return kucoinClient
-    .fetchOHLCV(`${symbol}/${pairSymbol}`, '1d') // 1 day increments
+    .fetchOHLCV(`${symbol}/${pairSymbol}`, timeRange)
     .then((data) => {
       // timestamp and closing price objects for the last 90 results
       const kucoinData = data.slice(-90).map((x) => {
