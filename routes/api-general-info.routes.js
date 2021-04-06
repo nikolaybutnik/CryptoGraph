@@ -33,4 +33,33 @@ router.get('/exchangerate', async (req, res) => {
     })
 })
 
+// Get general info and USD conversion data on the requested currency
+// Payload sent {conversionData: {object}, generalData: {object}}
+router.get('/currencydata/:symbol', async (req, res) => {
+  const symbol = req.params.symbol
+  const options = {
+    headers: {
+      'X-CMC_PRO_API_KEY': `${process.env.REACT_APP_CMC_API_KEY}`,
+    },
+  }
+  try {
+    const [conversionData, generalData] = await Promise.all([
+      axios.get(
+        `https://pro-api.coinmarketcap.com/v1/tools/price-conversion?symbol=${symbol}&amount=1&convert=USD`,
+        options
+      ),
+      axios.get(
+        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=${symbol}`,
+        options
+      ),
+    ])
+    res.send({
+      conversionData: conversionData.data.data,
+      generalData: generalData.data.data,
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 module.exports = router

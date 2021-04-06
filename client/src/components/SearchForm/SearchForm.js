@@ -4,7 +4,11 @@ import './SearchForm.css'
 import Select from 'react-select'
 import { HiOutlineSearchCircle } from 'react-icons/hi'
 
-import { getCurrencies, getPairs } from '../../utils/ServerCalls'
+import {
+  getCurrencies,
+  getPairs,
+  getCurrencyData,
+} from '../../utils/ServerCalls'
 
 const SearchForm = ({
   props: {
@@ -29,6 +33,7 @@ const SearchForm = ({
   const handleFormSubmit = (e) => {
     e.preventDefault()
     if (symbol && pairSymbol) {
+      getCurrencyData(symbol)
       getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
     } else {
       console.log(symbol, pairSymbol, 'NOPE')

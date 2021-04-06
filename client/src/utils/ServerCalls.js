@@ -92,6 +92,23 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
     .catch((err) => console.log(err))
 }
 
+// Get general info and USD conversion data on the requested currency
+// Payload received {conversionData: {object}, generalData: {object}}
+const getCurrencyData = (symbol) => {
+  fetch(`/api/info/currencydata/${symbol}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => console.log(err))
+}
+
 // Get all available currencies on the exchange
 // Payload received [array of 'string']
 // Action: set allCurrencies state as array of strings containing currency codes
@@ -115,4 +132,5 @@ export {
   getPairs,
   getGraphData,
   getCurrencies,
+  getCurrencyData,
 }
