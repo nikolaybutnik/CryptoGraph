@@ -70,6 +70,14 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
             }
           })
           break
+        case '7days':
+          binanceData = data.slice(-7).map((x) => {
+            return {
+              timestamp: x[0],
+              closingPrice: x[index],
+            }
+          })
+          break
       }
       return binanceData
     })

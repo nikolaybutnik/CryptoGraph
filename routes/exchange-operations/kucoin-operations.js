@@ -61,6 +61,14 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
             }
           })
           break
+        case '7days':
+          kucoinData = data.slice(-7).map((x) => {
+            return {
+              timestamp: x[0],
+              closingPrice: x[index],
+            }
+          })
+          break
         // timestamp and closing price objects for the last 30 days
         case '30days':
           kucoinData = data.slice(-30).map((x) => {
