@@ -62,32 +62,52 @@ function App() {
           </div>
 
           <div className="chartControls">
-            <button onClick={() => console.log('placeholder for getGraphData')}>
+            {/* <button
+              className="chartControlBtn"
+              onClick={() => console.log('placeholder for getGraphData')}
+            >
               1min
             </button>
-            <button onClick={() => console.log('placeholder for getGraphData')}>
+            <button
+              className="chartControlBtn"
+              onClick={() => console.log('placeholder for getGraphData')}
+            >
+              30min
+            </button>
+            <button
+              className="chartControlBtn"
+              onClick={() => console.log('placeholder for getGraphData')}
+            >
               1hr
             </button>
             <button
+              className="chartControlBtn"
+              onClick={() => console.log('placeholder for getGraphData')}
+            >
+              1d
+            </button> */}
+            <button
+              className="chartControlBtn"
               onClick={(e) => {
-                console.log(e.target)
+                // console.log(e.target)
                 getGraphData(symbol, pairSymbol, setGraphData, '7days', '1d')
               }}
             >
               1wk
             </button>
             <button
+              className="chartControlBtn"
               onClick={(e) => {
-                console.log(e.target)
+                // console.log(e.target)
                 getGraphData(symbol, pairSymbol, setGraphData, '30days', '1d')
               }}
             >
               1mn
             </button>
             <button
-              className="threeMonths"
+              className="chartControlBtn threeMonths"
               onClick={(e) => {
-                console.log(e.target)
+                // console.log(e.target)
                 getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
               }}
             >

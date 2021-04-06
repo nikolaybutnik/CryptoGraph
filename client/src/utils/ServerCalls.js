@@ -74,12 +74,12 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
     .then((data) => {
       const binanceProcessedData = data.data.binanceData
         ? data.data.binanceData.map((obj) => {
-            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
+            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
           })
         : null
       const kucoinProcessedData = data.data.kucoinData
         ? data.data.kucoinData.map((obj) => {
-            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd') }
+            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
           })
         : null
       func({
