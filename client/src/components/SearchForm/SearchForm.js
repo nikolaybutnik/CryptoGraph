@@ -33,7 +33,6 @@ const SearchForm = ({
   const handleFormSubmit = (e) => {
     e.preventDefault()
     if (symbol && pairSymbol) {
-      getCurrencyData(symbol)
       getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
     } else {
       console.log(symbol, pairSymbol, 'NOPE')
@@ -52,6 +51,7 @@ const SearchForm = ({
               options={allCurrencies && allCurrencies}
               onChange={(e) => {
                 setSymbol(e.value)
+                getCurrencyData(e.value)
                 getPairs(e.value, setPairOptions)
                 setPairSymbol(null)
               }}
