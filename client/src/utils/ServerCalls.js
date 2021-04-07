@@ -94,7 +94,7 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
 
 // Get general info and USD conversion data on the requested currency
 // Payload received {conversionData: {object}, generalData: {object}}
-const getCurrencyData = (symbol) => {
+const getCurrencyData = (symbol, func) => {
   fetch(`/api/info/currencydata/${symbol}`, {
     method: 'GET',
     headers: {
@@ -104,7 +104,7 @@ const getCurrencyData = (symbol) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
+      func(data)
     })
     .catch((err) => console.log(err))
 }

@@ -1,5 +1,19 @@
-.chart {
-  max-width: 800px;
+.chartInfoContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chartInfoContainer .chart {
+  max-width: 700px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+.chartInfoContainer .info {
+  max-width: 350px;
+  width: 30%;
+  overflow: hidden;
 }
 
 .chartControls .threeMonths {

@@ -1,5 +1,15 @@
-.chart {
-  max-width: 800px;
+.chartInfoContainer {
+  display: flex;
+  .chart {
+    max-width: 700px;
+    width: 70%;
+    margin-right: 10px;
+  }
+  .info {
+    max-width: 350px;
+    width: 30%;
+    overflow: hidden;
+  }
 }
 
 .chartControls {
