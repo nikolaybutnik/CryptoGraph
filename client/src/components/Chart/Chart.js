@@ -78,7 +78,7 @@ const Chart = ({ graphData }) => {
   return (
     <div>
       <h2>
-        {symbol}/{pairSymbol}: last 90 days
+        {symbol}/{pairSymbol}
       </h2>
       <Line
         data={data}

@@ -5,3 +5,13 @@
 .container {
   margin: 20px;
 }
+
+.ethInfo {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.ethInfo h2 {
+  margin-right: 15px;
+}

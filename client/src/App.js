@@ -45,11 +45,21 @@ function App() {
 
   return (
     <div className="container">
-      <h1>
-        ETH: {ethPrice && numberWithCommas(ethPrice)} USD{' '}
-        {exchangeRate && numberWithCommas((exchangeRate * ethPrice).toFixed(2))}{' '}
-        CAD
-      </h1>
+      <div className="ethInfo">
+        <img
+          src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
+          alt="Ethereum Logo"
+        />
+        <h2>Ethereum</h2>
+        <div>
+          <div>{ethPrice && numberWithCommas(ethPrice)} USD</div>
+          {exchangeRate && (
+            <div>
+              {numberWithCommas((exchangeRate * ethPrice).toFixed(2))} CAD
+            </div>
+          )}
+        </div>
+      </div>
 
       <SearchForm
         props={{
@@ -124,7 +134,16 @@ function App() {
 
           {symbolData && (
             <div className="info">
-              <h3>{`${symbolData.generalData[currentlySelectedSymbol].name} (${symbolData.generalData[currentlySelectedSymbol].symbol})`}</h3>{' '}
+              <div style={{ display: 'flex' }}>
+                <img
+                  style={{ alignSelf: 'center', marginRight: '5px' }}
+                  src={symbolData.generalData[
+                    currentlySelectedSymbol
+                  ].logo.replace('64x64', '32x32')}
+                  alt={`${symbolData.generalData[currentlySelectedSymbol].name} Logo`}
+                />
+                <h3>{`${symbolData.generalData[currentlySelectedSymbol].name} (${symbolData.generalData[currentlySelectedSymbol].symbol})`}</h3>{' '}
+              </div>
               {symbolData.generalData[currentlySelectedSymbol]
                 .twitter_username && (
                 <a
@@ -132,12 +151,6 @@ function App() {
                   href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
                 >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a>
               )}
-              <div>
-                <img
-                  src={symbolData.generalData[currentlySelectedSymbol].logo}
-                  alt={`${symbolData.generalData[currentlySelectedSymbol].name} Logo`}
-                />
-              </div>
               <h4>{`1 ${
                 symbolData.generalData[currentlySelectedSymbol].symbol
               }: ${symbolData.conversionData.quote['USD'].price.toFixed(
