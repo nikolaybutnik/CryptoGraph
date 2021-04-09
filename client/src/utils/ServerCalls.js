@@ -104,6 +104,7 @@ const getCurrencyData = (symbol, func) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       func(data)
     })
     .catch((err) => console.log(err))

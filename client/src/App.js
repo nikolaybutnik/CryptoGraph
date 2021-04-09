@@ -18,9 +18,9 @@ function App() {
   const [pairSymbol, setPairSymbol] = useState()
   const [symbolData, setSymbolData] = useState()
 
-  useEffect(() => {
-    console.log(symbolData)
-  }, [symbolData])
+  // useEffect(() => {
+  //   console.log(symbolData)
+  // }, [symbolData])
 
   useEffect(() => {
     const getData = async () => {
@@ -41,7 +41,8 @@ function App() {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  const currentlySelectedSymbol = symbolData && symbolData.conversionData.symbol
+  const currentlySelectedSymbol =
+    symbolData && symbolData.conversionData && symbolData.conversionData.symbol
 
   return (
     <div className="container">
@@ -132,7 +133,7 @@ function App() {
             </div>
           </div>
 
-          {symbolData && (
+          {symbolData && symbolData.conversionData && (
             <div className="info">
               <div style={{ display: 'flex' }}>
                 <img
@@ -151,11 +152,15 @@ function App() {
                   href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
                 >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a>
               )}
-              <h4>{`1 ${
-                symbolData.generalData[currentlySelectedSymbol].symbol
-              }: ${symbolData.conversionData.quote['USD'].price.toFixed(
-                2
-              )} USD`}</h4>
+              <h4>
+                {symbolData.conversionData.quote['USD'].price
+                  ? `1 ${
+                      symbolData.generalData[currentlySelectedSymbol].symbol
+                    }: ${symbolData.conversionData.quote['USD'].price.toFixed(
+                      2
+                    )} USD`
+                  : 'Price information not available'}
+              </h4>
               <p>
                 {symbolData.generalData[currentlySelectedSymbol].description}
               </p>

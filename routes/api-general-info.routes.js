@@ -53,12 +53,15 @@ router.get('/currencydata/:symbol', async (req, res) => {
         options
       ),
     ])
+    console.log(conversionData, generalData)
     res.send({
       conversionData: conversionData.data.data,
       generalData: generalData.data.data,
     })
   } catch (err) {
     console.log(err)
+    res.send({ data: err })
+    // res.status(500).json(err)
   }
 })
 
