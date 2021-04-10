@@ -13,6 +13,7 @@
 }
 
 .chartControls {
+  display: flex;
   .threeMonths {
     border-right: 1px solid grey;
   }
@@ -22,5 +23,9 @@
     border: none;
     border-left: 1px solid grey;
     cursor: pointer;
+  }
+  .viewOptions {
+    color: grey;
+    margin-left: 10px;
   }
 }

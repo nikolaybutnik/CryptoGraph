@@ -16,6 +16,12 @@
   overflow: hidden;
 }
 
+.chartControls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .chartControls .threeMonths {
   border-right: 1px solid grey;
 }
@@ -26,5 +32,10 @@
   border: none;
   border-left: 1px solid grey;
   cursor: pointer;
+}
+
+.chartControls .viewOptions {
+  color: grey;
+  margin-left: 10px;
 }
 /*# sourceMappingURL=Chart.css.map */

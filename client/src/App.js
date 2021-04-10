@@ -130,6 +130,19 @@ function App() {
               >
                 3mn
               </button>
+
+              <div className="viewOptions">
+                <label htmlFor="viewOptions">Trading View: </label>
+                <select name="viewOptions">
+                  <option value="1d">1d</option>
+                  <option value="4h">4h</option>
+                  <option value="1h">1h</option>
+                  <option value="30min">30min</option>
+                  <option value="15min">15min</option>
+                  <option value="5min">5min</option>
+                  <option value="1min">1min</option>
+                </select>
+              </div>
             </div>
           </div>
 
