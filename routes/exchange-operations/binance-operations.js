@@ -54,29 +54,113 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
       switch (timeRange) {
         // timestamp and closing price objects for the last 90 days
         case '90days':
-          binanceData = data.slice(-90).map((x) => {
-            return {
-              timestamp: x[0],
-              closingPrice: x[index],
-            }
-          })
+          switch (increment) {
+            case '1d':
+              binanceData = data.slice(-90).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '12h':
+              binanceData = data.slice(-180).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '8h':
+              binanceData = data.slice(-270).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '4h':
+              binanceData = data.slice(-540).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+          }
           break
         // timestamp and closing price objects for the last 30 days
         case '30days':
-          binanceData = data.slice(-30).map((x) => {
-            return {
-              timestamp: x[0],
-              closingPrice: x[index],
-            }
-          })
+          switch (increment) {
+            case '1d':
+              binanceData = data.slice(-30).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '12h':
+              binanceData = data.slice(-60).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '8h':
+              binanceData = data.slice(-90).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '4h':
+              binanceData = data.slice(-180).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+          }
           break
         case '7days':
-          binanceData = data.slice(-7).map((x) => {
-            return {
-              timestamp: x[0],
-              closingPrice: x[index],
-            }
-          })
+          switch (increment) {
+            case '1d':
+              binanceData = data.slice(-7).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '12h':
+              binanceData = data.slice(-14).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '8h':
+              binanceData = data.slice(-21).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '4h':
+              binanceData = data.slice(-42).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+          }
           break
       }
       return binanceData

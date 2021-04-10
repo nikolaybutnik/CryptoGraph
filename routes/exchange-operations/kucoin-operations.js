@@ -54,29 +54,113 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
       switch (timeRange) {
         // timestamp and closing price objects for the last 90 days
         case '90days':
-          kucoinData = data.slice(-90).map((x) => {
-            return {
-              timestamp: x[0],
-              closingPrice: x[index],
-            }
-          })
-          break
-        case '7days':
-          kucoinData = data.slice(-7).map((x) => {
-            return {
-              timestamp: x[0],
-              closingPrice: x[index],
-            }
-          })
+          switch (increment) {
+            case '1d':
+              kucoinData = data.slice(-90).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '12h':
+              kucoinData = data.slice(-180).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '8h':
+              kucoinData = data.slice(-270).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '4h':
+              kucoinData = data.slice(-540).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+          }
           break
         // timestamp and closing price objects for the last 30 days
         case '30days':
-          kucoinData = data.slice(-30).map((x) => {
-            return {
-              timestamp: x[0],
-              closingPrice: x[index],
-            }
-          })
+          switch (increment) {
+            case '1d':
+              kucoinData = data.slice(-30).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '12h':
+              kucoinData = data.slice(-60).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '8h':
+              kucoinData = data.slice(-90).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '4h':
+              kucoinData = data.slice(-180).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+          }
+          break
+        case '7days':
+          switch (increment) {
+            case '1d':
+              kucoinData = data.slice(-7).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '12h':
+              kucoinData = data.slice(-14).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '8h':
+              kucoinData = data.slice(-21).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+            case '4h':
+              kucoinData = data.slice(-42).map((x) => {
+                return {
+                  timestamp: x[0],
+                  closingPrice: x[index],
+                }
+              })
+              break
+          }
           break
       }
       return kucoinData

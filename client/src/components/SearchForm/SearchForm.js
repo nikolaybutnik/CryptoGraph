@@ -19,6 +19,7 @@ const SearchForm = ({
     pairSymbol,
     setPairSymbol,
     setSymbolData,
+    viewOption,
   },
 }) => {
   const [allCurrencies, setAllCurrencies] = useState()
@@ -35,7 +36,7 @@ const SearchForm = ({
     e.preventDefault()
     if (symbol && pairSymbol) {
       getCurrencyData(symbol, setSymbolData)
-      getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
+      getGraphData(symbol, pairSymbol, setGraphData, '90days', viewOption)
     } else {
       console.log(symbol, pairSymbol, 'NOPE')
     }

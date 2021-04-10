@@ -18,9 +18,7 @@ function App() {
   const [pairSymbol, setPairSymbol] = useState()
   const [symbolData, setSymbolData] = useState()
 
-  // useEffect(() => {
-  //   console.log(symbolData)
-  // }, [symbolData])
+  const [viewOption, setViewOption] = useState('1d')
 
   useEffect(() => {
     const getData = async () => {
@@ -71,6 +69,7 @@ function App() {
           pairSymbol,
           setPairSymbol,
           setSymbolData,
+          viewOption,
         }}
       />
 
@@ -79,53 +78,44 @@ function App() {
           <div className="chart">
             <Chart graphData={graphData} />
             <div className="chartControls">
-              {/* <button
-              className="chartControlBtn"
-              onClick={() => console.log('placeholder for getGraphData')}
-            >
-              1min
-            </button>
-            <button
-              className="chartControlBtn"
-              onClick={() => console.log('placeholder for getGraphData')}
-            >
-              30min
-            </button>
-            <button
-              className="chartControlBtn"
-              onClick={() => console.log('placeholder for getGraphData')}
-            >
-              1hr
-            </button>
-            <button
-              className="chartControlBtn"
-              onClick={() => console.log('placeholder for getGraphData')}
-            >
-              1d
-            </button> */}
               <button
                 className="chartControlBtn"
-                onClick={(e) => {
-                  // console.log(e.target)
-                  getGraphData(symbol, pairSymbol, setGraphData, '7days', '1d')
+                onClick={() => {
+                  getGraphData(
+                    symbol,
+                    pairSymbol,
+                    setGraphData,
+                    '7days',
+                    viewOption
+                  )
                 }}
               >
                 1wk
               </button>
               <button
                 className="chartControlBtn"
-                onClick={(e) => {
-                  // console.log(e.target)
-                  getGraphData(symbol, pairSymbol, setGraphData, '30days', '1d')
+                onClick={() => {
+                  getGraphData(
+                    symbol,
+                    pairSymbol,
+                    setGraphData,
+                    '30days',
+                    viewOption
+                  )
                 }}
               >
                 1mn
               </button>
               <button
                 className="chartControlBtn threeMonths"
-                onClick={(e) => {
-                  // console.log(e.target)
-                  getGraphData(symbol, pairSymbol, setGraphData, '90days', '1d')
+                onClick={() => {
+                  getGraphData(
+                    symbol,
+                    pairSymbol,
+                    setGraphData,
+                    '90days',
+                    viewOption
+                  )
                 }}
               >
                 3mn
@@ -133,14 +123,15 @@ function App() {
 
               <div className="viewOptions">
                 <label htmlFor="viewOptions">Trading View: </label>
-                <select name="viewOptions">
+                <select
+                  name="viewOptions"
+                  onChange={(e) => setViewOption(e.target.value)}
+                >
                   <option value="1d">1d</option>
+                  <option value="12h">12h</option>
+                  <option value="8h">8h</option>
                   <option value="4h">4h</option>
-                  <option value="1h">1h</option>
-                  <option value="30min">30min</option>
-                  <option value="15min">15min</option>
-                  <option value="5min">5min</option>
-                  <option value="1min">1min</option>
+                  {/* <option value="1h">1h</option> */}
                 </select>
               </div>
             </div>
