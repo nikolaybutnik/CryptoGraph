@@ -13,7 +13,7 @@ router.get('/ethprice', async (req, res) => {
       res.status(200).send({ data: retrievedData })
     })
     .catch((err) => {
-      res.status(400).json(err)
+      res.status(500).json(err)
     })
 })
 
@@ -29,7 +29,7 @@ router.get('/exchangerate', async (req, res) => {
       res.status(200).send({ data: retrievedData })
     })
     .catch((err) => {
-      res.status(400).json(err)
+      res.status(500).json(err)
     })
 })
 
