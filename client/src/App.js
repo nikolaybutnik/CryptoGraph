@@ -17,7 +17,7 @@ function App() {
   const [symbol, setSymbol] = useState()
   const [pairSymbol, setPairSymbol] = useState()
   const [symbolData, setSymbolData] = useState()
-
+  const [timeSpan, setTimeSpan] = useState('90days')
   const [viewOption, setViewOption] = useState('1d')
 
   useEffect(() => {
@@ -81,6 +81,7 @@ function App() {
               <button
                 className="chartControlBtn"
                 onClick={() => {
+                  setTimeSpan('7days')
                   getGraphData(
                     symbol,
                     pairSymbol,
@@ -95,6 +96,7 @@ function App() {
               <button
                 className="chartControlBtn"
                 onClick={() => {
+                  setTimeSpan('30days')
                   getGraphData(
                     symbol,
                     pairSymbol,
@@ -109,6 +111,7 @@ function App() {
               <button
                 className="chartControlBtn threeMonths"
                 onClick={() => {
+                  setTimeSpan('90days')
                   getGraphData(
                     symbol,
                     pairSymbol,
@@ -125,7 +128,16 @@ function App() {
                 <label htmlFor="viewOptions">Trading View: </label>
                 <select
                   name="viewOptions"
-                  onChange={(e) => setViewOption(e.target.value)}
+                  onChange={(e) => {
+                    setViewOption(e.target.value)
+                    getGraphData(
+                      symbol,
+                      pairSymbol,
+                      setGraphData,
+                      timeSpan,
+                      e.target.value
+                    )
+                  }}
                 >
                   <option value="1d">1d</option>
                   <option value="12h">12h</option>

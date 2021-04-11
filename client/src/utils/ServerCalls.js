@@ -72,6 +72,7 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
   )
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       const binanceProcessedData = data.data.binanceData
         ? data.data.binanceData.map((obj) => {
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
