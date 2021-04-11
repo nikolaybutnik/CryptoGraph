@@ -2,18 +2,39 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 
 .chartInfoContainer .chart {
   max-width: 700px;
-  width: 70%;
+  width: 100%;
   margin-right: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .chartInfoContainer .chart {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .chartInfoContainer .chart {
+    height: 100%;
+  }
 }
 
 .chartInfoContainer .info {
   max-width: 350px;
-  width: 30%;
   overflow: hidden;
+}
+
+@media only screen and (max-width: 1024px) {
+  .chartInfoContainer .info {
+    max-width: 80%;
+  }
 }
 
 .chartControls {
