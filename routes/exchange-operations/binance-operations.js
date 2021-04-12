@@ -80,7 +80,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              binanceData = data.slice(-540).map((x) => {
+              binanceData = data.slice(-500).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],

@@ -80,7 +80,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              kucoinData = data.slice(-540).map((x) => {
+              kucoinData = data.slice(-500).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
