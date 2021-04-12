@@ -9,6 +9,7 @@ import {
 
 import Chart from './components/Chart/Chart'
 import SearchForm from './components/SearchForm/SearchForm'
+import { format } from 'date-fns'
 
 function App() {
   const [exchangeRate, setExchangeRate] = useState()
@@ -42,6 +43,26 @@ function App() {
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol
 
+  const getTestData = () => {
+    // Binance timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
+    // 6h, 8h, 12h, 1d, 3d, 1w, 1M
+    fetch(`/testdata/ADA/ETH/7days/1m`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const timestamps = data.data.map((x) => {
+          return format(x, 'm')
+        })
+        console.log(timestamps)
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <div className="container">
       <div className="ethInfo">
@@ -72,6 +93,8 @@ function App() {
           viewOption,
         }}
       />
+
+      {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
       {graphData && (
         <div className="chartInfoContainer">

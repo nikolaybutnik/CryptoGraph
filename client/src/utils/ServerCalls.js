@@ -72,7 +72,7 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       const binanceProcessedData = data.data.binanceData
         ? data.data.binanceData.map((obj) => {
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
@@ -105,7 +105,7 @@ const getCurrencyData = (symbol, func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       func(data)
     })
     .catch((err) => console.log(err))

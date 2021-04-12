@@ -34,11 +34,29 @@ const run = async () => {
   // console.log(binanceClient.has)
   // console.log(await binanceClient)
   // console.log(await binanceClient.fetchTrades('TRX/ETH'))
-  console.log(kucoinClient.has)
+  console.log(binanceClient.timeframes)
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
 // run()
+
+app.get('/testdata/:symbol/:pair/:timerange/:interval', async (req, res) => {
+  const symbol = req.params.symbol
+  const pair = req.params.pair
+  const timerange = req.params.timerange
+  const interval = req.params.interval
+  try {
+    binanceClient.fetchOHLCV(`${symbol}/${pair}`, interval).then((data) => {
+      const timestamps = data.map((x) => {
+        return x[0]
+      })
+      // console.log(timestamps)
+      res.status(200).send({ data: timestamps })
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 // Send every other request to the React app
 // Define any API routes before this runs
