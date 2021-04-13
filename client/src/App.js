@@ -7,7 +7,7 @@ import {
   getGraphData,
 } from './utils/ServerCalls'
 
-import Chart from './components/Chart/Chart'
+import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
 import { format } from 'date-fns'
 
@@ -46,6 +46,8 @@ function App() {
   const getTestData = () => {
     // Binance timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
     // 6h, 8h, 12h, 1d, 3d, 1w, 1M
+    // KuCoin timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
+    // 6h, 8h, 12h, 1d, 1w
     fetch(`/testdata/ADA/ETH/7days/1m`, {
       method: 'GET',
       headers: {
@@ -99,7 +101,7 @@ function App() {
       {graphData && (
         <div className="chartInfoContainer">
           <div className="chart">
-            <Chart graphData={graphData} />
+            <Graph graphData={graphData} />
             <div className="chartControls">
               <button
                 className="chartControlBtn"

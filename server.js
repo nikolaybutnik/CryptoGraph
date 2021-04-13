@@ -34,12 +34,13 @@ const run = async () => {
   // console.log(binanceClient.has)
   // console.log(await binanceClient)
   // console.log(await binanceClient.fetchTrades('TRX/ETH'))
-  console.log(binanceClient.timeframes)
+  console.log(kucoinClient.timeframes)
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
 // run()
 
+// server route for test data
 app.get('/testdata/:symbol/:pair/:timerange/:interval', async (req, res) => {
   const symbol = req.params.symbol
   const pair = req.params.pair
