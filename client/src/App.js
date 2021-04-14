@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 
-import {
-  getEthPriceUSD,
-  getExchangeRate,
-  getGraphData,
-} from './utils/ServerCalls'
+import { getGraphData } from './utils/ServerCalls'
 
 import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
-import { format } from 'date-fns'
+import EthPrice from './components/EthPrice/EthPrice'
+// import { format } from 'date-fns'
 
 function App() {
-  const [exchangeRate, setExchangeRate] = useState()
-  const [ethPrice, setEthPrice] = useState()
   const [graphData, setGraphData] = useState()
   const [symbol, setSymbol] = useState()
   const [pairSymbol, setPairSymbol] = useState()
@@ -21,67 +16,34 @@ function App() {
   const [timeSpan, setTimeSpan] = useState('90days')
   const [viewOption, setViewOption] = useState('1d')
 
-  useEffect(() => {
-    const getData = async () => {
-      await getExchangeRate(setExchangeRate)
-    }
-    getData()
-  }, [])
-
-  useEffect(() => {
-    getEthPriceUSD(setEthPrice)
-    const interval = setInterval(() => {
-      getEthPriceUSD(setEthPrice)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const numberWithCommas = (num) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol
 
-  const getTestData = () => {
-    // Binance timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
-    // 6h, 8h, 12h, 1d, 3d, 1w, 1M
-    // KuCoin timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
-    // 6h, 8h, 12h, 1d, 1w
-    fetch(`/testdata/ADA/ETH/7days/1m`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const timestamps = data.data.map((x) => {
-          return format(x, 'm')
-        })
-        console.log(timestamps)
-      })
-      .catch((err) => console.log(err))
-  }
+  // const getTestData = () => {
+  //   // Binance timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
+  //   // 6h, 8h, 12h, 1d, 3d, 1w, 1M
+  //   // KuCoin timeframes: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h,
+  //   // 6h, 8h, 12h, 1d, 1w
+  //   fetch(`/testdata/ADA/ETH/7days/1m`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json, text/plain, */*',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const timestamps = data.data.map((x) => {
+  //         return format(x, 'm')
+  //       })
+  //       console.log(timestamps)
+  //     })
+  //     .catch((err) => console.log(err))
+  // }
 
   return (
     <div className="container">
-      <div className="ethInfo">
-        <img
-          src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
-          alt="Ethereum Logo"
-        />
-        <h2>Ethereum</h2>
-        <div>
-          <div>{ethPrice && numberWithCommas(ethPrice)} USD</div>
-          {exchangeRate && (
-            <div>
-              {numberWithCommas((exchangeRate * ethPrice).toFixed(2))} CAD
-            </div>
-          )}
-        </div>
-      </div>
+      <EthPrice />
 
       <SearchForm
         props={{
