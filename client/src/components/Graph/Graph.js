@@ -1,10 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Chart from 'chart.js'
 import './Graph.css'
 
 const Graph = ({ graphData }) => {
+  const [newGraph, setNewGraph] = useState()
+  const graphRef = useRef()
+
   useEffect(() => {
-    const ctx = document.getElementById('myChart').getContext('2d')
+    const ctx = graphRef.current.getContext('2d')
+    const graphInstance = new Chart(ctx, {})
+    setNewGraph(graphInstance)
+  }, [])
+
+  useEffect(() => {
+    const ctx = graphRef.current.getContext('2d')
 
     let labels
     if (graphData.binanceData) {
@@ -28,7 +37,24 @@ const Graph = ({ graphData }) => {
         })
       : null
 
-    const chart = new Chart(ctx, {
+    // newGraph && console.log(newGraph.config.data)
+    // const newData = newGraph && {
+    //   labels: labels,
+    //   datasets: [
+    //     {
+    //       label: binanceData ? 'Binance' : 'N/A',
+    //       data: binanceData,
+    //     },
+    //     {
+    //       label: kucoinData ? 'KuCoin' : 'N/A',
+    //       data: kucoinData,
+    //     },
+    //   ],
+    // }
+    // newGraph && setNewGraph(...newGraph, newData)
+    // newData && newGraph.update()
+
+    const graphInstance = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labels,
@@ -78,7 +104,6 @@ const Graph = ({ graphData }) => {
         ],
       },
     })
-    chart.update()
   }, [graphData])
 
   const symbol = graphData.symbol
@@ -89,7 +114,7 @@ const Graph = ({ graphData }) => {
       <h2>
         {symbol}/{pairSymbol}
       </h2>
-      <canvas id="myChart"></canvas>
+      <canvas id="myChart" ref={graphRef}></canvas>
     </>
   )
 }
