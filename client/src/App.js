@@ -61,12 +61,12 @@ function App() {
       {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
       {graphData && (
-        <div className="chartInfoContainer">
-          <div className="chart">
+        <div className="graphInfoContainer">
+          <div className="graph">
             <Graph graphData={graphData} />
-            <div className="chartControls">
+            <div className="graphControls">
               <button
-                className="chartControlBtn"
+                className="graphControlBtn"
                 onClick={() => {
                   setTimeSpan('7days')
                   getGraphData(
@@ -81,7 +81,7 @@ function App() {
                 1wk
               </button>
               <button
-                className="chartControlBtn"
+                className="graphControlBtn"
                 onClick={() => {
                   setTimeSpan('30days')
                   getGraphData(
@@ -96,7 +96,7 @@ function App() {
                 1mn
               </button>
               <button
-                className="chartControlBtn threeMonths"
+                className="graphControlBtn threeMonths"
                 onClick={() => {
                   setTimeSpan('90days')
                   getGraphData(

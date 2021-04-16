@@ -3,7 +3,7 @@ import Chart from 'chart.js'
 import './Graph.css'
 
 const Graph = ({ graphData }) => {
-  const [chart, setChart] = useState(null)
+  const [graph, setGraph] = useState(null)
   const graphRef = useRef()
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Graph = ({ graphData }) => {
         })
       : null
 
-    if (!chart) {
+    if (!graph) {
       const graphInstance = new Chart(ctx, {
         type: 'line',
         data: {
@@ -82,10 +82,9 @@ const Graph = ({ graphData }) => {
           ],
         },
       })
-      setChart(graphInstance)
+      setGraph(graphInstance)
     } else {
-      console.log(chart.data)
-      chart.data = {
+      graph.data = {
         labels: labels,
         datasets: [
           {
@@ -132,9 +131,9 @@ const Graph = ({ graphData }) => {
           },
         ],
       }
-      chart.update()
+      graph.update()
     }
-  }, [graphData, chart])
+  }, [graphData, graph])
 
   const symbol = graphData.symbol
   const pairSymbol = graphData.pairSymbol
@@ -144,7 +143,7 @@ const Graph = ({ graphData }) => {
       <h2>
         {symbol}/{pairSymbol}
       </h2>
-      <canvas id="myChart" ref={graphRef}></canvas>
+      <canvas id="myGraph" ref={graphRef}></canvas>
     </>
   )
 }

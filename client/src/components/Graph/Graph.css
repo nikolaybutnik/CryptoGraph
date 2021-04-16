@@ -1,4 +1,4 @@
-.chartInfoContainer {
+.graphInfoContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8,46 +8,46 @@
           flex-flow: row wrap;
 }
 
-.chartInfoContainer .chart {
+.graphInfoContainer .graph {
   max-width: 700px;
   width: 100%;
   margin-right: 10px;
 }
 
 @media only screen and (max-width: 1024px) {
-  .chartInfoContainer .chart {
+  .graphInfoContainer .graph {
     max-width: 100%;
   }
 }
 
 @media only screen and (max-width: 400px) {
-  .chartInfoContainer .chart {
+  .graphInfoContainer .graph {
     height: 100%;
   }
 }
 
-.chartInfoContainer .info {
+.graphInfoContainer .info {
   max-width: 350px;
   overflow: hidden;
 }
 
 @media only screen and (max-width: 1024px) {
-  .chartInfoContainer .info {
+  .graphInfoContainer .info {
     max-width: 80%;
   }
 }
 
-.chartControls {
+.graphControls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.chartControls .threeMonths {
+.graphControls .threeMonths {
   border-right: 1px solid grey;
 }
 
-.chartControls button {
+.graphControls button {
   color: grey;
   background: none;
   border: none;
@@ -55,7 +55,7 @@
   cursor: pointer;
 }
 
-.chartControls .viewOptions {
+.graphControls .viewOptions {
   color: grey;
   margin-left: 10px;
 }
