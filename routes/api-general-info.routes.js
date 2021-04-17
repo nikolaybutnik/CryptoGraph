@@ -17,6 +17,22 @@ router.get('/ethprice', async (req, res) => {
     })
 })
 
+// Get current BTC/USD price
+router.get('/btcprice', async (req, res) => {
+  axios
+    .get(
+      `https://api.etherscan.io/api?module=stats&action=btcprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
+    )
+    .then((data) => {
+      console.log(data.data)
+      // const retrievedData = data.data
+      // res.status(200).send({ data: retrievedData })
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+})
+
 // Get USD/CAD conversion
 // Payload sent: {USD_CAD: number}
 router.get('/exchangerate', async (req, res) => {

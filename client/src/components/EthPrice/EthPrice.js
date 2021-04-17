@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './EthPrice.css'
 
-import { getEthPriceUSD, getExchangeRate } from '../../utils/ServerCalls'
+import {
+  getEthPriceUSD,
+  getBtcPriceUSD,
+  getExchangeRate,
+} from '../../utils/ServerCalls'
 
 const EthPrice = () => {
   const [exchangeRate, setExchangeRate] = useState()
   const [ethPrice, setEthPrice] = useState()
+  const [btcPrice, setBtcPrice] = useState()
 
   useEffect(() => {
     const getData = async () => {
@@ -27,21 +32,35 @@ const EthPrice = () => {
   }
 
   return (
-    <div className="ethInfo">
-      <img
-        src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
-        alt="Ethereum Logo"
-      />
-      <h2>Ethereum</h2>
-      <div>
-        <div>{ethPrice && numberWithCommas(ethPrice)} USD</div>
-        {exchangeRate && (
-          <div>
-            {numberWithCommas((exchangeRate * ethPrice).toFixed(2))} CAD
-          </div>
-        )}
+    <>
+      <div className="ethInfo">
+        <img
+          src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
+          alt="Ethereum Logo"
+        />
+        <h2>Ethereum</h2>
+        <div>
+          <div>{ethPrice && numberWithCommas(ethPrice)} USD</div>
+          {exchangeRate && (
+            <div>
+              {numberWithCommas((exchangeRate * ethPrice).toFixed(2))} CAD
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      <div className="btcInfo">
+        <img
+          src="https://s2.coinmarketcap.com/static/img/coins/32x32/1.png"
+          alt="Bitcoin Logo"
+        />
+        <h2>Bitcoin</h2>
+        {/* <button onClick={() => getBtcPriceUSD(setBtcPrice)}>Get BTC</button> */}
+        <div>
+          <div>{btcPrice && numberWithCommas(btcPrice)} Coming Soon</div>
+          {/* {exchangeRate && <div></div>} */}
+        </div>
+      </div>
+    </>
   )
 }
 

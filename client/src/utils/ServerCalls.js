@@ -18,6 +18,23 @@ const getEthPriceUSD = (func) => {
     .catch((err) => console.log(err))
 }
 
+// Get current BTC price in USD
+const getBtcPriceUSD = (func) => {
+  fetch('/api/info/btcprice', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data.data)
+      // func(data.data.result.ethusd)
+    })
+    .catch((err) => console.log(err))
+}
+
 // Get exhange rates based on USD
 // Payload received: {USD_CAD: number}
 // Action: set exhangeRate state as number
@@ -130,6 +147,7 @@ const getCurrencies = (func) => {
 
 export {
   getEthPriceUSD,
+  getBtcPriceUSD,
   getExchangeRate,
   getPairs,
   getGraphData,
