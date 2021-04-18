@@ -19,6 +19,7 @@ const getEthPriceUSD = (func) => {
 }
 
 // Get current BTC price in USD
+// Payload received: number
 const getBtcPriceUSD = (func) => {
   fetch('/api/info/btcprice', {
     method: 'GET',

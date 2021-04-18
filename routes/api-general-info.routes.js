@@ -18,6 +18,7 @@ router.get('/ethprice', async (req, res) => {
 })
 
 // Get current BTC/USD price
+// Payload sent: number
 router.get('/btcprice', async (req, res) => {
   axios
     .get(`http://api.coinbase.com/v2/exchange-rates?currency=btc`)
