@@ -1,0 +1,47 @@
+.ethBtcInfo {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+  grid-column-gap: 15px;
+}
+
+@media only screen and (max-width: 582px) {
+  .ethBtcInfo {
+    display: block;
+  }
+}
+
+.ethBtcInfo .ethInfo {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: #e2e2e2;
+}
+
+.ethBtcInfo .btcInfo {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #fad186;
+}
+
+.ethBtcInfo .ethInfo,
+.ethBtcInfo .btcInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ethBtcInfo .ethInfo h2,
+.ethBtcInfo .btcInfo h2 {
+  margin-right: 15px;
+}
+/*# sourceMappingURL=EthBtcPrice.css.map */

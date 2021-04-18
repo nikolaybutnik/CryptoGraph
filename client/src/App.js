@@ -5,7 +5,7 @@ import { getGraphData } from './utils/ServerCalls'
 
 import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
-import EthPrice from './components/EthPrice/EthPrice'
+import EthPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
 // import { format } from 'date-fns'
 

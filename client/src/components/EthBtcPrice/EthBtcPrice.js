@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './EthPrice.css'
+import './EthBtcPrice.css'
 
 import {
   getEthPriceUSD,
@@ -34,7 +34,7 @@ const EthPrice = () => {
   }
 
   return (
-    <>
+    <div className="ethBtcInfo">
       <div className="ethInfo">
         <img
           src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
@@ -65,7 +65,7 @@ const EthPrice = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

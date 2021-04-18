@@ -1,0 +1,29 @@
+.ethBtcInfo {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 15px;
+  @media only screen and (max-width: 582px) {
+    display: block;
+  }
+  .ethInfo {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: rgb(226, 226, 226);
+  }
+  .btcInfo {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    background-color: rgb(250, 209, 134);
+  }
+  .ethInfo,
+  .btcInfo {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    h2 {
+      margin-right: 15px;
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ;AACR,QAAQ,CAAC;EACP,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,aAAa,EAAE,MAAM;CAItB;;AARD,AAKE,QALM,CAKN,EAAE;AAJJ,QAAQ,CAIN,EAAE,CAAC;EACD,YAAY,EAAE,IAAI;CACnB",
-    "sources": [
-        "EthPrice.scss"
-    ],
-    "names": [],
-    "file": "EthPrice.css"
-}
