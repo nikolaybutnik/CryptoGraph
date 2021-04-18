@@ -39,6 +39,7 @@ const EthPrice = () => {
         <img
           src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
           alt="Ethereum Logo"
+          style={{ marginRight: '5px' }}
         />
         <h2>Ethereum</h2>
         <div>
@@ -54,6 +55,7 @@ const EthPrice = () => {
         <img
           src="https://s2.coinmarketcap.com/static/img/coins/32x32/1.png"
           alt="Bitcoin Logo"
+          style={{ marginRight: '5px' }}
         />
         <h2>Bitcoin</h2>
         <div>

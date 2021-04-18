@@ -2,7 +2,7 @@
   display: inline-grid;
   grid-template-columns: auto auto;
   grid-column-gap: 15px;
-  @media only screen and (max-width: 582px) {
+  @media only screen and (max-width: 610px) {
     display: block;
   }
   .ethInfo {

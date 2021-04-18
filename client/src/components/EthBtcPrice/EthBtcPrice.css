@@ -6,7 +6,7 @@
   grid-column-gap: 15px;
 }
 
-@media only screen and (max-width: 582px) {
+@media only screen and (max-width: 610px) {
   .ethBtcInfo {
     display: block;
   }
