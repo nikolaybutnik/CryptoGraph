@@ -29,8 +29,8 @@ const getBtcPriceUSD = (func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data.data)
-      // func(data.data.result.ethusd)
+      console.log(data.data)
+      func(data.data)
     })
     .catch((err) => console.log(err))
 }

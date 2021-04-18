@@ -20,13 +20,10 @@ router.get('/ethprice', async (req, res) => {
 // Get current BTC/USD price
 router.get('/btcprice', async (req, res) => {
   axios
-    .get(
-      `https://api.etherscan.io/api?module=stats&action=btcprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
-    )
+    .get(`http://api.coinbase.com/v2/exchange-rates?currency=btc`)
     .then((data) => {
-      console.log(data.data)
-      // const retrievedData = data.data
-      // res.status(200).send({ data: retrievedData })
+      const retrievedData = data.data.data.rates['USDC']
+      res.status(200).send({ data: retrievedData })
     })
     .catch((err) => {
       res.status(500).json(err)

@@ -21,8 +21,10 @@ const EthPrice = () => {
 
   useEffect(() => {
     getEthPriceUSD(setEthPrice)
+    getBtcPriceUSD(setBtcPrice)
     const interval = setInterval(() => {
       getEthPriceUSD(setEthPrice)
+      getBtcPriceUSD(setBtcPrice)
     }, 5000)
     return () => clearInterval(interval)
   }, [])
@@ -54,10 +56,13 @@ const EthPrice = () => {
           alt="Bitcoin Logo"
         />
         <h2>Bitcoin</h2>
-        {/* <button onClick={() => getBtcPriceUSD(setBtcPrice)}>Get BTC</button> */}
         <div>
-          <div>{btcPrice && numberWithCommas(btcPrice)} Coming Soon</div>
-          {/* {exchangeRate && <div></div>} */}
+          <div>{btcPrice && numberWithCommas(btcPrice)} USD</div>
+          {exchangeRate && (
+            <div>
+              {numberWithCommas((exchangeRate * btcPrice).toFixed(2))} CAD
+            </div>
+          )}
         </div>
       </div>
     </>
