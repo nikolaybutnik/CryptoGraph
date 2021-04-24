@@ -155,10 +155,25 @@ const Graph = ({ graphData }) => {
     }
   }
 
+  const checkIfFavorite = () => {
+    const currentFavorites = JSON.parse(localStorage.getItem('userFavorites'))
+    if (
+      currentFavorites.some(
+        (item) => item.symbol === symbol && item.pair === pairSymbol
+      )
+    ) {
+      return true
+    }
+  }
+
   return (
     <>
       <h2>
-        <AiOutlineStar onClick={() => toggleFavorite(symbol, pairSymbol)} />
+        {checkIfFavorite() ? (
+          <AiFillStar onClick={() => toggleFavorite(symbol, pairSymbol)} />
+        ) : (
+          <AiOutlineStar onClick={() => toggleFavorite(symbol, pairSymbol)} />
+        )}
         {symbol}/{pairSymbol}
       </h2>
       <canvas id="myGraph" ref={graphRef}></canvas>
