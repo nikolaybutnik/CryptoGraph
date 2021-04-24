@@ -7,6 +7,7 @@ import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
 import EthPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
+import Favorites from './components/Favorites/Favorites'
 // import { format } from 'date-fns'
 
 function App() {
@@ -57,6 +58,8 @@ function App() {
           viewOption,
         }}
       />
+
+      <Favorites />
 
       {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
