@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
 import { getGraphData } from './utils/ServerCalls'
@@ -16,6 +16,12 @@ function App() {
   const [pairSymbol, setPairSymbol] = useState()
   const [symbolData, setSymbolData] = useState()
   const [viewOption, setViewOption] = useState('1d')
+
+  useEffect(() => {
+    if (!localStorage.getItem('userFavorites')) {
+      localStorage.setItem('userFavorites', '[]')
+    }
+  }, [])
 
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol

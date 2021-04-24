@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import Chart from 'chart.js'
 import './Graph.css'
 
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+
 const Graph = ({ graphData }) => {
   const [graph, setGraph] = useState(null)
   const graphRef = useRef()
@@ -138,9 +140,18 @@ const Graph = ({ graphData }) => {
   const symbol = graphData.symbol
   const pairSymbol = graphData.pairSymbol
 
+  const toggleFavorite = (symbol, pairSymbol) => {
+    const newFavorite = { symbol: symbol, pair: pairSymbol }
+    let currentFavorites = JSON.parse(localStorage.getItem('userFavorites'))
+    currentFavorites = [...currentFavorites, newFavorite]
+    // console.log(currentFavorites)
+    localStorage.setItem('userFavorites', JSON.stringify(currentFavorites))
+  }
+
   return (
     <>
       <h2>
+        <AiOutlineStar onClick={() => toggleFavorite(symbol, pairSymbol)} />
         {symbol}/{pairSymbol}
       </h2>
       <canvas id="myGraph" ref={graphRef}></canvas>
