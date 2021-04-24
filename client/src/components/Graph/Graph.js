@@ -6,7 +6,24 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
 const Graph = ({ graphData }) => {
   const [graph, setGraph] = useState(null)
+  const [favStatus, setFavStatus] = useState()
   const graphRef = useRef()
+
+  const symbol = graphData.symbol
+  const pairSymbol = graphData.pairSymbol
+
+  useEffect(() => {
+    const checkIfFavorite = JSON.parse(localStorage.getItem('userFavorites'))
+    if (
+      checkIfFavorite.some(
+        (item) => item.symbol === symbol && item.pair === pairSymbol
+      )
+    ) {
+      setFavStatus(true)
+    } else {
+      setFavStatus(false)
+    }
+  }, [symbol, pairSymbol])
 
   useEffect(() => {
     const ctx = graphRef.current.getContext('2d')
@@ -137,9 +154,6 @@ const Graph = ({ graphData }) => {
     }
   }, [graphData, graph])
 
-  const symbol = graphData.symbol
-  const pairSymbol = graphData.pairSymbol
-
   const toggleFavorite = (symbol, pairSymbol) => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }
     let currentFavorites = JSON.parse(localStorage.getItem('userFavorites'))
@@ -148,31 +162,35 @@ const Graph = ({ graphData }) => {
         (item) => item.symbol === symbol && item.pair === pairSymbol
       )
     ) {
-      return
+      const itemToRemove = currentFavorites.findIndex(
+        (item) =>
+          item.symbol === newFavorite.symbol && item.pair === newFavorite.pair
+      )
+      currentFavorites.splice(itemToRemove, 1)
+      localStorage.setItem('userFavorites', JSON.stringify(currentFavorites))
+      setFavStatus(false)
     } else {
       currentFavorites = [...currentFavorites, newFavorite]
       localStorage.setItem('userFavorites', JSON.stringify(currentFavorites))
-    }
-  }
-
-  const checkIfFavorite = () => {
-    const currentFavorites = JSON.parse(localStorage.getItem('userFavorites'))
-    if (
-      currentFavorites.some(
-        (item) => item.symbol === symbol && item.pair === pairSymbol
-      )
-    ) {
-      return true
+      setFavStatus(true)
     }
   }
 
   return (
     <>
       <h2>
-        {checkIfFavorite() ? (
-          <AiFillStar onClick={() => toggleFavorite(symbol, pairSymbol)} />
+        {favStatus ? (
+          <AiFillStar
+            onClick={() => {
+              toggleFavorite(symbol, pairSymbol)
+            }}
+          />
         ) : (
-          <AiOutlineStar onClick={() => toggleFavorite(symbol, pairSymbol)} />
+          <AiOutlineStar
+            onClick={() => {
+              toggleFavorite(symbol, pairSymbol)
+            }}
+          />
         )}
         {symbol}/{pairSymbol}
       </h2>
