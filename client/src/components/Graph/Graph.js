@@ -143,9 +143,16 @@ const Graph = ({ graphData }) => {
   const toggleFavorite = (symbol, pairSymbol) => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }
     let currentFavorites = JSON.parse(localStorage.getItem('userFavorites'))
-    currentFavorites = [...currentFavorites, newFavorite]
-    // console.log(currentFavorites)
-    localStorage.setItem('userFavorites', JSON.stringify(currentFavorites))
+    if (
+      currentFavorites.some(
+        (item) => item.symbol === symbol && item.pair === pairSymbol
+      )
+    ) {
+      return
+    } else {
+      currentFavorites = [...currentFavorites, newFavorite]
+      localStorage.setItem('userFavorites', JSON.stringify(currentFavorites))
+    }
   }
 
   return (
