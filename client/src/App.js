@@ -65,7 +65,7 @@ function App() {
         }}
       />
 
-      <Favorites />
+      {/* <Favorites /> */}
 
       {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
