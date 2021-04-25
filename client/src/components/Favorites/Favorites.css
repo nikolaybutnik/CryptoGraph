@@ -20,7 +20,12 @@
   background-color: #fad186;
   border: none;
   font-size: large;
-  padding: 10px;
+  padding: 11px 10px 11px 10px;
+}
+
+.favorites button:hover {
+  background-color: #f7931a;
+  cursor: pointer;
 }
 
 .favorites button .arrowRight {
@@ -84,5 +89,11 @@
   /* IE 10+ */
   user-select: none;
   /* Likely future */
+}
+
+.favorites .favItem:hover {
+  background-color: gray;
+  color: white;
+  cursor: pointer;
 }
 /*# sourceMappingURL=Favorites.css.map */

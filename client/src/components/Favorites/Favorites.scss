@@ -10,7 +10,11 @@
     background-color: rgb(250, 209, 134);
     border: none;
     font-size: large;
-    padding: 10px;
+    padding: 11px 10px 11px 10px;
+    &:hover {
+      background-color: #f7931a;
+      cursor: pointer;
+    }
     .arrowRight {
       padding-left: 2px;
       animation: bounce 2s infinite;
@@ -43,5 +47,10 @@
     -moz-user-select: none; /* Firefox all */
     -ms-user-select: none; /* IE 10+ */
     user-select: none; /* Likely future */
+    &:hover {
+      background-color: rgb(128, 128, 128);
+      color: white;
+      cursor: pointer;
+    }
   }
 }
