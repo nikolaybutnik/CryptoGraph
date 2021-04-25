@@ -2,10 +2,19 @@
   display: flex;
   flex-flow: row wrap;
   .pairTitle {
+    display: flex;
+    align-items: center;
+    align-content: center;
     -webkit-user-select: none; /* Chrome all / Safari all */
     -moz-user-select: none; /* Firefox all */
     -ms-user-select: none; /* IE 10+ */
     user-select: none; /* Likely future */
+    .favIcon {
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
   .graph {
     max-width: 700px;

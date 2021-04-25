@@ -180,12 +180,14 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
       <h2 className="pairTitle">
         {favStatus ? (
           <AiFillStar
+            className="favIcon"
             onClick={() => {
               toggleFavorite(symbol, pairSymbol)
             }}
           />
         ) : (
           <AiOutlineStar
+            className="favIcon"
             onClick={() => {
               toggleFavorite(symbol, pairSymbol)
             }}

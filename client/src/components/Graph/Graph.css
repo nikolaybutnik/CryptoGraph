@@ -9,6 +9,14 @@
 }
 
 .graphInfoContainer .pairTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   -webkit-user-select: none;
   /* Chrome all / Safari all */
   -moz-user-select: none;
@@ -17,6 +25,18 @@
   /* IE 10+ */
   user-select: none;
   /* Likely future */
+}
+
+.graphInfoContainer .pairTitle .favIcon {
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.graphInfoContainer .pairTitle .favIcon:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .graphInfoContainer .graph {
