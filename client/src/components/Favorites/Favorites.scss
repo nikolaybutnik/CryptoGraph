@@ -11,6 +11,29 @@
     border: none;
     font-size: large;
     padding: 10px;
+    .arrowRight {
+      padding-left: 2px;
+      animation: bounce 2s infinite;
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(0);
+        }
+        40% {
+          transform: translateX(-3px);
+        }
+        60% {
+          transform: translateX(-3px);
+        }
+      }
+      svg {
+        cursor: pointer;
+        margin: auto;
+      }
+    }
   }
   .favItem {
     margin: 5px;

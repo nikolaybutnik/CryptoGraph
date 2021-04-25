@@ -15,7 +15,7 @@ const Favorites = ({ favStatus }) => {
   return (
     <div className="favorites">
       <button onClick={() => setFavoritesToggle(!favoritesToggle)}>
-        Favorites <IoIosArrowForward />
+        Favorites <IoIosArrowForward className="arrowRight" />
       </button>
       {favoritesToggle &&
         favorites &&
