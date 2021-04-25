@@ -7,8 +7,10 @@ import { IoIosArrowForward } from 'react-icons/io'
 const Favorites = ({ props: { favStatus, setGraphData, setSymbolData } }) => {
   const [favoritesToggle, setFavoritesToggle] = useState(false)
   const [favorites, setFavorites] = useState()
+  const [favError, setFavError] = useState(false)
 
   useEffect(() => {
+    setFavError(false)
     setFavorites(JSON.parse(localStorage.getItem('userFavorites')))
   }, [favoritesToggle, favStatus])
 
@@ -18,11 +20,23 @@ const Favorites = ({ props: { favStatus, setGraphData, setSymbolData } }) => {
     getCurrencyData(symbol, setSymbolData)
   }
 
+  const handleDisplayFavorites = () => {
+    if (favorites.length === 0) {
+      setFavError(true)
+    } else {
+      setFavError(false)
+      setFavoritesToggle(!favoritesToggle)
+    }
+  }
+
   return (
     <div className="favorites">
-      <button onClick={() => setFavoritesToggle(!favoritesToggle)}>
+      <button onClick={handleDisplayFavorites}>
         Favorites <IoIosArrowForward className="arrowRight" />
       </button>
+      {favError && (
+        <div className="errorMessage">You have no favorites, add some!</div>
+      )}
       {favoritesToggle &&
         favorites &&
         favorites.map((item) => (

@@ -39,6 +39,16 @@
       }
     }
   }
+  .errorMessage {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    color: #8a6d3b;
+    border: solid 2px #8a6d3b;
+    padding: 0 5px 0 5px;
+    font-size: large;
+    font-weight: bold;
+  }
   .favItem {
     margin: 5px;
     padding: 5px;

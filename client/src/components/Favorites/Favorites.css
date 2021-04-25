@@ -77,6 +77,22 @@
   margin: auto;
 }
 
+.favorites .errorMessage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  color: #8a6d3b;
+  border: solid 2px #8a6d3b;
+  padding: 0 5px 0 5px;
+  font-size: large;
+  font-weight: bold;
+}
+
 .favorites .favItem {
   margin: 5px;
   padding: 5px;
