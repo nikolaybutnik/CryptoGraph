@@ -1,4 +1,31 @@
 .favorites {
   margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.favorites button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-right: 5px;
+  background-color: #fad186;
+  border: none;
+  font-size: large;
+  padding: 10px;
+}
+
+.favorites .favItem {
+  margin: 5px;
+  padding: 5px;
+  background-color: #e2e2e2;
 }
 /*# sourceMappingURL=Favorites.css.map */

@@ -1,3 +1,20 @@
 .favorites {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-right: 5px;
+    background-color: rgb(250, 209, 134);
+    border: none;
+    font-size: large;
+    padding: 10px;
+  }
+  .favItem {
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(226, 226, 226);
+  }
 }
