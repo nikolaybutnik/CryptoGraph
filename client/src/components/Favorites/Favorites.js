@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { getGraphData } from '../../utils/ServerCalls'
+import { getGraphData, getCurrencyData } from '../../utils/ServerCalls'
 import './Favorites.css'
 
 import { IoIosArrowForward } from 'react-icons/io'
 
-const Favorites = ({ props: { favStatus, setGraphData } }) => {
+const Favorites = ({ props: { favStatus, setGraphData, setSymbolData } }) => {
   const [favoritesToggle, setFavoritesToggle] = useState(false)
   const [favorites, setFavorites] = useState()
 
@@ -15,6 +15,7 @@ const Favorites = ({ props: { favStatus, setGraphData } }) => {
   const handleFetchGraph = (e) => {
     const [symbol, pair] = e.target.textContent.split('/')
     getGraphData(symbol, pair, setGraphData, '90days', '1d')
+    getCurrencyData(symbol, setSymbolData)
   }
 
   return (
