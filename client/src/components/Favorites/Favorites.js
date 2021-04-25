@@ -4,13 +4,18 @@ import './Favorites.css'
 
 import { IoIosArrowForward } from 'react-icons/io'
 
-const Favorites = ({ favStatus }) => {
+const Favorites = ({ props: { favStatus, setGraphData } }) => {
   const [favoritesToggle, setFavoritesToggle] = useState(false)
   const [favorites, setFavorites] = useState()
 
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem('userFavorites')))
   }, [favoritesToggle, favStatus])
+
+  const handleFetchGraph = (e) => {
+    const [symbol, pair] = e.target.textContent.split('/')
+    getGraphData(symbol, pair, setGraphData, '90days', '1d')
+  }
 
   return (
     <div className="favorites">
@@ -23,6 +28,7 @@ const Favorites = ({ favStatus }) => {
           <div
             key={`${item.symbol}/${item.pair}`}
             className="favItem"
+            onClick={(e) => handleFetchGraph(e)}
           >{`${item.symbol}/${item.pair}`}</div>
         ))}
     </div>
