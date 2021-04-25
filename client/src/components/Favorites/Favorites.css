@@ -76,5 +76,13 @@
   margin: 5px;
   padding: 5px;
   background-color: #e2e2e2;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
 }
 /*# sourceMappingURL=Favorites.css.map */

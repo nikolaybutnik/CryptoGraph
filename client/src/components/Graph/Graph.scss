@@ -1,6 +1,12 @@
 .graphInfoContainer {
   display: flex;
   flex-flow: row wrap;
+  .pairTitle {
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Likely future */
+  }
   .graph {
     max-width: 700px;
     width: 100%;
@@ -22,6 +28,10 @@
 }
 
 .graphControls {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
   display: flex;
   .threeMonths {
     border-right: 1px solid grey;

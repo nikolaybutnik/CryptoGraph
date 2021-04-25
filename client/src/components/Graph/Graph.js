@@ -177,7 +177,7 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
 
   return (
     <>
-      <h2>
+      <h2 className="pairTitle">
         {favStatus ? (
           <AiFillStar
             onClick={() => {

@@ -8,6 +8,17 @@
           flex-flow: row wrap;
 }
 
+.graphInfoContainer .pairTitle {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+
 .graphInfoContainer .graph {
   max-width: 700px;
   width: 100%;
@@ -38,6 +49,14 @@
 }
 
 .graphControls {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
