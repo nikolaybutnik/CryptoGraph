@@ -4,9 +4,8 @@ import './Graph.css'
 
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
-const Graph = ({ graphData }) => {
+const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
   const [graph, setGraph] = useState(null)
-  const [favStatus, setFavStatus] = useState()
   const graphRef = useRef()
 
   const symbol = graphData.symbol
@@ -23,7 +22,7 @@ const Graph = ({ graphData }) => {
     } else {
       setFavStatus(false)
     }
-  }, [symbol, pairSymbol])
+  }, [symbol, pairSymbol, setFavStatus])
 
   useEffect(() => {
     const ctx = graphRef.current.getContext('2d')

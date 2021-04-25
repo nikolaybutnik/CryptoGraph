@@ -16,6 +16,7 @@ function App() {
   const [pairSymbol, setPairSymbol] = useState()
   const [symbolData, setSymbolData] = useState()
   const [viewOption, setViewOption] = useState('1d')
+  const [favStatus, setFavStatus] = useState()
 
   useEffect(() => {
     if (!localStorage.getItem('userFavorites')) {
@@ -65,14 +66,14 @@ function App() {
         }}
       />
 
-      {/* <Favorites /> */}
+      <Favorites favStatus={favStatus} />
 
       {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
       {graphData && (
         <div className="graphInfoContainer">
           <div className="graph">
-            <Graph graphData={graphData} />
+            <Graph props={{ graphData, favStatus, setFavStatus }} />
             <GraphControls
               props={{
                 symbol,
