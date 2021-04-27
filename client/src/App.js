@@ -11,11 +11,15 @@ import Favorites from './components/Favorites/Favorites'
 // import { format } from 'date-fns'
 
 function App() {
-  const [graphData, setGraphData] = useState()
+  // states for the currently selected symbol and pair
   const [symbol, setSymbol] = useState()
   const [pairSymbol, setPairSymbol] = useState()
+  // state for additional data for currently selected symbol
   const [symbolData, setSymbolData] = useState()
+  // states for the graph and controls
+  const [graphData, setGraphData] = useState()
   const [viewOption, setViewOption] = useState('1d')
+  // state for the currently selected pair, used to figure out if it's saved to favorites
   const [favStatus, setFavStatus] = useState()
 
   useEffect(() => {
