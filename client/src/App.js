@@ -22,6 +22,23 @@ function App() {
   // state for the currently selected pair, used to figure out if it's saved to favorites
   const [favStatus, setFavStatus] = useState()
 
+  // Properties to be passed down to the various components
+  const props = {
+    getGraphData,
+    symbol,
+    setSymbol,
+    pairSymbol,
+    setPairSymbol,
+    symbolData,
+    setSymbolData,
+    graphData,
+    setGraphData,
+    viewOption,
+    setViewOption,
+    favStatus,
+    setFavStatus,
+  }
+
   useEffect(() => {
     if (!localStorage.getItem('userFavorites')) {
       localStorage.setItem('userFavorites', '[]')
@@ -57,44 +74,17 @@ function App() {
     <div className="container">
       <EthPrice />
 
-      <SearchForm
-        props={{
-          getGraphData,
-          setGraphData,
-          symbol,
-          setSymbol,
-          pairSymbol,
-          setPairSymbol,
-          setSymbolData,
-          viewOption,
-        }}
-      />
+      <SearchForm props={props} />
 
-      <Favorites
-        props={{
-          favStatus,
-          setGraphData,
-          setSymbolData,
-          setSymbol,
-          setPairSymbol,
-        }}
-      />
+      <Favorites props={props} />
 
       {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
       {graphData && (
         <div className="graphInfoContainer">
           <div className="graph">
-            <Graph props={{ graphData, favStatus, setFavStatus }} />
-            <GraphControls
-              props={{
-                symbol,
-                pairSymbol,
-                setGraphData,
-                viewOption,
-                setViewOption,
-              }}
-            />
+            <Graph props={props} />
+            <GraphControls props={props} />
           </div>
 
           {symbolData && symbolData.conversionData && (
