@@ -12,7 +12,7 @@ import Favorites from './components/Favorites/Favorites'
 
 function App() {
   // states for the currently selected symbol and pair
-  const [symbol, setSymbol] = useState()
+  const [symbol, setSymbol] = useState('')
   const [pairSymbol, setPairSymbol] = useState()
   // state for additional data for currently selected symbol
   const [symbolData, setSymbolData] = useState()

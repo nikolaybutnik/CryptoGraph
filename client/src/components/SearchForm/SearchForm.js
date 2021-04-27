@@ -52,6 +52,7 @@ const SearchForm = ({
               name="coins"
               id="coins"
               options={allCurrencies && allCurrencies}
+              value={{ value: symbol, label: symbol }}
               onChange={(e) => {
                 setSymbol(e.value)
                 getPairs(e.value, setPairOptions)
