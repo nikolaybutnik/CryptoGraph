@@ -66,7 +66,15 @@ function App() {
         }}
       />
 
-      <Favorites props={{ favStatus, setGraphData, setSymbolData }} />
+      <Favorites
+        props={{
+          favStatus,
+          setGraphData,
+          setSymbolData,
+          setSymbol,
+          setPairSymbol,
+        }}
+      />
 
       {/* <button onClick={() => getTestData()}>Test Button</button> */}
 

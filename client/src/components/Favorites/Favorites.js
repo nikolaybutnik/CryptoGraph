@@ -4,7 +4,9 @@ import './Favorites.css'
 
 import { IoIosArrowForward } from 'react-icons/io'
 
-const Favorites = ({ props: { favStatus, setGraphData, setSymbolData } }) => {
+const Favorites = ({
+  props: { favStatus, setGraphData, setSymbolData, setSymbol, setPairSymbol },
+}) => {
   const [favoritesToggle, setFavoritesToggle] = useState(false)
   const [favorites, setFavorites] = useState()
   const [favError, setFavError] = useState(false)
@@ -16,6 +18,8 @@ const Favorites = ({ props: { favStatus, setGraphData, setSymbolData } }) => {
 
   const handleFetchGraph = (e) => {
     const [symbol, pair] = e.target.textContent.split('/')
+    setSymbol(symbol)
+    setPairSymbol(pair)
     getGraphData(symbol, pair, setGraphData, '90days', '1d')
     getCurrencyData(symbol, setSymbolData)
   }
