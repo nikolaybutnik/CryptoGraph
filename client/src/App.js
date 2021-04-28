@@ -5,7 +5,7 @@ import { getGraphData } from './utils/ServerCalls'
 
 import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
-import EthPrice from './components/EthBtcPrice/EthBtcPrice'
+import EthBtcPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
 import Favorites from './components/Favorites/Favorites'
 // import { format } from 'date-fns'
@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div className="container">
-      <EthPrice />
+      <EthBtcPrice />
 
       <SearchForm props={props} />
 
