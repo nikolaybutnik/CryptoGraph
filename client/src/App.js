@@ -115,11 +115,13 @@ function App() {
                     )} USD`
                   : 'Price information not available'}
               </h4>
-              <p>
-                {symbolData.generalData[currentlySelectedSymbol].description
-                  ? symbolData.generalData[currentlySelectedSymbol].description
-                  : 'Description not available'}
-              </p>
+              {symbolData.generalData[currentlySelectedSymbol].description ? (
+                <p>
+                  {symbolData.generalData[currentlySelectedSymbol].description}
+                </p>
+              ) : (
+                <p>Description not available</p>
+              )}
             </div>
           )}
         </div>
