@@ -1,6 +1,6 @@
 # CryptoGraph
 
-![CryptoGraph Image](https://github.com/nikolaybutnik/CryptoGraph/blob/master/client/public/images/cryptograph-screenshot.png?raw=true)
+![CryptoGraph Image](https://github.com/nikolaybutnik/CryptoGraph/blob/master/client/public/images/cryptograph-screenshotV2.png?raw=true)
 
 CryptoGraph is a work in progress application that allows the user to graph and compare various cryptocurrency pairs on different marketplaces.
 
