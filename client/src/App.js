@@ -7,7 +7,6 @@ import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
 import EthBtcPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
-import Favorites from './components/Favorites/Favorites'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 // import { format } from 'date-fns'
 
@@ -79,8 +78,6 @@ const App = () => {
         <EthBtcPrice />
 
         <SearchForm props={props} />
-
-        {/* <Favorites props={props} /> */}
 
         {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
