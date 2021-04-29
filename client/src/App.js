@@ -73,14 +73,14 @@ const App = () => {
 
   return (
     <>
-      <NavigationBar />
+      <NavigationBar props={props} />
 
       <div className="container">
         <EthBtcPrice />
 
         <SearchForm props={props} />
 
-        <Favorites props={props} />
+        {/* <Favorites props={props} /> */}
 
         {/* <button onClick={() => getTestData()}>Test Button</button> */}
 

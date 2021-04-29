@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getGraphData, getCurrencyData } from '../../utils/ServerCalls'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
 
-const NavigationBar = () => {
+const NavigationBar = ({
+  props: { favStatus, setGraphData, setSymbolData, setSymbol, setPairSymbol },
+}) => {
+  const [favorites, setFavorites] = useState()
+
+  useEffect(() => {
+    setFavorites(JSON.parse(localStorage.getItem('userFavorites')))
+  }, [favStatus])
+
+  const handleFetchGraph = (e) => {
+    const [symbol, pair] = e.target.textContent.split('/')
+    setSymbol(symbol)
+    setPairSymbol(pair)
+    getGraphData(symbol, pair, setGraphData, '90days', '1d')
+    getCurrencyData(symbol, setSymbolData)
+  }
+
   return (
     <Navbar collapseOnSelect className="colorNav" expand="sm" variant="light">
       <Navbar.Brand href="/">CryptoGraph</Navbar.Brand>
@@ -11,15 +28,18 @@ const NavigationBar = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <NavDropdown title="Favorites" id="collasible-nav-dropdown">
-            {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item> */}
+            {favorites && favorites.length === 0 && (
+              <NavDropdown.Item>You have no favorites saved</NavDropdown.Item>
+            )}
+            {favorites &&
+              favorites.map((item) => {
+                return (
+                  <NavDropdown.Item
+                    key={`${item.symbol}/${item.pair}`}
+                    onClick={(e) => handleFetchGraph(e)}
+                  >{`${item.symbol}/${item.pair}`}</NavDropdown.Item>
+                )
+              })}
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
