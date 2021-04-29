@@ -8,6 +8,7 @@ CryptoGraph is a work in progress application that allows the user to graph and 
 
 - [x] Select and graph any currency pair on the Binance marketplace.
 - [x] Display crypto price in USD where available
+- [x] Implement favorites feature
 - [x] Add support for KuCoin marketplace
 - [ ] Add support for other marketplaces
 - [ ] Display wallet balances
