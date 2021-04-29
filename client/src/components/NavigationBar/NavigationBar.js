@@ -5,7 +5,7 @@ import './NavigationBar.css'
 
 const NavigationBar = () => {
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect className="colorNav" expand="sm" variant="light">
       <Navbar.Brand href="/">CryptoGraph</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

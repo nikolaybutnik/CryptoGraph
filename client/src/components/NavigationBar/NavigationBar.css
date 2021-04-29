@@ -10836,4 +10836,8 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+.colorNav {
+  background-color: #fad186;
+}
 /*# sourceMappingURL=NavigationBar.css.map */
