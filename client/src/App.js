@@ -8,9 +8,10 @@ import SearchForm from './components/SearchForm/SearchForm'
 import EthBtcPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
 import Favorites from './components/Favorites/Favorites'
+import NavigationBar from './components/NavigationBar/NavigationBar'
 // import { format } from 'date-fns'
 
-function App() {
+const App = () => {
   // states for the currently selected symbol and pair
   const [symbol, setSymbol] = useState('')
   const [pairSymbol, setPairSymbol] = useState()
@@ -71,62 +72,69 @@ function App() {
   // }
 
   return (
-    <div className="container">
-      <EthBtcPrice />
+    <>
+      <NavigationBar />
 
-      <SearchForm props={props} />
+      <div className="container">
+        <EthBtcPrice />
 
-      <Favorites props={props} />
+        <SearchForm props={props} />
 
-      {/* <button onClick={() => getTestData()}>Test Button</button> */}
+        <Favorites props={props} />
 
-      {graphData && (
-        <div className="graphInfoContainer">
-          <div className="graph">
-            <Graph props={props} />
-            <GraphControls props={props} />
-          </div>
+        {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
-          {symbolData && symbolData.conversionData && (
-            <div className="info">
-              <div style={{ display: 'flex' }}>
-                <img
-                  style={{ alignSelf: 'center', marginRight: '5px' }}
-                  src={symbolData.generalData[
-                    currentlySelectedSymbol
-                  ].logo.replace('64x64', '32x32')}
-                  alt={`${symbolData.generalData[currentlySelectedSymbol].name} Logo`}
-                />
-                <h3>{`${symbolData.generalData[currentlySelectedSymbol].name} (${symbolData.generalData[currentlySelectedSymbol].symbol})`}</h3>{' '}
-              </div>
-              {symbolData.generalData[currentlySelectedSymbol]
-                .twitter_username && (
-                <a
-                  target="blank"
-                  href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
-                >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a>
-              )}
-              <h4>
-                {symbolData.conversionData.quote['USD'].price
-                  ? `1 ${
-                      symbolData.generalData[currentlySelectedSymbol].symbol
-                    }: ${symbolData.conversionData.quote['USD'].price.toFixed(
-                      2
-                    )} USD`
-                  : 'Price information not available'}
-              </h4>
-              {symbolData.generalData[currentlySelectedSymbol].description ? (
-                <p>
-                  {symbolData.generalData[currentlySelectedSymbol].description}
-                </p>
-              ) : (
-                <p>Description not available</p>
-              )}
+        {graphData && (
+          <div className="graphInfoContainer">
+            <div className="graph">
+              <Graph props={props} />
+              <GraphControls props={props} />
             </div>
-          )}
-        </div>
-      )}
-    </div>
+
+            {symbolData && symbolData.conversionData && (
+              <div className="info">
+                <div style={{ display: 'flex' }}>
+                  <img
+                    style={{ alignSelf: 'center', marginRight: '5px' }}
+                    src={symbolData.generalData[
+                      currentlySelectedSymbol
+                    ].logo.replace('64x64', '32x32')}
+                    alt={`${symbolData.generalData[currentlySelectedSymbol].name} Logo`}
+                  />
+                  <h3>{`${symbolData.generalData[currentlySelectedSymbol].name} (${symbolData.generalData[currentlySelectedSymbol].symbol})`}</h3>{' '}
+                </div>
+                {symbolData.generalData[currentlySelectedSymbol]
+                  .twitter_username && (
+                  <a
+                    target="blank"
+                    href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
+                  >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a>
+                )}
+                <h4>
+                  {symbolData.conversionData.quote['USD'].price
+                    ? `1 ${
+                        symbolData.generalData[currentlySelectedSymbol].symbol
+                      }: ${symbolData.conversionData.quote['USD'].price.toFixed(
+                        2
+                      )} USD`
+                    : 'Price information not available'}
+                </h4>
+                {symbolData.generalData[currentlySelectedSymbol].description ? (
+                  <p>
+                    {
+                      symbolData.generalData[currentlySelectedSymbol]
+                        .description
+                    }
+                  </p>
+                ) : (
+                  <p>Description not available</p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 
