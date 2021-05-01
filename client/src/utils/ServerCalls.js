@@ -30,7 +30,7 @@ const getBtcPriceUSD = (func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      func(data.data)
+      func(parseFloat(data.data).toFixed(2))
     })
     .catch((err) => console.log(err))
 }
