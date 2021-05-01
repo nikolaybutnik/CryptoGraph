@@ -11,30 +11,41 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 // import { format } from 'date-fns'
 
 const App = () => {
+  // state for all available currencies across all available marketplaces
+  const [allCurrencies, setAllCurrencies] = useState()
   // states for the currently selected symbol and pair
   const [symbol, setSymbol] = useState('')
   const [pairSymbol, setPairSymbol] = useState()
+  const [pairOptions, setPairOptions] = useState()
   // state for additional data for currently selected symbol
   const [symbolData, setSymbolData] = useState()
   // states for the graph and controls
   const [graphData, setGraphData] = useState()
   const [viewOption, setViewOption] = useState('1d')
+  // state for all currently save favorites
+  const [favorites, setFavorites] = useState()
   // state for the currently selected pair, used to figure out if it's saved to favorites
   const [favStatus, setFavStatus] = useState()
 
   // Properties to be passed down to the various components
   const props = {
     getGraphData,
+    allCurrencies,
+    setAllCurrencies,
     symbol,
     setSymbol,
     pairSymbol,
     setPairSymbol,
+    pairOptions,
+    setPairOptions,
     symbolData,
     setSymbolData,
     graphData,
     setGraphData,
     viewOption,
     setViewOption,
+    favorites,
+    setFavorites,
     favStatus,
     setFavStatus,
   }

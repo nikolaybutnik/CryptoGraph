@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './SearchForm.css'
 
 import Select from 'react-select'
@@ -20,17 +20,18 @@ const SearchForm = ({
     setPairSymbol,
     setSymbolData,
     viewOption,
+    pairOptions,
+    setPairOptions,
+    allCurrencies,
+    setAllCurrencies,
   },
 }) => {
-  const [allCurrencies, setAllCurrencies] = useState()
-  const [pairOptions, setPairOptions] = useState()
-
   useEffect(() => {
     const getData = async () => {
       await getCurrencies(setAllCurrencies)
     }
     getData()
-  }, [])
+  }, [setAllCurrencies])
 
   const handleFormSubmit = (e) => {
     e.preventDefault()

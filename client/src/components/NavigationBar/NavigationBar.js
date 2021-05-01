@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { getGraphData, getCurrencyData } from '../../utils/ServerCalls'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
 
 const NavigationBar = ({
-  props: { favStatus, setGraphData, setSymbolData, setSymbol, setPairSymbol },
+  props: {
+    favStatus,
+    setGraphData,
+    setSymbolData,
+    setSymbol,
+    setPairSymbol,
+    favorites,
+    setFavorites,
+  },
 }) => {
-  const [favorites, setFavorites] = useState()
-
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem('userFavorites')))
-  }, [favStatus])
+  }, [favStatus, setFavorites])
 
   const handleFetchGraph = (e) => {
     const [symbol, pair] = e.target.textContent.split('/')
