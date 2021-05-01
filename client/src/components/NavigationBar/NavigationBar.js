@@ -4,6 +4,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
 
+import { getPairs } from '../../utils/ServerCalls'
+
 const NavigationBar = ({
   props: {
     favStatus,
@@ -13,6 +15,7 @@ const NavigationBar = ({
     setPairSymbol,
     favorites,
     setFavorites,
+    setPairOptions,
   },
 }) => {
   useEffect(() => {
@@ -25,6 +28,7 @@ const NavigationBar = ({
     setPairSymbol(pair)
     getGraphData(symbol, pair, setGraphData, '90days', '1d')
     getCurrencyData(symbol, setSymbolData)
+    getPairs(symbol, setPairOptions)
   }
 
   return (
