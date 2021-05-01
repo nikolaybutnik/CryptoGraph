@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './EthBtcPrice.css'
 
 import {
@@ -7,17 +7,22 @@ import {
   getExchangeRate,
 } from '../../utils/ServerCalls'
 
-const EthPrice = () => {
-  const [exchangeRate, setExchangeRate] = useState()
-  const [ethPrice, setEthPrice] = useState()
-  const [btcPrice, setBtcPrice] = useState()
-
+const EthPrice = ({
+  props: {
+    exchangeRate,
+    setExchangeRate,
+    ethPrice,
+    setEthPrice,
+    btcPrice,
+    setBtcPrice,
+  },
+}) => {
   useEffect(() => {
     const getData = async () => {
       await getExchangeRate(setExchangeRate)
     }
     getData()
-  }, [])
+  }, [setExchangeRate])
 
   useEffect(() => {
     getEthPriceUSD(setEthPrice)
@@ -27,7 +32,7 @@ const EthPrice = () => {
       getBtcPriceUSD(setBtcPrice)
     }, 5000)
     return () => clearInterval(interval)
-  }, [])
+  }, [setBtcPrice, setEthPrice])
 
   const numberWithCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')

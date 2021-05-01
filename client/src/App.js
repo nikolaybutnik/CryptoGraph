@@ -11,6 +11,10 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 // import { format } from 'date-fns'
 
 const App = () => {
+  // states for data related to ETH and BTC prices and CAD exchange rate
+  const [exchangeRate, setExchangeRate] = useState()
+  const [ethPrice, setEthPrice] = useState()
+  const [btcPrice, setBtcPrice] = useState()
   // state for all available currencies across all available marketplaces
   const [allCurrencies, setAllCurrencies] = useState()
   // states for the currently selected symbol and pair
@@ -29,6 +33,12 @@ const App = () => {
 
   // Properties to be passed down to the various components
   const props = {
+    exchangeRate,
+    setExchangeRate,
+    ethPrice,
+    setEthPrice,
+    btcPrice,
+    setBtcPrice,
     getGraphData,
     allCurrencies,
     setAllCurrencies,
@@ -86,7 +96,7 @@ const App = () => {
       <NavigationBar props={props} />
 
       <div className="container">
-        <EthBtcPrice />
+        <EthBtcPrice props={props} />
 
         <SearchForm props={props} />
 
