@@ -6,6 +6,7 @@ import {
   getBtcPriceUSD,
   getExchangeRate,
 } from '../../utils/ServerCalls'
+import { numberWithCommas } from '../../utils/HelperFunctions'
 
 const EthPrice = ({
   props: {
@@ -33,10 +34,6 @@ const EthPrice = ({
     }, 5000)
     return () => clearInterval(interval)
   }, [setBtcPrice, setEthPrice])
-
-  const numberWithCommas = (num) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
 
   return (
     <div className="ethBtcInfo">
