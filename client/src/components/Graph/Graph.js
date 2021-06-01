@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import Chart from 'chart.js'
+import Chart from 'chart.js/auto'
 import './Graph.css'
 
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
