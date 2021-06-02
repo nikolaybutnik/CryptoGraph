@@ -4,14 +4,17 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "babel-jest": "^27.0.2",
     "chart.js": "^3.3.2",
     "date-fns": "^2.22.1",
+    "jest": "^27.0.3",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-scripts": "4.0.1",
     "react-select": "^4.3.1",
+    "ts-jest": "^27.0.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
