@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { getGraphData } from '../../utils/ServerCalls'
 
+import './GraphControls.css'
+
 const GraphControls = ({
   props: { symbol, pairSymbol, setGraphData, viewOption, setViewOption },
 }) => {

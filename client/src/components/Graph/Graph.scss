@@ -35,25 +35,3 @@
     }
   }
 }
-
-.graphControls {
-  -webkit-user-select: none; /* Chrome all / Safari all */
-  -moz-user-select: none; /* Firefox all */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none; /* Likely future */
-  display: flex;
-  .threeMonths {
-    border-right: 1px solid grey;
-  }
-  button {
-    color: grey;
-    background: none;
-    border: none;
-    border-left: 1px solid grey;
-    cursor: pointer;
-  }
-  .viewOptions {
-    color: grey;
-    margin-left: 10px;
-  }
-}
