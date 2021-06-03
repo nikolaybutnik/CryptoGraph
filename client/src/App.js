@@ -12,24 +12,24 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 
 const App = () => {
   // states for data related to ETH and BTC prices and CAD exchange rate
-  const [exchangeRate, setExchangeRate] = useState()
-  const [ethPrice, setEthPrice] = useState()
-  const [btcPrice, setBtcPrice] = useState()
+  const [exchangeRate, setExchangeRate] = useState(0)
+  const [ethPrice, setEthPrice] = useState('')
+  const [btcPrice, setBtcPrice] = useState('')
   // state for all available currencies across all available marketplaces
-  const [allCurrencies, setAllCurrencies] = useState()
+  const [allCurrencies, setAllCurrencies] = useState({})
   // states for the currently selected symbol and pair
   const [symbol, setSymbol] = useState('')
-  const [pairSymbol, setPairSymbol] = useState()
-  const [pairOptions, setPairOptions] = useState()
+  const [pairSymbol, setPairSymbol] = useState('')
+  const [pairOptions, setPairOptions] = useState([])
   // state for additional data for currently selected symbol
-  const [symbolData, setSymbolData] = useState()
+  const [symbolData, setSymbolData] = useState({})
   // states for the graph and controls
-  const [graphData, setGraphData] = useState()
+  const [graphData, setGraphData] = useState({})
   const [viewOption, setViewOption] = useState('1d')
   // state for all currently save favorites
-  const [favorites, setFavorites] = useState()
+  const [favorites, setFavorites] = useState([])
   // state for the currently selected pair, used to figure out if it's saved to favorites
-  const [favStatus, setFavStatus] = useState()
+  const [favStatus, setFavStatus] = useState(false)
 
   // Properties to be passed down to the various components
   const props = {
