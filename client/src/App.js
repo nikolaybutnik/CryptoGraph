@@ -102,7 +102,7 @@ const App = () => {
 
         {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
-        {graphData && (
+        {graphData && Object.keys(graphData).length !== 0 && (
           <div className="graphInfoContainer">
             <div className="graph">
               <Graph props={props} />
