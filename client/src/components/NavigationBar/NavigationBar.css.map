@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,SAAS,CAAC;EACR,gBAAgB,EAAE,OAAkB;CACrC",
+    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EAChB,gBAAgB,EAAE,OAAkB;CACrC",
     "sources": [
         "NavigationBar.scss"
     ],
