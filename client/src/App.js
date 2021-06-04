@@ -95,7 +95,7 @@ const App = () => {
     <>
       <NavigationBar props={props} />
 
-      <div className="container">
+      <div className="mainContainer">
         <EthBtcPrice props={props} />
 
         <SearchForm props={props} />
