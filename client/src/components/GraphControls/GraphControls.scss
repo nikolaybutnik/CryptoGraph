@@ -17,5 +17,8 @@
   .viewOptions {
     color: grey;
     margin-left: 10px;
+    label {
+      margin-bottom: 0;
+    }
   }
 }
