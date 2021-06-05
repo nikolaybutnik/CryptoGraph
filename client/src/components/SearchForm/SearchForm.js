@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import './SearchForm.css'
 
 import Select from 'react-select'
-import { HiOutlineSearchCircle } from 'react-icons/hi'
 
 import {
   getCurrencies,
@@ -33,56 +32,57 @@ const SearchForm = ({
     getData()
   }, [setAllCurrencies])
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
+  useEffect(() => {
     if (symbol && pairSymbol) {
       getCurrencyData(symbol, setSymbolData)
       getGraphData(symbol, pairSymbol, setGraphData, '90days', viewOption)
     } else {
       console.log(symbol, pairSymbol, 'NOPE')
     }
-  }
+  }, [
+    symbol,
+    pairSymbol,
+    setSymbolData,
+    getGraphData,
+    setGraphData,
+    viewOption,
+  ])
 
   return (
-    <form onSubmit={(e) => handleFormSubmit(e)}>
-      <div className="searchFormContainer">
-        <div>
-          <label htmlFor="coins">CURRENCY:</label>
-          <div className="searchBar">
-            <Select
-              name="coins"
-              id="coins"
-              options={allCurrencies && allCurrencies}
-              value={{ value: symbol, label: symbol }}
-              onChange={(e) => {
-                setSymbol(e.value)
-                getPairs(e.value, setPairOptions)
-                setPairSymbol(null)
-              }}
-            />
-          </div>
+    <div className="searchFormContainer">
+      <div>
+        <label htmlFor="coins">CURRENCY:</label>
+        <div className="searchBar">
+          <Select
+            name="coins"
+            id="coins"
+            options={allCurrencies && allCurrencies}
+            value={{ value: symbol, label: symbol }}
+            onChange={(e) => {
+              setSymbol(e.value)
+              getPairs(e.value, setPairOptions)
+              setPairSymbol(null)
+            }}
+          />
         </div>
-        <div>
-          <label htmlFor="coinPair">PAIR:</label>
-          <div className="searchBar">
-            <Select
-              name="coinPair"
-              id="coinPair"
-              value={{ label: pairSymbol }}
-              isDisabled={!symbol && true}
-              isLoading={!pairOptions && true}
-              options={pairOptions && pairOptions}
-              onChange={(e) => {
-                setPairSymbol(e.value)
-              }}
-            />
-          </div>
-        </div>
-        <button id="submitBtn" type="submit">
-          <HiOutlineSearchCircle size={26} />
-        </button>
       </div>
-    </form>
+      <div>
+        <label htmlFor="coinPair">PAIR:</label>
+        <div className="searchBar">
+          <Select
+            name="coinPair"
+            id="coinPair"
+            value={{ label: pairSymbol }}
+            isDisabled={!symbol && true}
+            isLoading={!pairOptions && true}
+            options={pairOptions && pairOptions}
+            onChange={(e) => {
+              setPairSymbol(e.value)
+            }}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 
