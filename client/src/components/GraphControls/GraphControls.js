@@ -2,10 +2,12 @@ import React from 'react'
 
 import './GraphControls.css'
 
-const GraphControls = ({ props: { setViewOption, setTimeSpan } }) => {
+const GraphControls = ({ props: { setViewOption, timeSpan, setTimeSpan } }) => {
+  console.log(timeSpan)
   return (
     <div className="graphControls">
       <button
+        style={timeSpan === '7days' ? { color: 'red' } : { color: 'grey' }}
         className="graphControlBtn"
         onClick={() => {
           setTimeSpan('7days')
@@ -14,6 +16,7 @@ const GraphControls = ({ props: { setViewOption, setTimeSpan } }) => {
         1wk
       </button>
       <button
+        style={timeSpan === '30days' ? { color: 'red' } : { color: 'grey' }}
         className="graphControlBtn"
         onClick={() => {
           setTimeSpan('30days')
@@ -22,6 +25,7 @@ const GraphControls = ({ props: { setViewOption, setTimeSpan } }) => {
         1mn
       </button>
       <button
+        style={timeSpan === '90days' ? { color: 'red' } : { color: 'grey' }}
         className="graphControlBtn threeMonths"
         onClick={() => {
           setTimeSpan('90days')
