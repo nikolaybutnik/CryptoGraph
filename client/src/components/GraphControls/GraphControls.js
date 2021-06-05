@@ -20,7 +20,6 @@ const GraphControls = ({
         className="graphControlBtn"
         onClick={() => {
           setTimeSpan('7days')
-          getGraphData(symbol, pairSymbol, setGraphData, '7days', viewOption)
         }}
       >
         1wk
@@ -29,7 +28,6 @@ const GraphControls = ({
         className="graphControlBtn"
         onClick={() => {
           setTimeSpan('30days')
-          getGraphData(symbol, pairSymbol, setGraphData, '30days', viewOption)
         }}
       >
         1mn
@@ -38,7 +36,6 @@ const GraphControls = ({
         className="graphControlBtn threeMonths"
         onClick={() => {
           setTimeSpan('90days')
-          getGraphData(symbol, pairSymbol, setGraphData, '90days', viewOption)
         }}
       >
         3mn
