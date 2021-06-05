@@ -37,7 +37,7 @@ const GraphControls = ({
         3mn
       </button>
 
-      <div className="viewOptions">
+      {/* <div className="viewOptions">
         <label htmlFor="viewOptions">Trading View: </label>
         <select
           name="viewOptions"
@@ -56,9 +56,8 @@ const GraphControls = ({
           <option value="12h">12h</option>
           <option value="8h">8h</option>
           <option value="4h">4h</option>
-          {/* <option value="1h">1h</option> */}
         </select>
-      </div>
+      </div> */}
     </div>
   )
 }
