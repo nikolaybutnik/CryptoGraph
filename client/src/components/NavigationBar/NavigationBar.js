@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { getGraphData, getCurrencyData } from '../../utils/ServerCalls'
+import { getCurrencyData } from '../../utils/ServerCalls'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
@@ -10,7 +10,6 @@ import { getPairs } from '../../utils/ServerCalls'
 const NavigationBar = ({
   props: {
     favStatus,
-    setGraphData,
     setSymbolData,
     setSymbol,
     setPairSymbol,
@@ -27,7 +26,6 @@ const NavigationBar = ({
     const [symbol, pair] = e.target.textContent.split('/')
     setSymbol(symbol)
     setPairSymbol(pair)
-    getGraphData(symbol, pair, setGraphData, '90days', '1d')
     getCurrencyData(symbol, setSymbolData)
     getPairs(symbol, setPairOptions)
   }
