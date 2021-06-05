@@ -4,6 +4,7 @@
   -ms-grid-columns: auto auto;
       grid-template-columns: auto auto;
   grid-column-gap: 15px;
+  color: #333333;
 }
 
 @media only screen and (max-width: 610px) {
@@ -36,12 +37,20 @@
           align-items: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 .ethBtcInfo .ethInfo h2,
 .ethBtcInfo .btcInfo h2 {
   margin-right: 15px;
+}
+
+.ethBtcInfo .ethInfo div,
+.ethBtcInfo .btcInfo div {
+  font-weight: 600;
+  margin-left: auto;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 /*# sourceMappingURL=EthBtcPrice.css.map */
