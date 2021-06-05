@@ -3,7 +3,6 @@ import React from 'react'
 import './GraphControls.css'
 
 const GraphControls = ({ props: { setViewOption, timeSpan, setTimeSpan } }) => {
-  console.log(timeSpan)
   return (
     <div className="graphControls">
       <button

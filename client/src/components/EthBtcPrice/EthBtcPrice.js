@@ -46,7 +46,7 @@ const EthPrice = ({
         <h2>Ethereum</h2>
         <div>
           <div>{ethPrice && numberWithCommas(ethPrice)} USD</div>
-          {exchangeRate && (
+          {exchangeRate !== 0 && (
             <div>
               {numberWithCommas((exchangeRate * ethPrice).toFixed(2))} CAD
             </div>
@@ -62,7 +62,7 @@ const EthPrice = ({
         <h2>Bitcoin</h2>
         <div>
           <div>{btcPrice && numberWithCommas(btcPrice)} USD</div>
-          {exchangeRate && (
+          {exchangeRate !== 0 && (
             <div>
               {numberWithCommas((exchangeRate * btcPrice).toFixed(2))} CAD
             </div>
