@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { getGraphData } from '../../utils/ServerCalls'
 
 import './GraphControls.css'
 
 const GraphControls = ({
-  props: { symbol, pairSymbol, setGraphData, viewOption, setViewOption },
+  props: {
+    symbol,
+    pairSymbol,
+    setGraphData,
+    viewOption,
+    setViewOption,
+    timeSpan,
+    setTimeSpan,
+  },
 }) => {
-  const [timeSpan, setTimeSpan] = useState('90days')
   return (
     <div className="graphControls">
       <button

@@ -23,6 +23,7 @@ const SearchForm = ({
     setPairOptions,
     allCurrencies,
     setAllCurrencies,
+    timeSpan,
   },
 }) => {
   useEffect(() => {
@@ -35,7 +36,7 @@ const SearchForm = ({
   useEffect(() => {
     if (symbol && pairSymbol) {
       getCurrencyData(symbol, setSymbolData)
-      getGraphData(symbol, pairSymbol, setGraphData, '90days', viewOption)
+      getGraphData(symbol, pairSymbol, setGraphData, timeSpan, viewOption)
     } else {
       console.log(symbol, pairSymbol, 'NOPE')
     }
@@ -46,6 +47,7 @@ const SearchForm = ({
     getGraphData,
     setGraphData,
     viewOption,
+    timeSpan,
   ])
 
   return (

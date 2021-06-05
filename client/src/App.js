@@ -26,6 +26,7 @@ const App = () => {
   // states for the graph and controls
   const [graphData, setGraphData] = useState({})
   const [viewOption, setViewOption] = useState('1d')
+  const [timeSpan, setTimeSpan] = useState('90days')
   // state for all currently save favorites
   const [favorites, setFavorites] = useState([])
   // state for the currently selected pair, used to figure out if it's saved to favorites
@@ -54,6 +55,8 @@ const App = () => {
     setGraphData,
     viewOption,
     setViewOption,
+    timeSpan,
+    setTimeSpan,
     favorites,
     setFavorites,
     favStatus,
