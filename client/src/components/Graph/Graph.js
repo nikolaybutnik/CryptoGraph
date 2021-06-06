@@ -49,105 +49,74 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
         })
       : null
 
+    let datasetsTemplate = [
+      {
+        label: 'Binance',
+        data: binanceData,
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(75,192,192,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+      },
+      {
+        label: 'KuCoin',
+        data: kucoinData,
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(202,73,73,0.4)',
+        borderColor: 'rgba(202,73,73,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(202,73,73,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(202,73,73,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+      },
+    ]
+    // If data from a market is missing, adjust the array to not display the missing dataset
+    if (binanceData && !kucoinData) {
+      datasetsTemplate = [datasetsTemplate[0]]
+    } else if (kucoinData && !binanceData) {
+      datasetsTemplate = [datasetsTemplate[1]]
+    }
+    console.log(datasetsTemplate)
+
+    // This operation sets the initial graph if one doesn't yet exist
     if (!graph) {
       const graphInstance = new Chart(ctx, {
         type: 'line',
         data: {
           labels: labels,
-          datasets: [
-            {
-              label: binanceData ? 'Binance' : 'N/A',
-              data: binanceData,
-              fill: false,
-              lineTension: 0.1,
-              backgroundColor: 'rgba(75,192,192,0.4)',
-              borderColor: 'rgba(75,192,192,1)',
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(75,192,192,1)',
-              pointBackgroundColor: '#fff',
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-              pointHoverBorderColor: 'rgba(220,220,220,1)',
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
-            },
-            {
-              label: kucoinData ? 'KuCoin' : 'N/A',
-              data: kucoinData,
-              fill: false,
-              lineTension: 0.1,
-              backgroundColor: 'rgba(202,73,73,0.4)',
-              borderColor: 'rgba(202,73,73,1)',
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(202,73,73,1)',
-              pointBackgroundColor: '#fff',
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(202,73,73,1)',
-              pointHoverBorderColor: 'rgba(220,220,220,1)',
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
-            },
-          ],
+          datasets: datasetsTemplate,
         },
       })
       setGraph(graphInstance)
-    } else {
+    }
+    // This operation updates an existing graph if present
+    else {
       graph.data = {
         labels: labels,
-        datasets: [
-          {
-            label: binanceData ? 'Binance' : 'N/A',
-            data: binanceData,
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-          },
-          {
-            label: kucoinData ? 'KuCoin' : 'N/A',
-            data: kucoinData,
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: 'rgba(202,73,73,0.4)',
-            borderColor: 'rgba(202,73,73,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(202,73,73,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(202,73,73,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-          },
-        ],
+        datasets: datasetsTemplate,
       }
       graph.update()
     }

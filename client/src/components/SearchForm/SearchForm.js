@@ -37,8 +37,6 @@ const SearchForm = ({
     if (symbol && pairSymbol) {
       getCurrencyData(symbol, setSymbolData)
       getGraphData(symbol, pairSymbol, setGraphData, timeSpan, viewOption)
-    } else {
-      console.log(symbol, pairSymbol, 'NOPE')
     }
   }, [
     symbol,
