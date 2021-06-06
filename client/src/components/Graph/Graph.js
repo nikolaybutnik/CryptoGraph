@@ -13,6 +13,8 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
   const symbol = graphData.symbol
   const pairSymbol = graphData.pairSymbol
 
+  console.log(graphData)
+
   useEffect(() => {
     const checkIfFavorite = JSON.parse(localStorage.getItem('userFavorites'))
     if (

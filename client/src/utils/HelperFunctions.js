@@ -1,3 +1,5 @@
+import { isToday, isYesterday } from 'date-fns'
+
 const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
@@ -70,4 +72,12 @@ const filterDatasets = (graphData) => {
   }
 }
 
-export { numberWithCommas, filterDatasets }
+const isCurrentlyTrading = (timestamp) => {
+  if (timestamp) {
+    if (isToday(timestamp) || isYesterday(timestamp)) {
+      return true
+    } else return false
+  } else return false
+}
+
+export { numberWithCommas, filterDatasets, isCurrentlyTrading }

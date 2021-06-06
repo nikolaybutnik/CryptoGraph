@@ -1,5 +1,7 @@
 import { format } from 'date-fns'
 
+import { isCurrentlyTrading } from '../utils/HelperFunctions'
+
 // Get current ETH price in USD
 // Payload received: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
 // Action: set ethPrice state as number
@@ -89,7 +91,7 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
   )
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data)
+      // Format the timestamps to be used as labels on graph
       const binanceProcessedData = data.data.binanceData
         ? data.data.binanceData.map((obj) => {
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
@@ -100,11 +102,22 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
           })
         : null
+
+      // Check the recency of last timestamp to see if pair is currently trading
+      const dateToCheckBinance = data.data.binanceData
+        ? data.data.binanceData[data.data.binanceData.length - 1].timestamp
+        : null
+      const dateToCheckKucoin = data.data.kucoinData
+        ? data.data.kucoinData[data.data.kucoinData.length - 1].timestamp
+        : null
+
       func({
         symbol: data.data.symbol,
         pairSymbol: pairSymbol,
         binanceData: binanceProcessedData,
         kucoinData: kucoinProcessedData,
+        isTradingBinance: isCurrentlyTrading(dateToCheckBinance),
+        isTradingKucoin: isCurrentlyTrading(dateToCheckKucoin),
       })
     })
     .catch((err) => console.log(err))
