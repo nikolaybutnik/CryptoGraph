@@ -39,6 +39,17 @@
           transform: scale(1.1);
 }
 
+.graphInfoContainer .tradingStatus {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+
 .graphInfoContainer .tradingStatus p {
   padding: 5px 10px 5px 10px;
   margin-bottom: 5px;
@@ -48,6 +59,14 @@
 
 .graphInfoContainer .tradingStatus p svg {
   margin-bottom: 3px;
+}
+
+.graphInfoContainer .tradingStatus .isTrading:hover {
+  background-color: #9de712 !important;
+}
+
+.graphInfoContainer .tradingStatus .isNotTrading:hover {
+  background-color: #faf742 !important;
 }
 
 .graphInfoContainer .graph {

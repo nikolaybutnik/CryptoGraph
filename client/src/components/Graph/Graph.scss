@@ -1,3 +1,10 @@
+@mixin non-selectable {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+}
+
 .graphInfoContainer {
   display: flex;
   flex-flow: row wrap;
@@ -5,10 +12,7 @@
     display: flex;
     align-items: center;
     align-content: center;
-    -webkit-user-select: none; /* Chrome all / Safari all */
-    -moz-user-select: none; /* Firefox all */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none; /* Likely future */
+    @include non-selectable;
     .favIcon {
       transition: transform 0.2s;
       &:hover {
@@ -16,13 +20,26 @@
       }
     }
   }
-  .tradingStatus p {
-    padding: 5px 10px 5px 10px;
-    margin-bottom: 5px;
-    border-radius: 15px;
-    color: rgb(51, 51, 51);
-    svg {
-      margin-bottom: 3px;
+  .tradingStatus {
+    @include non-selectable;
+    p {
+      padding: 5px 10px 5px 10px;
+      margin-bottom: 5px;
+      border-radius: 15px;
+      color: rgb(51, 51, 51);
+      svg {
+        margin-bottom: 3px;
+      }
+    }
+    .isTrading {
+      &:hover {
+        background-color: #9de712 !important;
+      }
+    }
+    .isNotTrading {
+      &:hover {
+        background-color: #faf742 !important;
+      }
     }
   }
 
