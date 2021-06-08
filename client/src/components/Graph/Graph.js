@@ -4,7 +4,12 @@ import './Graph.css'
 
 import { filterDatasets } from '../../utils/HelperFunctions'
 
-import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import {
+  AiOutlineStar,
+  AiFillStar,
+  AiOutlineCheckCircle,
+  AiOutlineWarning,
+} from 'react-icons/ai'
 
 const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
   const [graph, setGraph] = useState(null)
@@ -105,6 +110,30 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
         )}
         {symbol}/{pairSymbol}
       </h2>
+      <div className="tradingStatus">
+        {graphData.isTradingBinance ? (
+          <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
+            <AiOutlineCheckCircle size={20} /> This pair is currently trading on
+            Binance
+          </p>
+        ) : (
+          <p style={{ backgroundColor: '#fffd9e' }} className="isNotTrading">
+            <AiOutlineWarning size={20} /> Note: This pair is currently not
+            trading on Binance
+          </p>
+        )}
+        {graphData.isTradingKucoin ? (
+          <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
+            <AiOutlineCheckCircle size={20} /> This pair is currently trading on
+            Kucoin
+          </p>
+        ) : (
+          <p style={{ backgroundColor: '#fffd9e' }} className="isNotTrading">
+            <AiOutlineWarning size={20} /> Note: This pair is currently not
+            trading on Kucoin
+          </p>
+        )}
+      </div>
       <canvas id="myGraph" ref={graphRef}></canvas>
     </>
   )

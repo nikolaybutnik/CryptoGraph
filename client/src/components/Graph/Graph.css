@@ -39,6 +39,17 @@
           transform: scale(1.1);
 }
 
+.graphInfoContainer .tradingStatus p {
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  color: #333333;
+}
+
+.graphInfoContainer .tradingStatus p svg {
+  margin-bottom: 3px;
+}
+
 .graphInfoContainer .graph {
   max-width: 700px;
   width: 100%;
