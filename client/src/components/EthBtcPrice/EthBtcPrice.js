@@ -67,7 +67,15 @@ const EthPrice = ({
           )}
         </div>
       </div>
-      <div className="btcInfo">
+      <div
+        className="btcInfo"
+        onClick={() => {
+          setSymbol('BTC')
+          setPairSymbol('USDT')
+          getCurrencyData('BTC', setSymbolData)
+          getPairs('BTC', setPairOptions)
+        }}
+      >
         <img
           src="https://s2.coinmarketcap.com/static/img/coins/32x32/1.png"
           alt="Bitcoin Logo"
