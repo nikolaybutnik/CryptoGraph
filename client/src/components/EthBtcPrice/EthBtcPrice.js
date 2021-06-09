@@ -5,6 +5,8 @@ import {
   getEthPriceUSD,
   getBtcPriceUSD,
   getExchangeRate,
+  getCurrencyData,
+  getPairs,
 } from '../../utils/ServerCalls'
 import { numberWithCommas } from '../../utils/HelperFunctions'
 
@@ -16,6 +18,10 @@ const EthPrice = ({
     setEthPrice,
     btcPrice,
     setBtcPrice,
+    setSymbolData,
+    setSymbol,
+    setPairSymbol,
+    setPairOptions,
   },
 }) => {
   useEffect(() => {
@@ -37,7 +43,15 @@ const EthPrice = ({
 
   return (
     <div className="ethBtcInfo">
-      <div className="ethInfo">
+      <div
+        className="ethInfo"
+        onClick={() => {
+          setSymbol('ETH')
+          setPairSymbol('USDT')
+          getCurrencyData('ETH', setSymbolData)
+          getPairs('ETH', setPairOptions)
+        }}
+      >
         <img
           src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
           alt="Ethereum Logo"
