@@ -1,4 +1,12 @@
+@mixin non-selectable {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+}
+
 .ethBtcInfo {
+  @include non-selectable;
   display: inline-grid;
   grid-template-columns: auto auto;
   grid-column-gap: 15px;
@@ -10,11 +18,13 @@
     grid-column-start: 1;
     grid-column-end: 2;
     background-color: rgb(226, 226, 226);
+    cursor: pointer;
   }
   .btcInfo {
     grid-column-start: 2;
     grid-column-end: 3;
     background-color: rgb(250, 209, 134);
+    cursor: pointer;
   }
   .ethInfo,
   .btcInfo {

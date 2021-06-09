@@ -1,4 +1,12 @@
 .ethBtcInfo {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
   display: -ms-inline-grid;
   display: inline-grid;
   -ms-grid-columns: auto auto;
@@ -18,6 +26,7 @@
       grid-column-start: 1;
   grid-column-end: 2;
   background-color: #e2e2e2;
+  cursor: pointer;
 }
 
 .ethBtcInfo .btcInfo {
@@ -25,6 +34,7 @@
       grid-column-start: 2;
   grid-column-end: 3;
   background-color: #fad186;
+  cursor: pointer;
 }
 
 .ethBtcInfo .ethInfo,
