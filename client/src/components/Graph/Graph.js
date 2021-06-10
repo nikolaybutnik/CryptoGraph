@@ -10,6 +10,7 @@ import {
   AiOutlineCheckCircle,
   AiOutlineWarning,
 } from 'react-icons/ai'
+import { GoLinkExternal } from 'react-icons/go'
 
 const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
   const [graph, setGraph] = useState(null)
@@ -112,7 +113,15 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
         {graphData.isTradingBinance ? (
           <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
             <AiOutlineCheckCircle size={20} /> This pair is currently trading on
-            Binance
+            Binance{' '}
+            <a
+              href={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
+              target="_blank"
+              rel="noreferrer"
+              className="marketplaceLink"
+            >
+              <GoLinkExternal />
+            </a>
           </p>
         ) : (
           <p style={{ backgroundColor: '#fffd9e' }} className="isNotTrading">
@@ -123,7 +132,15 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
         {graphData.isTradingKucoin ? (
           <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
             <AiOutlineCheckCircle size={20} /> This pair is currently trading on
-            Kucoin
+            Kucoin{' '}
+            <a
+              href={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
+              target="_blank"
+              rel="noreferrer"
+              className="marketplaceLink"
+            >
+              <GoLinkExternal />
+            </a>
           </p>
         ) : (
           <p style={{ backgroundColor: '#fffd9e' }} className="isNotTrading">
