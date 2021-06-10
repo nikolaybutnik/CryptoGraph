@@ -1,4 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap");
 .navbar-expand-sm {
   background-color: #fad186;
+}
+
+.appName {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
 }
 /*# sourceMappingURL=NavigationBar.css.map */

@@ -32,7 +32,9 @@ const NavigationBar = ({
 
   return (
     <Navbar collapseOnSelect className="colorNav" expand="sm" variant="light">
-      <Navbar.Brand href="/">CryptoGraph</Navbar.Brand>
+      <Navbar.Brand href="/" className="appName">
+        CryptoGraph
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
