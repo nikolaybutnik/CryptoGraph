@@ -19,12 +19,22 @@
     grid-column-end: 2;
     background-color: rgb(226, 226, 226);
     cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
   }
   .btcInfo {
     grid-column-start: 2;
     grid-column-end: 3;
     background-color: rgb(250, 209, 134);
     cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
   }
   .ethInfo,
   .btcInfo {
