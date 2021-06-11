@@ -30,6 +30,20 @@
       svg {
         margin-bottom: 3px;
       }
+      a svg {
+        animation: bounce 1s infinite;
+        @keyframes bounce {
+          0% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(2px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+      }
     }
     .isTrading {
       display: inline-block;

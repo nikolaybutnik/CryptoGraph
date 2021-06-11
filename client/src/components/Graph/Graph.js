@@ -10,7 +10,7 @@ import {
   AiOutlineCheckCircle,
   AiOutlineWarning,
 } from 'react-icons/ai'
-import { GoLinkExternal } from 'react-icons/go'
+import { BiRightArrow } from 'react-icons/bi'
 
 const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
   const [graph, setGraph] = useState(null)
@@ -118,7 +118,7 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
               target="_blank"
               rel="noreferrer"
             >
-              <GoLinkExternal />
+              <BiRightArrow />
             </a>
           </p>
         ) : (
@@ -134,7 +134,7 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
               target="_blank"
               rel="noreferrer"
             >
-              <GoLinkExternal />
+              <BiRightArrow />
             </a>
           </p>
         ) : (
