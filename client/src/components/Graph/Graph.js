@@ -111,32 +111,32 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
       </h2>
       <div className="tradingStatus">
         {graphData.isTradingBinance ? (
-          <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
-            <AiOutlineCheckCircle size={20} /> This pair is trading on Binance{' '}
-            <a
-              href={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <BiRightArrow />
-            </a>
-          </p>
+          <a
+            href={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
+              <AiOutlineCheckCircle size={20} /> This pair is trading on Binance{' '}
+              <BiRightArrow className="marketplaceLink" />
+            </p>
+          </a>
         ) : (
           <p style={{ backgroundColor: '#fffd9e' }} className="isNotTrading">
             <AiOutlineWarning size={20} /> This pair is not trading on Binance
           </p>
         )}
         {graphData.isTradingKucoin ? (
-          <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
-            <AiOutlineCheckCircle size={20} /> This pair is trading on Kucoin{' '}
-            <a
-              href={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <BiRightArrow />
-            </a>
-          </p>
+          <a
+            href={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
+              <AiOutlineCheckCircle size={20} /> This pair is trading on KuCoin{' '}
+              <BiRightArrow className="marketplaceLink" />
+            </p>
+          </a>
         ) : (
           <p style={{ backgroundColor: '#fffd9e' }} className="isNotTrading">
             <AiOutlineWarning size={20} /> This pair is not trading on Kucoin

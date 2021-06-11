@@ -61,7 +61,7 @@
   margin-bottom: 3px;
 }
 
-.graphInfoContainer .tradingStatus p a svg {
+.graphInfoContainer .tradingStatus p .marketplaceLink {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
 }
