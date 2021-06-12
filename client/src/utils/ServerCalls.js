@@ -70,7 +70,10 @@ const getPairs = (currency, func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      func(data.data)
+      const sortedData = data.data.sort((a, b) =>
+        a.value.localeCompare(b.value)
+      )
+      func(sortedData)
     })
     .catch((err) => console.log(err))
 }
@@ -135,7 +138,6 @@ const getCurrencyData = (symbol, func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      // console.log(data)
       func(data)
     })
     .catch((err) => console.log(err))
