@@ -54,6 +54,18 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
           labels: labels,
           datasets: filterDatasets(graphData),
         },
+        options: {
+          scales: {
+            xAxes: {
+              ticks: {
+                autoSkip: true,
+                maxRotation: 90,
+                minRotation: 90,
+                maxTicksLimit: 10,
+              },
+            },
+          },
+        },
       })
       setGraph(graphInstance)
     }
