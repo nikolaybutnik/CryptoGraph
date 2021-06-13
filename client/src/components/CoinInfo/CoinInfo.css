@@ -1,1 +1,32 @@
-/* No CSS *//*# sourceMappingURL=CoinInfo.css.map */
+.info,
+.noInfoAvailable {
+  padding: 25px;
+  border-radius: 25px;
+  background-color: #e2e2e2;
+  max-width: 350px;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1116px) {
+  .info,
+  .noInfoAvailable {
+    padding: 15px;
+    max-width: 710px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .info,
+  .noInfoAvailable {
+    max-width: 100%;
+  }
+}
+
+.info .confusedFaceImg,
+.noInfoAvailable .confusedFaceImg {
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*# sourceMappingURL=CoinInfo.css.map */

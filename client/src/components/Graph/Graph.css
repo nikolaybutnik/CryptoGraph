@@ -129,36 +129,4 @@
     height: 100%;
   }
 }
-
-.graphInfoContainer .info,
-.graphInfoContainer .noInfoAvailable {
-  padding: 25px;
-  border-radius: 25px;
-  background-color: #e2e2e2;
-  max-width: 350px;
-  overflow: hidden;
-}
-
-@media only screen and (max-width: 1116px) {
-  .graphInfoContainer .info,
-  .graphInfoContainer .noInfoAvailable {
-    padding: 15px;
-    max-width: 710px;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .graphInfoContainer .info,
-  .graphInfoContainer .noInfoAvailable {
-    max-width: 100%;
-  }
-}
-
-.graphInfoContainer .info .confusedFaceImg,
-.graphInfoContainer .noInfoAvailable .confusedFaceImg {
-  width: 100px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 /*# sourceMappingURL=Graph.css.map */
