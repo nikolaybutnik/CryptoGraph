@@ -159,9 +159,16 @@ const App = () => {
                   className="confusedFaceImg"
                 />
                 <h5>
-                  There is currently no information available about {symbol} on
-                  CoinMarketCap. A possible reason for this is that the
-                  cryptocurrency may be too new, or goes by a different symbol.
+                  There is currently no information available about {symbol} on{' '}
+                  <a
+                    href="https://coinmarketcap.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    CoinMarketCap
+                  </a>
+                  . A possible reason for this is that {symbol} may be too new,
+                  or goes by a different symbol.
                 </h5>
               </div>
             )}
