@@ -110,30 +110,7 @@ const App = () => {
               <Graph props={props} />
               <GraphControls props={props} />
             </div>
-
-            {symbolData && symbolData.conversionData ? (
-              <CoinInfo props={props} />
-            ) : (
-              <div className="noInfoAvailable">
-                <img
-                  src="/images/confused.png"
-                  alt="Confused face"
-                  className="confusedFaceImg"
-                />
-                <h5>
-                  There is currently no information available about {symbol} on{' '}
-                  <a
-                    href="https://coinmarketcap.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    CoinMarketCap
-                  </a>
-                  . A possible reason for this is that {symbol} may be too new,
-                  or goes by a different symbol.
-                </h5>
-              </div>
-            )}
+            <CoinInfo props={props} />
           </div>
         )}
       </div>
