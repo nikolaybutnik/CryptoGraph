@@ -9,7 +9,6 @@ import EthBtcPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import CoinInfo from './components/CoinInfo/CoinInfo'
-// import { format } from 'date-fns'
 
 const App = () => {
   // states for data related to ETH and BTC prices and CAD exchange rate
@@ -103,7 +102,7 @@ const App = () => {
 
         {/* <button onClick={() => getTestData()}>Test Button</button> */}
 
-        {/* Graph rendered if graphData is not an emoty object */}
+        {/* Graph rendered if graphData is not an empty object */}
         {graphData && Object.keys(graphData).length !== 0 && (
           <div className="graphInfoContainer">
             <div className="graph">

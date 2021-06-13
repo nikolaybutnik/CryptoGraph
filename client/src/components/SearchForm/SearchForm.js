@@ -26,6 +26,7 @@ const SearchForm = ({
     timeSpan,
   },
 }) => {
+  // Initial call to populate dropdown will all available options
   useEffect(() => {
     const getData = async () => {
       await getCurrencies(setAllCurrencies)
@@ -33,6 +34,7 @@ const SearchForm = ({
     getData()
   }, [setAllCurrencies])
 
+  // Data is fetched only when both dropdown fields are populated
   useEffect(() => {
     if (symbol && pairSymbol) {
       getCurrencyData(symbol, setSymbolData)

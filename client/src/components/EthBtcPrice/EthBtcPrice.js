@@ -31,6 +31,7 @@ const EthPrice = ({
     getData()
   }, [setExchangeRate])
 
+  // Update ETH and BTC price every 5 seconds
   useEffect(() => {
     getEthPriceUSD(setEthPrice)
     getBtcPriceUSD(setBtcPrice)

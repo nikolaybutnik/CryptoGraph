@@ -1,9 +1,11 @@
 import { isToday, isYesterday } from 'date-fns'
 
+// For visual aid only, comma every 3 digits
 const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
+// Logic which filters which datasets to display on the graph, to avoid empty data from being displayed
 const filterDatasets = (graphData) => {
   const binanceData = graphData.binanceData
     ? graphData.binanceData.map((data) => {
@@ -72,6 +74,7 @@ const filterDatasets = (graphData) => {
   }
 }
 
+// Check recency of last retrieved piece of data
 const isCurrentlyTrading = (timestamp) => {
   if (timestamp) {
     if (isToday(timestamp) || isYesterday(timestamp)) {

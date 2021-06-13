@@ -19,6 +19,7 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
   const symbol = graphData.symbol
   const pairSymbol = graphData.pairSymbol
 
+  // On graph render check if pair is fav'd to render empty or filled star icon
   useEffect(() => {
     const checkIfFavorite = JSON.parse(localStorage.getItem('userFavorites'))
     if (
@@ -32,6 +33,7 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
     }
   }, [symbol, pairSymbol, setFavStatus])
 
+  // Graph rendering
   useEffect(() => {
     const ctx = graphRef.current.getContext('2d')
 
