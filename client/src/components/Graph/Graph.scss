@@ -70,11 +70,25 @@
       height: 100%;
     }
   }
-  .info {
+  .info,
+  .noInfoAvailable {
+    padding: 25px;
+    border-radius: 25px;
+    background-color: rgb(226, 226, 226);
     max-width: 350px;
     overflow: hidden;
+    @media only screen and (max-width: 1116px) {
+      padding: 15px;
+      max-width: 710px;
+    }
     @media only screen and (max-width: 1024px) {
-      max-width: 80%;
+      max-width: 100%;
+    }
+    .confusedFaceImg {
+      width: 100px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }

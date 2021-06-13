@@ -112,7 +112,7 @@ const App = () => {
               <GraphControls props={props} />
             </div>
 
-            {symbolData && symbolData.conversionData && (
+            {symbolData && symbolData.conversionData ? (
               <div className="info">
                 <div style={{ display: 'flex' }}>
                   <img
@@ -150,6 +150,19 @@ const App = () => {
                 ) : (
                   <p>Description not available</p>
                 )}
+              </div>
+            ) : (
+              <div className="noInfoAvailable">
+                <img
+                  src="/images/confused.png"
+                  alt="Confused face"
+                  className="confusedFaceImg"
+                />
+                <h5>
+                  There is currently no information available about {symbol} on
+                  CoinMarketCap. A possible reason for this is that the
+                  cryptocurrency may be too new, or goes by a different symbol.
+                </h5>
               </div>
             )}
           </div>

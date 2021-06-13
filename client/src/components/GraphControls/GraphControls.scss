@@ -7,6 +7,7 @@
 
 .graphControls {
   @include non-selectable;
+  margin-bottom: 10px;
   display: flex;
   .threeMonths {
     border-right: 1px solid grey;
