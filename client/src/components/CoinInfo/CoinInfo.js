@@ -1,6 +1,8 @@
 import React from 'react'
 import './CoinInfo.css'
 
+import { numberWithCommas } from '../../utils/HelperFunctions'
+
 const CoinInfo = ({ props: { symbolData, symbol } }) => {
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol
@@ -30,8 +32,8 @@ const CoinInfo = ({ props: { symbolData, symbol } }) => {
             {symbolData.conversionData.quote['USD'].price
               ? `1 ${
                   symbolData.generalData[currentlySelectedSymbol].symbol
-                }: ${symbolData.conversionData.quote['USD'].price.toFixed(
-                  2
+                }: ${numberWithCommas(
+                  symbolData.conversionData.quote['USD'].price.toFixed(2)
                 )} USD`
               : 'Price information not available'}
           </h4>
