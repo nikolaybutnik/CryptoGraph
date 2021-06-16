@@ -3,7 +3,7 @@ const axios = require('axios')
 
 // Get current ETH/USD price
 // Payload sent: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
-router.get('/ethprice', async (req, res) => {
+router.get('/eth', async (req, res) => {
   axios
     .get(
       `https://api.etherscan.io/api?module=stats&action=ethprice&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
@@ -19,7 +19,7 @@ router.get('/ethprice', async (req, res) => {
 
 // Get current BTC/USD price
 // Payload sent: number
-router.get('/btcprice', async (req, res) => {
+router.get('/btc', async (req, res) => {
   axios
     .get(`http://api.coinbase.com/v2/exchange-rates?currency=btc`)
     .then((data) => {

@@ -6,7 +6,7 @@ import { isCurrentlyTrading } from '../utils/HelperFunctions'
 // Payload received: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
 // Action: set ethPrice state as number
 const getEthPriceUSD = (func) => {
-  fetch('/api/info/ethprice', {
+  fetch('/api/info/eth', {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -23,7 +23,7 @@ const getEthPriceUSD = (func) => {
 // Get current BTC price in USD
 // Payload received: number
 const getBtcPriceUSD = (func) => {
-  fetch('/api/info/btcprice', {
+  fetch('/api/info/btc', {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -61,7 +61,7 @@ const getExchangeRate = (func) => {
 }
 
 const getPairs = (currency, func) => {
-  fetch(`/api/graph/getpairs/${currency}`, {
+  fetch(`/api/graph/pairs/${currency}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -81,9 +81,9 @@ const getPairs = (currency, func) => {
 // Get ticker data on selected symbol from server
 // Payload received: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
 // Action: set graphData state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
-const getGraphData = (symbol, pairSymbol, func, timeRange, increment) => {
+const getGraphData = (symbol, pairSymbol, func, timeRange, interval) => {
   fetch(
-    `/api/graph/getgraphdata/${symbol}/${pairSymbol}/${timeRange}/${increment}`,
+    `/api/graph/graphdata/${symbol}/${pairSymbol}/${timeRange}/${interval}`,
     {
       method: 'GET',
       headers: {
@@ -147,7 +147,7 @@ const getCurrencyData = (symbol, func) => {
 // Payload received [array of 'string']
 // Action: set allCurrencies state as array of strings containing currency codes
 const getCurrencies = (func) => {
-  fetch('/api/graph/getcurrencies', {
+  fetch('/api/graph/currencies', {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
