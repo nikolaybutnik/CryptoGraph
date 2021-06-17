@@ -33,4 +33,15 @@
 .searchFormContainer #submitBtn svg {
   display: block;
 }
+
+.searchFormContainer .loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.searchFormContainer .loading svg {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
 /*# sourceMappingURL=SearchForm.css.map */

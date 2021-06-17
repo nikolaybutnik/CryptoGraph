@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './SearchForm.css'
 
 import Select from 'react-select'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+import Loader from 'react-loader-spinner'
 
 import {
   getCurrencies,
@@ -26,6 +28,8 @@ const SearchForm = ({
     timeSpan,
   },
 }) => {
+  const [loading, setLoading] = useState(false)
+
   // Initial call to populate dropdown will all available options
   useEffect(() => {
     const getData = async () => {
@@ -84,6 +88,15 @@ const SearchForm = ({
           />
         </div>
       </div>
+      {loading && (
+        <Loader
+          className="loading"
+          type="Oval"
+          color="#e2e2e2"
+          height={38}
+          width={38}
+        />
+      )}
     </div>
   )
 }

@@ -22,4 +22,10 @@
       display: block;
     }
   }
+  .loading {
+    display: flex;
+    svg {
+      align-self: flex-end;
+    }
+  }
 }
