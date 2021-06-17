@@ -81,7 +81,14 @@ const getPairs = (currency, func) => {
 // Get ticker data on selected symbol from server
 // Payload received: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
 // Action: set graphData state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
-const getGraphData = (symbol, pairSymbol, func, timeRange, interval) => {
+const getGraphData = (
+  symbol,
+  pairSymbol,
+  func,
+  timeRange,
+  interval,
+  setLoading
+) => {
   fetch(
     `/api/graph/graphdata/${symbol}/${pairSymbol}/${timeRange}/${interval}`,
     {
@@ -122,6 +129,8 @@ const getGraphData = (symbol, pairSymbol, func, timeRange, interval) => {
         isTradingBinance: isCurrentlyTrading(dateToCheckBinance),
         isTradingKucoin: isCurrentlyTrading(dateToCheckKucoin),
       })
+
+      setLoading(false)
     })
     .catch((err) => console.log(err))
 }

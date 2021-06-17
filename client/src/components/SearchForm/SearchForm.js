@@ -41,8 +41,16 @@ const SearchForm = ({
   // Data is fetched only when both dropdown fields are populated
   useEffect(() => {
     if (symbol && pairSymbol) {
+      setLoading(true)
       getCurrencyData(symbol, setSymbolData)
-      getGraphData(symbol, pairSymbol, setGraphData, timeSpan, viewOption)
+      getGraphData(
+        symbol,
+        pairSymbol,
+        setGraphData,
+        timeSpan,
+        viewOption,
+        setLoading
+      )
     }
   }, [
     symbol,
