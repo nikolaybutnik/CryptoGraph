@@ -7,8 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Toggle from 'react-toggle'
 import 'react-toggle/style.css'
 
-import { getPairs } from '../../utils/ServerCalls'
-
 const NavigationBar = ({
   props: {
     favStatus,
@@ -17,7 +15,6 @@ const NavigationBar = ({
     setPairSymbol,
     favorites,
     setFavorites,
-    setPairOptions,
     toggleBinanceData,
     setToggleBinanceData,
     toggleKucoinData,
@@ -30,10 +27,9 @@ const NavigationBar = ({
 
   const handleFetchGraph = (e) => {
     const [symbol, pair] = e.target.textContent.split('/')
-    setSymbol(symbol)
+    setSymbol(symbol) // Note: available pairs are auto fetched on setSymbol in SearchForm.js
     setPairSymbol(pair)
     getCurrencyData(symbol, setSymbolData)
-    getPairs(symbol, setPairOptions)
   }
 
   return (
@@ -64,11 +60,7 @@ const NavigationBar = ({
               <Toggle
                 className="binanceStatus"
                 defaultChecked={toggleBinanceData}
-                onChange={() => {
-                  setToggleBinanceData(() => !toggleBinanceData)
-                  setSymbol('')
-                  setPairSymbol('')
-                }}
+                onChange={() => setToggleBinanceData(() => !toggleBinanceData)}
               />
             </NavDropdown.ItemText>
             <NavDropdown.ItemText>
@@ -76,11 +68,7 @@ const NavigationBar = ({
               <Toggle
                 className="kucoinStatus"
                 defaultChecked={toggleKucoinData}
-                onChange={() => {
-                  setToggleKucoinData(() => !toggleKucoinData)
-                  setSymbol('')
-                  setPairSymbol('')
-                }}
+                onChange={() => setToggleKucoinData(() => !toggleKucoinData)}
               />
             </NavDropdown.ItemText>
           </NavDropdown>

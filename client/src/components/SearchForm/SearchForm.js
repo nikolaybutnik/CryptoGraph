@@ -40,6 +40,13 @@ const SearchForm = ({
     getData()
   }, [setAllCurrencies, toggleBinanceData, toggleKucoinData])
 
+  // Update available pairs dynamically
+  useEffect(() => {
+    if (symbol) {
+      getPairs(symbol, setPairOptions, toggleBinanceData, toggleKucoinData)
+    }
+  }, [setPairOptions, symbol, toggleBinanceData, toggleKucoinData])
+
   // Data is fetched only when both dropdown fields are populated
   useEffect(() => {
     if (symbol && pairSymbol) {
@@ -76,12 +83,6 @@ const SearchForm = ({
             value={{ value: symbol, label: symbol }}
             onChange={(e) => {
               setSymbol(e.value)
-              getPairs(
-                e.value,
-                setPairOptions,
-                toggleBinanceData,
-                toggleKucoinData
-              )
               setPairSymbol(null)
             }}
           />
