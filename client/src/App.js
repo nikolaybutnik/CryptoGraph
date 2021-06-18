@@ -31,6 +31,9 @@ const App = () => {
   const [favorites, setFavorites] = useState([])
   // state for the currently selected pair, used to figure out if it's saved to favorites
   const [favStatus, setFavStatus] = useState(false)
+  // states for market toggle switches
+  const [toggleBinanceData, setToggleBinanceData] = useState(true)
+  const [toggleKucoinData, setToggleKucoinData] = useState(true)
 
   // Properties to be passed down to the various components
   const props = {
@@ -61,6 +64,10 @@ const App = () => {
     setFavorites,
     favStatus,
     setFavStatus,
+    toggleBinanceData,
+    setToggleBinanceData,
+    toggleKucoinData,
+    setToggleKucoinData,
   }
 
   useEffect(() => {

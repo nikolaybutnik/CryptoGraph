@@ -4,6 +4,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Toggle from 'react-toggle'
+import 'react-toggle/style.css'
 
 import { getPairs } from '../../utils/ServerCalls'
 
@@ -16,6 +18,10 @@ const NavigationBar = ({
     favorites,
     setFavorites,
     setPairOptions,
+    toggleBinanceData,
+    setToggleBinanceData,
+    toggleKucoinData,
+    setToggleKucoinData,
   },
 }) => {
   useEffect(() => {
@@ -51,6 +57,24 @@ const NavigationBar = ({
                   >{`${item.symbol}/${item.pair}`}</NavDropdown.Item>
                 )
               })}
+          </NavDropdown>
+          <NavDropdown title="Markets" id="collasible-nav-dropdown">
+            <NavDropdown.ItemText>
+              <label htmlFor="binanceStatus">Binance</label>
+              <Toggle
+                className="binanceStatus"
+                defaultChecked={toggleBinanceData}
+                onChange={() => setToggleBinanceData(() => !toggleBinanceData)}
+              />
+            </NavDropdown.ItemText>
+            <NavDropdown.ItemText>
+              <label htmlFor="kucoinStatus">KuCoin</label>
+              <Toggle
+                className="kucoinStatus"
+                defaultChecked={toggleKucoinData}
+                onChange={() => setToggleKucoinData(() => !toggleKucoinData)}
+              />
+            </NavDropdown.ItemText>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

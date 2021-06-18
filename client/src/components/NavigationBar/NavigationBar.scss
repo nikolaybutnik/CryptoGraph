@@ -7,3 +7,13 @@
   font-family: 'Orbitron', sans-serif;
   font-size: 22px;
 }
+.dropdown-item-text {
+  .binanceStatus,
+  .kucoinStatus {
+    vertical-align: middle;
+    float: right;
+  }
+  label {
+    margin-bottom: 0;
+  }
+}
