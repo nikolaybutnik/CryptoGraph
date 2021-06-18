@@ -60,14 +60,17 @@ const getExchangeRate = (func) => {
     .catch((err) => console.log(err))
 }
 
-const getPairs = (currency, func) => {
-  fetch(`/api/graph/pairs/${currency}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
+const getPairs = (currency, func, toggleBinanceData, toggleKucoinData) => {
+  fetch(
+    `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    }
+  )
     .then((res) => res.json())
     .then((data) => {
       const sortedData = data.data.sort((a, b) =>

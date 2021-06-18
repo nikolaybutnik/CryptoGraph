@@ -16,7 +16,6 @@ router.get('/currencies/:binance/:kucoin', async (req, res) => {
       toggleKucoinData === 'true' ? await kucoin.getCurrencies() : []
     // Combine all retrieved currencies and remove duplicates
     const mergedArrays = [...binanceCurrencies, ...kucoinCurrencies]
-    console.log(mergedArrays.length)
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]
@@ -28,10 +27,15 @@ router.get('/currencies/:binance/:kucoin', async (req, res) => {
 
 // Get all available trade pairs for the currently selected currency
 // Payload sent: [array of 'string']
-router.get('/pairs/:currency', async (req, res) => {
+router.get('/pairs/:currency/:binance/:kucoin', async (req, res) => {
   try {
-    const binancePairs = await binance.getPairs(req)
-    const kucoinPairs = await kucoin.getPairs(req)
+    const toggleBinanceData = req.params.binance
+    const toggleKucoinData = req.params.kucoin
+
+    const binancePairs =
+      toggleBinanceData === 'true' ? await binance.getPairs(req) : []
+    const kucoinPairs =
+      toggleKucoinData === 'true' ? await kucoin.getPairs(req) : []
     const mergedArrays = [...binancePairs, ...kucoinPairs]
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),

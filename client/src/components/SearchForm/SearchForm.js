@@ -76,7 +76,12 @@ const SearchForm = ({
             value={{ value: symbol, label: symbol }}
             onChange={(e) => {
               setSymbol(e.value)
-              getPairs(e.value, setPairOptions)
+              getPairs(
+                e.value,
+                setPairOptions,
+                toggleBinanceData,
+                toggleKucoinData
+              )
               setPairSymbol(null)
             }}
           />
