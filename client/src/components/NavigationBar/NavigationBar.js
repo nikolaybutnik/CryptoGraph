@@ -64,7 +64,11 @@ const NavigationBar = ({
               <Toggle
                 className="binanceStatus"
                 defaultChecked={toggleBinanceData}
-                onChange={() => setToggleBinanceData(() => !toggleBinanceData)}
+                onChange={() => {
+                  setToggleBinanceData(() => !toggleBinanceData)
+                  setSymbol('')
+                  setPairSymbol('')
+                }}
               />
             </NavDropdown.ItemText>
             <NavDropdown.ItemText>
@@ -72,7 +76,11 @@ const NavigationBar = ({
               <Toggle
                 className="kucoinStatus"
                 defaultChecked={toggleKucoinData}
-                onChange={() => setToggleKucoinData(() => !toggleKucoinData)}
+                onChange={() => {
+                  setToggleKucoinData(() => !toggleKucoinData)
+                  setSymbol('')
+                  setPairSymbol('')
+                }}
               />
             </NavDropdown.ItemText>
           </NavDropdown>
