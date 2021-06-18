@@ -96,15 +96,16 @@ const SearchForm = ({
           />
         </div>
       </div>
-      {loading && (
+      {
         <Loader
           className="loading"
           type="Oval"
           color="#e2e2e2"
+          visible={loading}
           height={38}
           width={38}
         />
-      )}
+      }
     </div>
   )
 }
