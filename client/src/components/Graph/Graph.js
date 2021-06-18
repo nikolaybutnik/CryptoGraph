@@ -12,7 +12,15 @@ import {
 } from 'react-icons/ai'
 import { BiRightArrow } from 'react-icons/bi'
 
-const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
+const Graph = ({
+  props: {
+    graphData,
+    favStatus,
+    setFavStatus,
+    toggleBinanceData,
+    toggleKucoinData,
+  },
+}) => {
   const [graph, setGraph] = useState(null)
   const graphRef = useRef()
 
@@ -54,7 +62,11 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
         type: 'line',
         data: {
           labels: labels,
-          datasets: filterDatasets(graphData),
+          datasets: filterDatasets(
+            graphData,
+            toggleBinanceData,
+            toggleKucoinData
+          ),
         },
         options: {
           scales: {
@@ -75,11 +87,15 @@ const Graph = ({ props: { graphData, favStatus, setFavStatus } }) => {
     else {
       graph.data = {
         labels: labels,
-        datasets: filterDatasets(graphData),
+        datasets: filterDatasets(
+          graphData,
+          toggleBinanceData,
+          toggleKucoinData
+        ),
       }
       graph.update()
     }
-  }, [graphData, graph])
+  }, [graphData, graph, toggleBinanceData, toggleKucoinData])
 
   const toggleFavorite = (symbol, pairSymbol) => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }
