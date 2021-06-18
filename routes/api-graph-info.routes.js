@@ -5,12 +5,18 @@ const kucoin = require('./exchange-operations/kucoin-operations')
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
-router.get('/currencies', async (req, res) => {
+router.get('/currencies/:binance/:kucoin', async (req, res) => {
   try {
-    const binanceCurrencies = await binance.getCurrencies()
-    const kucoinCurrencies = await kucoin.getCurrencies()
+    const toggleBinanceData = req.params.binance
+    const toggleKucoinData = req.params.kucoin
+
+    const binanceCurrencies =
+      toggleBinanceData === 'true' ? await binance.getCurrencies() : []
+    const kucoinCurrencies =
+      toggleKucoinData === 'true' ? await kucoin.getCurrencies() : []
     // Combine all retrieved currencies and remove duplicates
     const mergedArrays = [...binanceCurrencies, ...kucoinCurrencies]
+    console.log(mergedArrays.length)
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]

@@ -26,17 +26,19 @@ const SearchForm = ({
     allCurrencies,
     setAllCurrencies,
     timeSpan,
+    toggleBinanceData,
+    toggleKucoinData,
   },
 }) => {
   const [loading, setLoading] = useState(false)
 
-  // Initial call to populate dropdown will all available options
+  // Initial call to populate dropdown with all available options
   useEffect(() => {
     const getData = async () => {
-      await getCurrencies(setAllCurrencies)
+      await getCurrencies(setAllCurrencies, toggleBinanceData, toggleKucoinData)
     }
     getData()
-  }, [setAllCurrencies])
+  }, [setAllCurrencies, toggleBinanceData, toggleKucoinData])
 
   // Data is fetched only when both dropdown fields are populated
   useEffect(() => {

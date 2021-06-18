@@ -155,8 +155,8 @@ const getCurrencyData = (symbol, func) => {
 // Get all available currencies on the exchange
 // Payload received [array of 'string']
 // Action: set allCurrencies state as array of strings containing currency codes
-const getCurrencies = (func) => {
-  fetch('/api/graph/currencies', {
+const getCurrencies = (func, toggleBinanceData, toggleKucoinData) => {
+  fetch(`/api/graph/currencies/${toggleBinanceData}/${toggleKucoinData}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
