@@ -48,6 +48,18 @@
   color: white;
 }
 
+.info .twitterButton:hover,
+.noInfoAvailable .twitterButton:hover {
+  background-color: white;
+  -webkit-box-shadow: inset 0px 0px 0px 2px #1da1f2;
+          box-shadow: inset 0px 0px 0px 2px #1da1f2;
+}
+
+.info .twitterButton:hover h4,
+.noInfoAvailable .twitterButton:hover h4 {
+  color: #1da1f2;
+}
+
 .info .confusedFaceImg,
 .noInfoAvailable .confusedFaceImg {
   width: 100px;

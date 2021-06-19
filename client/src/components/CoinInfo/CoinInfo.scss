@@ -30,6 +30,13 @@
       font-weight: bold;
       color: white;
     }
+    &:hover {
+      background-color: white;
+      box-shadow: inset 0px 0px 0px 2px #1da1f2;
+      h4 {
+        color: #1da1f2;
+      }
+    }
   }
   .confusedFaceImg {
     width: 100px;

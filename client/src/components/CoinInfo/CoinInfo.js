@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './CoinInfo.css'
 
 import { numberWithCommas } from '../../utils/HelperFunctions'
 
 const CoinInfo = ({ props: { symbolData, symbol } }) => {
+  const twitterBtnRef = useRef()
+
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol
 
@@ -29,19 +31,30 @@ const CoinInfo = ({ props: { symbolData, symbol } }) => {
               style={{ textDecoration: 'none' }}
               href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
             >
-              <div className="twitterButton">
+              <div
+                className="twitterButton"
+                ref={twitterBtnRef}
+                onMouseEnter={() =>
+                  twitterBtnRef.current.children[0].setAttribute(
+                    'src',
+                    '/images/twitter-128-min-blue.png'
+                  )
+                }
+                onMouseLeave={() =>
+                  twitterBtnRef.current.children[0].setAttribute(
+                    'src',
+                    '/images/twitter-128-min.png'
+                  )
+                }
+              >
                 <img
-                  src="/images/twitter-128.png"
+                  src="/images/twitter-128-min.png"
                   alt="Twitter Logo"
                   style={{ width: '30px', marginRight: '5px' }}
                 />
                 <h4>{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</h4>
               </div>
             </a>
-            // {/* // <a
-            // //   target="blank"
-            // //   href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
-            // // >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a> */}
           )}
           <h5 style={{ fontWeight: 'bold' }}>
             {symbolData.conversionData.quote['USD'].price
