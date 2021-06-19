@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Mallanna&display=swap');
+
 .info,
 .noInfoAvailable {
+  font-family: 'Mallanna', sans-serif;
   padding: 25px;
   border-radius: 25px;
   background-color: rgb(226, 226, 226);
@@ -11,6 +14,22 @@
   }
   @media only screen and (max-width: 1024px) {
     max-width: 100%;
+  }
+  h3 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .twitterButton {
+    display: inline-flex;
+    margin: 5px 5px 5px 0;
+    background-color: #1da1f2;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    h4 {
+      margin-bottom: 0;
+      font-weight: bold;
+      color: white;
+    }
   }
   .confusedFaceImg {
     width: 100px;

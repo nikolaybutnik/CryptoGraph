@@ -24,11 +24,26 @@ const CoinInfo = ({ props: { symbolData, symbol } }) => {
           </div>
           {symbolData.generalData[currentlySelectedSymbol].twitter_username && (
             <a
-              target="blank"
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: 'none' }}
               href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
-            >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a>
+            >
+              <div className="twitterButton">
+                <img
+                  src="/images/twitter-128.png"
+                  alt="Twitter Logo"
+                  style={{ width: '30px', marginRight: '5px' }}
+                />
+                <h4>{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</h4>
+              </div>
+            </a>
+            // {/* // <a
+            // //   target="blank"
+            // //   href={`https://twitter.com/@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}
+            // // >{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</a> */}
           )}
-          <h4>
+          <h5 style={{ fontWeight: 'bold' }}>
             {symbolData.conversionData.quote['USD'].price
               ? `1 ${
                   symbolData.generalData[currentlySelectedSymbol].symbol
@@ -36,7 +51,7 @@ const CoinInfo = ({ props: { symbolData, symbol } }) => {
                   symbolData.conversionData.quote['USD'].price.toFixed(2)
                 )} USD`
               : 'Price information not available'}
-          </h4>
+          </h5>
           {symbolData.generalData[currentlySelectedSymbol].description ? (
             <p>{symbolData.generalData[currentlySelectedSymbol].description}</p>
           ) : (
