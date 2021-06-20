@@ -7,6 +7,8 @@
   background-color: #e2e2e2;
   max-width: 350px;
   overflow: hidden;
+  -webkit-box-shadow: 1px 1px 3px 2px #ccc;
+          box-shadow: 1px 1px 3px 2px #ccc;
 }
 
 @media only screen and (max-width: 1116px) {
