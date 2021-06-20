@@ -80,11 +80,18 @@ router.get(
         timeRange,
         interval
       )
+      const gateIoGraphData = await gateio.getGraphData(
+        symbol,
+        pairSymbol,
+        timeRange,
+        interval
+      )
       res.status(200).send({
         data: {
           symbol: symbol,
           binanceData: binanceGraphData,
           kucoinData: kucoinGraphData,
+          gateIoData: gateIoGraphData,
         },
       })
     } catch (err) {

@@ -19,6 +19,7 @@ const Graph = ({
     setFavStatus,
     toggleBinanceData,
     toggleKucoinData,
+    toggleGateIoData,
   },
 }) => {
   const [graph, setGraph] = useState(null)
@@ -54,6 +55,10 @@ const Graph = ({
       labels = graphData.kucoinData.map((data) => {
         return data.timestamp
       })
+    } else if (graphData.gateIoData) {
+      labels = graphData.gateIoData.map((data) => {
+        return data.timestamp
+      })
     }
 
     // This operation sets the initial graph if one doesn't yet exist
@@ -65,7 +70,8 @@ const Graph = ({
           datasets: filterDatasets(
             graphData,
             toggleBinanceData,
-            toggleKucoinData
+            toggleKucoinData,
+            toggleGateIoData
           ),
         },
         options: {
@@ -90,12 +96,13 @@ const Graph = ({
         datasets: filterDatasets(
           graphData,
           toggleBinanceData,
-          toggleKucoinData
+          toggleKucoinData,
+          toggleGateIoData
         ),
       }
       graph.update()
     }
-  }, [graphData, graph, toggleBinanceData, toggleKucoinData])
+  }, [graphData, graph, toggleBinanceData, toggleKucoinData, toggleGateIoData])
 
   const toggleFavorite = (symbol, pairSymbol) => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }

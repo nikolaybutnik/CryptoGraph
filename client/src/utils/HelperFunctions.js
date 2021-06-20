@@ -6,8 +6,13 @@ const numberWithCommas = (num) => {
 }
 
 // Logic which filters which datasets to display on the graph, to avoid empty data from being displayed
-const filterDatasets = (graphData, toggleBinanceData, toggleKucoinData) => {
-  let binanceData, kucoinData
+const filterDatasets = (
+  graphData,
+  toggleBinanceData,
+  toggleKucoinData,
+  toggleGateIoData
+) => {
+  let binanceData, kucoinData, gateIoData
   if (toggleBinanceData) {
     binanceData = graphData.binanceData
       ? graphData.binanceData.map((data) => {
@@ -22,6 +27,17 @@ const filterDatasets = (graphData, toggleBinanceData, toggleKucoinData) => {
         })
       : null
   } else kucoinData = null
+  if (toggleGateIoData) {
+    gateIoData = graphData.gateIoData
+      ? graphData.gateIoData.map((data) => {
+          return data.closingPrice
+        })
+      : null
+  } else gateIoData = null
+
+  // console.log(binanceData)
+  // console.log(kucoinData)
+  console.log(gateIoData)
 
   let datasets = [
     {
@@ -66,17 +82,30 @@ const filterDatasets = (graphData, toggleBinanceData, toggleKucoinData) => {
       pointRadius: 1,
       pointHitRadius: 10,
     },
+    {
+      label: 'Gate.io',
+      data: gateIoData,
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: 'rgba(255, 210, 70, 0.4)',
+      borderColor: 'rgba(255, 210, 70, 1)',
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(255, 210, 70, 1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(255, 210, 70, 1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+    },
   ]
 
-  // ***This logic will need to be reworked as more markets are added.
-  // Idea: filter the array and obtain a new array of objects where 'data' property is not 'null'
-  if (binanceData && !kucoinData) {
-    return [datasets[0]]
-  } else if (kucoinData && !binanceData) {
-    return [datasets[1]]
-  } else {
-    return datasets
-  }
+  return datasets.filter((set) => set.data !== null)
 }
 
 // Check recency of last retrieved piece of data

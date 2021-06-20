@@ -149,7 +149,11 @@ const getGraphData = (
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
           })
         : null
-
+      const gateIoProcessedData = data.data.gateIoData
+        ? data.data.gateIoData.map((obj) => {
+            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
+          })
+        : null
       // Check the recency of last timestamp to see if pair is currently trading
       const dateToCheckBinance = data.data.binanceData
         ? data.data.binanceData[data.data.binanceData.length - 1].timestamp
@@ -157,14 +161,19 @@ const getGraphData = (
       const dateToCheckKucoin = data.data.kucoinData
         ? data.data.kucoinData[data.data.kucoinData.length - 1].timestamp
         : null
+      const dateToCheckGateIo = data.data.gateIoData
+        ? data.data.gateIoData[data.data.gateIoData.length - 1].timestamp
+        : null
 
       func({
         symbol: data.data.symbol,
         pairSymbol: pairSymbol,
         binanceData: binanceProcessedData,
         kucoinData: kucoinProcessedData,
+        gateIoData: gateIoProcessedData,
         isTradingBinance: isCurrentlyTrading(dateToCheckBinance),
         isTradingKucoin: isCurrentlyTrading(dateToCheckKucoin),
+        isTradingGateIo: isCurrentlyTrading(dateToCheckGateIo),
       })
 
       setLoading(false)
