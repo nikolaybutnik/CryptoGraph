@@ -1,10 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import './CoinInfo.css'
 
 import { numberWithCommas } from '../../utils/HelperFunctions'
 
+import { AiOutlineTwitter } from 'react-icons/ai'
+
 const CoinInfo = ({ props: { symbolData, symbol } }) => {
-  const twitterBtnRef = useRef()
+  const [twitterBtnMouseOver, setTwitterBtnMouseOver] = useState(false)
 
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol
@@ -33,24 +35,12 @@ const CoinInfo = ({ props: { symbolData, symbol } }) => {
             >
               <div
                 className="twitterButton"
-                ref={twitterBtnRef}
-                onMouseEnter={() =>
-                  twitterBtnRef.current.children[0].setAttribute(
-                    'src',
-                    '/images/twitter-128-min-blue.png'
-                  )
-                }
-                onMouseLeave={() =>
-                  twitterBtnRef.current.children[0].setAttribute(
-                    'src',
-                    '/images/twitter-128-min.png'
-                  )
-                }
+                onMouseEnter={() => setTwitterBtnMouseOver(true)}
+                onMouseLeave={() => setTwitterBtnMouseOver(false)}
               >
-                <img
-                  src="/images/twitter-128-min.png"
-                  alt="Twitter Logo"
-                  style={{ width: '30px', marginRight: '5px' }}
+                <AiOutlineTwitter
+                  size={30}
+                  color={twitterBtnMouseOver ? '#1da1f2' : 'white'}
                 />
                 <h4>{`@${symbolData.generalData[currentlySelectedSymbol].twitter_username}`}</h4>
               </div>
