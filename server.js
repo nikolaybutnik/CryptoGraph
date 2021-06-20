@@ -42,7 +42,7 @@ const run = async () => {
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
-run()
+// run()
 
 // server route for test data
 app.get('/testdata/:symbol/:pair/:timerange/:interval', async (req, res) => {

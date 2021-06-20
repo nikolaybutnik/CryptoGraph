@@ -6,20 +6,29 @@ const gateio = require('./exchange-operations/gateio-operations')
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
-router.get('/currencies/:binance/:kucoin', async (req, res) => {
+router.get('/currencies/:binance/:kucoin/:gateio', async (req, res) => {
   try {
     const toggleBinanceData = req.params.binance
     const toggleKucoinData = req.params.kucoin
+    const toggleGateIoData = req.params.gateio
 
     const binanceCurrencies =
       toggleBinanceData === 'true' ? await binance.getCurrencies() : []
     const kucoinCurrencies =
       toggleKucoinData === 'true' ? await kucoin.getCurrencies() : []
+    const gateIoCurrencies =
+      toggleGateIoData === 'true' ? await gateio.getCurrencies() : []
     // Combine all retrieved currencies and remove duplicates
-    const mergedArrays = [...binanceCurrencies, ...kucoinCurrencies]
+    const mergedArrays = [
+      ...binanceCurrencies,
+      ...kucoinCurrencies,
+      ...gateIoCurrencies,
+    ]
+    console.log(mergedArrays.length)
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]
+    console.log(uniqueSelections.length)
     res.status(200).send({ data: uniqueSelections })
   } catch (err) {
     res.status(500).json(err)

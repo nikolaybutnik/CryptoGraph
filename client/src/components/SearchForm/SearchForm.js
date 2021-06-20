@@ -28,6 +28,7 @@ const SearchForm = ({
     timeSpan,
     toggleBinanceData,
     toggleKucoinData,
+    toggleGateIoData,
   },
 }) => {
   const [loading, setLoading] = useState(false)
@@ -35,10 +36,15 @@ const SearchForm = ({
   // Initial call to populate dropdown with all available options
   useEffect(() => {
     const getData = async () => {
-      await getCurrencies(setAllCurrencies, toggleBinanceData, toggleKucoinData)
+      await getCurrencies(
+        setAllCurrencies,
+        toggleBinanceData,
+        toggleKucoinData,
+        toggleGateIoData
+      )
     }
     getData()
-  }, [setAllCurrencies, toggleBinanceData, toggleKucoinData])
+  }, [setAllCurrencies, toggleBinanceData, toggleGateIoData, toggleKucoinData])
 
   // Update available pairs dynamically
   useEffect(() => {

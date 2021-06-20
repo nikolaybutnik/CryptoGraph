@@ -60,6 +60,34 @@ const getExchangeRate = (func) => {
     .catch((err) => console.log(err))
 }
 
+// Get all available currencies on the exchange
+// Payload received [array of 'string']
+// Action: set allCurrencies state as array of strings containing currency codes
+const getCurrencies = (
+  func,
+  toggleBinanceData,
+  toggleKucoinData,
+  toggleGateIoData
+) => {
+  fetch(
+    `/api/graph/currencies/${toggleBinanceData}/${toggleKucoinData}/${toggleGateIoData}`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const sortedData = data.data.sort((a, b) =>
+        a.value.localeCompare(b.value)
+      )
+      func(sortedData)
+    })
+}
+
 const getPairs = (currency, func, toggleBinanceData, toggleKucoinData) => {
   fetch(
     `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}`,
@@ -153,26 +181,6 @@ const getCurrencyData = (symbol, func) => {
       func(data)
     })
     .catch((err) => console.log(err))
-}
-
-// Get all available currencies on the exchange
-// Payload received [array of 'string']
-// Action: set allCurrencies state as array of strings containing currency codes
-const getCurrencies = (func, toggleBinanceData, toggleKucoinData) => {
-  fetch(`/api/graph/currencies/${toggleBinanceData}/${toggleKucoinData}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      const sortedData = data.data.sort((a, b) =>
-        a.value.localeCompare(b.value)
-      )
-      func(sortedData)
-    })
 }
 
 export {
