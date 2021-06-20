@@ -1,15 +1,12 @@
 const ccxt = require('ccxt')
 
-const binanceClient = new ccxt.binance({
-  apiKey: process.env.REACT_APP_BINANCE_API_KEY,
-  secret: process.env.REACT_APP_BINANCE_API_SECRET,
-})
+const gateIoClient = new ccxt.gateio()
 
 const getCurrencies = () => {
-  return binanceClient
+  return gateIoClient
     .loadMarkets()
     .then((data) => {
-      const processedData = Object.values(binanceClient.currencies).map(
+      const processedData = Object.values(gateIoClient.currencies).map(
         (currency) => {
           return { value: currency.id, label: currency.id }
         }
@@ -23,10 +20,10 @@ const getCurrencies = () => {
 
 const getPairs = (req) => {
   const currency = req.params.currency
-  return binanceClient
+  return gateIoClient
     .loadMarkets()
     .then((data) => {
-      const allMarkets = binanceClient.markets
+      const allMarkets = gateIoClient.markets
       const availablePairs = Object.keys(allMarkets).filter((pair) => {
         // user inputs currency which is needed to find available trade pairs
         return pair.includes(currency) && pair.split('/')[0] === currency
@@ -47,16 +44,16 @@ const getPairs = (req) => {
 
 const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
   const index = 4 // [ timestamp, open, high, low, close, volume ]
-  return binanceClient
+  return gateIoClient
     .fetchOHLCV(`${symbol}/${pairSymbol}`, increment)
     .then((data) => {
-      let binanceData
+      let gateIoData
       switch (timeRange) {
         // timestamp and closing price objects for the last 90 days
         case '90days':
           switch (increment) {
             case '1d':
-              binanceData = data.slice(-90).map((x) => {
+              gateIoData = data.slice(-90).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -64,7 +61,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '12h':
-              binanceData = data.slice(-180).map((x) => {
+              gateIoData = data.slice(-180).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -72,7 +69,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '8h':
-              binanceData = data.slice(-270).map((x) => {
+              gateIoData = data.slice(-270).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -80,7 +77,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              binanceData = data.slice(-500).map((x) => {
+              gateIoData = data.slice(-500).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -93,7 +90,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
         case '30days':
           switch (increment) {
             case '1d':
-              binanceData = data.slice(-30).map((x) => {
+              gateIoData = data.slice(-30).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -101,7 +98,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '12h':
-              binanceData = data.slice(-60).map((x) => {
+              gateIoData = data.slice(-60).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -109,7 +106,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '8h':
-              binanceData = data.slice(-90).map((x) => {
+              gateIoData = data.slice(-90).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -117,7 +114,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              binanceData = data.slice(-180).map((x) => {
+              gateIoData = data.slice(-180).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -129,7 +126,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
         case '7days':
           switch (increment) {
             case '1d':
-              binanceData = data.slice(-7).map((x) => {
+              gateIoData = data.slice(-7).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -137,7 +134,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '12h':
-              binanceData = data.slice(-14).map((x) => {
+              gateIoData = data.slice(-14).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -145,7 +142,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '8h':
-              binanceData = data.slice(-21).map((x) => {
+              gateIoData = data.slice(-21).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -153,7 +150,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              binanceData = data.slice(-42).map((x) => {
+              gateIoData = data.slice(-42).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -163,7 +160,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
           }
           break
       }
-      return binanceData
+      return gateIoData
     })
     .catch((err) => {
       if (err.name === 'BadSymbol') {

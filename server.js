@@ -27,6 +27,7 @@ const kucoinClient = new ccxt.kucoin({
   apiKey: process.env.REACT_APP_KUCOIN_API_KEY,
   secret: process.env.REACT_APP_KUCOIN_API_SECRET,
 })
+const gateIoClient = new ccxt.gateio()
 
 const run = async () => {
   // const balanceETH = await binanceClient.fetchBalance()
@@ -34,11 +35,14 @@ const run = async () => {
   // console.log(binanceClient.has)
   // console.log(await binanceClient)
   // console.log(await binanceClient.fetchTrades('TRX/ETH'))
-  console.log(kucoinClient.timeframes)
+  // console.log(binanceClient.timeframes)
+  console.log(
+    gateIoClient.loadMarkets().then((data) => console.log(gateIoClient.markets))
+  )
   // console.log(await binanceClient.fetchTicker('ETH/USDT'))
   // console.log(await binanceClient.fetchBalance())
 }
-// run()
+run()
 
 // server route for test data
 app.get('/testdata/:symbol/:pair/:timerange/:interval', async (req, res) => {

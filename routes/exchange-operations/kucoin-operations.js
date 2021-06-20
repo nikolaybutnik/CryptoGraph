@@ -28,7 +28,7 @@ const getPairs = (req, res) => {
     .then((data) => {
       const allMarkets = kucoinClient.markets
       const availablePairs = Object.keys(allMarkets).filter((pair) => {
-        // user inputs currency which is needed to find availabel trade pairs
+        // user inputs currency which is needed to find available trade pairs
         return pair.includes(currency) && pair.split('/')[0] === currency
       })
       const pairOptions = availablePairs
