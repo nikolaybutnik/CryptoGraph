@@ -88,9 +88,15 @@ const getCurrencies = (
     })
 }
 
-const getPairs = (currency, func, toggleBinanceData, toggleKucoinData) => {
+const getPairs = (
+  currency,
+  func,
+  toggleBinanceData,
+  toggleKucoinData,
+  toggleGateIoData
+) => {
   fetch(
-    `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}`,
+    `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}/${toggleGateIoData}`,
     {
       method: 'GET',
       headers: {

@@ -28,7 +28,6 @@ router.get('/currencies/:binance/:kucoin/:gateio', async (req, res) => {
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]
-    console.log(uniqueSelections.length)
     res.status(200).send({ data: uniqueSelections })
   } catch (err) {
     res.status(500).json(err)
@@ -37,16 +36,19 @@ router.get('/currencies/:binance/:kucoin/:gateio', async (req, res) => {
 
 // Get all available trade pairs for the currently selected currency
 // Payload sent: [array of 'string']
-router.get('/pairs/:currency/:binance/:kucoin', async (req, res) => {
+router.get('/pairs/:currency/:binance/:kucoin/:gateio', async (req, res) => {
   try {
     const toggleBinanceData = req.params.binance
     const toggleKucoinData = req.params.kucoin
+    const toggleGateIoData = req.params.gateio
 
     const binancePairs =
       toggleBinanceData === 'true' ? await binance.getPairs(req) : []
     const kucoinPairs =
       toggleKucoinData === 'true' ? await kucoin.getPairs(req) : []
-    const mergedArrays = [...binancePairs, ...kucoinPairs]
+    const gateIoPairs =
+      toggleGateIoData === 'true' ? await gateio.getPairs(req) : []
+    const mergedArrays = [...binancePairs, ...kucoinPairs, ...gateIoPairs]
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]

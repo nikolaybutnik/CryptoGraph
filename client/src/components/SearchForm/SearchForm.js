@@ -49,9 +49,21 @@ const SearchForm = ({
   // Update available pairs dynamically
   useEffect(() => {
     if (symbol) {
-      getPairs(symbol, setPairOptions, toggleBinanceData, toggleKucoinData)
+      getPairs(
+        symbol,
+        setPairOptions,
+        toggleBinanceData,
+        toggleKucoinData,
+        toggleGateIoData
+      )
     }
-  }, [setPairOptions, symbol, toggleBinanceData, toggleKucoinData])
+  }, [
+    setPairOptions,
+    symbol,
+    toggleBinanceData,
+    toggleGateIoData,
+    toggleKucoinData,
+  ])
 
   // Data is fetched only when both dropdown fields are populated
   useEffect(() => {
