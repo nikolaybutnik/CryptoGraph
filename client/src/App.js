@@ -34,6 +34,7 @@ const App = () => {
   // states for market toggle switches
   const [toggleBinanceData, setToggleBinanceData] = useState(true)
   const [toggleKucoinData, setToggleKucoinData] = useState(true)
+  const [toggleGateIoData, setToggleGateIoData] = useState(true)
 
   // Properties to be passed down to the various components
   const props = {
@@ -68,6 +69,8 @@ const App = () => {
     setToggleBinanceData,
     toggleKucoinData,
     setToggleKucoinData,
+    toggleGateIoData,
+    setToggleGateIoData,
   }
 
   useEffect(() => {

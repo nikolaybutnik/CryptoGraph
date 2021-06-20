@@ -9,7 +9,8 @@
 }
 
 .dropdown-item-text .binanceStatus,
-.dropdown-item-text .kucoinStatus {
+.dropdown-item-text .kucoinStatus,
+.dropdown-item-text .gateIoStatus {
   vertical-align: middle;
   float: right;
 }

@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const binance = require('./exchange-operations/binance-operations')
 const kucoin = require('./exchange-operations/kucoin-operations')
+const gateio = require('./exchange-operations/gateio-operations')
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
