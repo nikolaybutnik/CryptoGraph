@@ -28,7 +28,7 @@ const SearchForm = ({
     timeSpan,
     toggleBinanceData,
     toggleKucoinData,
-    toggleGateIoData,
+    toggleKrakenData,
   },
 }) => {
   const [loading, setLoading] = useState(false)
@@ -40,11 +40,11 @@ const SearchForm = ({
         setAllCurrencies,
         toggleBinanceData,
         toggleKucoinData,
-        toggleGateIoData
+        toggleKrakenData
       )
     }
     getData()
-  }, [setAllCurrencies, toggleBinanceData, toggleGateIoData, toggleKucoinData])
+  }, [setAllCurrencies, toggleBinanceData, toggleKrakenData, toggleKucoinData])
 
   // Update available pairs dynamically
   useEffect(() => {
@@ -54,14 +54,14 @@ const SearchForm = ({
         setPairOptions,
         toggleBinanceData,
         toggleKucoinData,
-        toggleGateIoData
+        toggleKrakenData
       )
     }
   }, [
     setPairOptions,
     symbol,
     toggleBinanceData,
-    toggleGateIoData,
+    toggleKrakenData,
     toggleKucoinData,
   ])
 

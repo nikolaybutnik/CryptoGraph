@@ -10,9 +10,9 @@ const filterDatasets = (
   graphData,
   toggleBinanceData,
   toggleKucoinData,
-  toggleGateIoData
+  toggleKrakenData
 ) => {
-  let binanceData, kucoinData, gateIoData
+  let binanceData, kucoinData, krakenData
   if (toggleBinanceData) {
     binanceData = graphData.binanceData
       ? graphData.binanceData.map((data) => {
@@ -27,17 +27,13 @@ const filterDatasets = (
         })
       : null
   } else kucoinData = null
-  if (toggleGateIoData) {
-    gateIoData = graphData.gateIoData
-      ? graphData.gateIoData.map((data) => {
+  if (toggleKrakenData) {
+    krakenData = graphData.krakenData
+      ? graphData.krakenData.map((data) => {
           return data.closingPrice
         })
       : null
-  } else gateIoData = null
-
-  // console.log(binanceData)
-  // console.log(kucoinData)
-  console.log(gateIoData)
+  } else krakenData = null
 
   let datasets = [
     {
@@ -83,8 +79,8 @@ const filterDatasets = (
       pointHitRadius: 10,
     },
     {
-      label: 'Gate.io',
-      data: gateIoData,
+      label: 'Kraken',
+      data: krakenData,
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(255, 210, 70, 0.4)',

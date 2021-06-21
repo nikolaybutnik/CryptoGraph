@@ -19,8 +19,8 @@ const NavigationBar = ({
     setToggleBinanceData,
     toggleKucoinData,
     setToggleKucoinData,
-    toggleGateIoData,
-    setToggleGateIoData,
+    toggleKrakenData,
+    setToggleKrakenData,
   },
 }) => {
   useEffect(() => {
@@ -74,11 +74,11 @@ const NavigationBar = ({
               />
             </NavDropdown.ItemText>
             <NavDropdown.ItemText>
-              <label htmlFor="gateIoStatus">Gate.io</label>
+              <label htmlFor="krakenStatus">Kraken</label>
               <Toggle
-                className="gateIoStatus"
-                defaultChecked={toggleGateIoData}
-                onChange={() => setToggleGateIoData(() => !toggleGateIoData)}
+                className="krakenStatus"
+                defaultChecked={toggleKrakenData}
+                onChange={() => setToggleKrakenData(() => !toggleKrakenData)}
               />
             </NavDropdown.ItemText>
           </NavDropdown>

@@ -19,7 +19,7 @@ const Graph = ({
     setFavStatus,
     toggleBinanceData,
     toggleKucoinData,
-    toggleGateIoData,
+    toggleKrakenData,
   },
 }) => {
   const [graph, setGraph] = useState(null)
@@ -55,8 +55,8 @@ const Graph = ({
       labels = graphData.kucoinData.map((data) => {
         return data.timestamp
       })
-    } else if (graphData.gateIoData) {
-      labels = graphData.gateIoData.map((data) => {
+    } else if (graphData.krakenData) {
+      labels = graphData.krakenData.map((data) => {
         return data.timestamp
       })
     }
@@ -71,7 +71,7 @@ const Graph = ({
             graphData,
             toggleBinanceData,
             toggleKucoinData,
-            toggleGateIoData
+            toggleKrakenData
           ),
         },
         options: {
@@ -97,12 +97,12 @@ const Graph = ({
           graphData,
           toggleBinanceData,
           toggleKucoinData,
-          toggleGateIoData
+          toggleKrakenData
         ),
       }
       graph.update()
     }
-  }, [graphData, graph, toggleBinanceData, toggleKucoinData, toggleGateIoData])
+  }, [graphData, graph, toggleBinanceData, toggleKucoinData, toggleKrakenData])
 
   const toggleFavorite = (symbol, pairSymbol) => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }

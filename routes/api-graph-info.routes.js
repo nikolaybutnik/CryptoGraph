@@ -2,29 +2,28 @@ const router = require('express').Router()
 
 const binance = require('./exchange-operations/binance-operations')
 const kucoin = require('./exchange-operations/kucoin-operations')
-const gateio = require('./exchange-operations/gateio-operations')
+const kraken = require('./exchange-operations/kraken-operations')
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
-router.get('/currencies/:binance/:kucoin/:gateio', async (req, res) => {
+router.get('/currencies/:binance/:kucoin/:kraken', async (req, res) => {
   try {
     const toggleBinanceData = req.params.binance
     const toggleKucoinData = req.params.kucoin
-    const toggleGateIoData = req.params.gateio
+    const toggleKrakenData = req.params.kraken
 
     const binanceCurrencies =
       toggleBinanceData === 'true' ? await binance.getCurrencies() : []
     const kucoinCurrencies =
       toggleKucoinData === 'true' ? await kucoin.getCurrencies() : []
-    const gateIoCurrencies =
-      toggleGateIoData === 'true' ? await gateio.getCurrencies() : []
+    const krakenCurrencies =
+      toggleKrakenData === 'true' ? await kraken.getCurrencies() : []
     // Combine all retrieved currencies and remove duplicates
     const mergedArrays = [
       ...binanceCurrencies,
       ...kucoinCurrencies,
-      ...gateIoCurrencies,
+      ...krakenCurrencies,
     ]
-    console.log(mergedArrays.length)
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]
@@ -36,19 +35,19 @@ router.get('/currencies/:binance/:kucoin/:gateio', async (req, res) => {
 
 // Get all available trade pairs for the currently selected currency
 // Payload sent: [array of 'string']
-router.get('/pairs/:currency/:binance/:kucoin/:gateio', async (req, res) => {
+router.get('/pairs/:currency/:binance/:kucoin/:kraken', async (req, res) => {
   try {
     const toggleBinanceData = req.params.binance
     const toggleKucoinData = req.params.kucoin
-    const toggleGateIoData = req.params.gateio
+    const toggleKrakenData = req.params.kraken
 
     const binancePairs =
       toggleBinanceData === 'true' ? await binance.getPairs(req) : []
     const kucoinPairs =
       toggleKucoinData === 'true' ? await kucoin.getPairs(req) : []
-    const gateIoPairs =
-      toggleGateIoData === 'true' ? await gateio.getPairs(req) : []
-    const mergedArrays = [...binancePairs, ...kucoinPairs, ...gateIoPairs]
+    const krakenPairs =
+      toggleKrakenData === 'true' ? await kraken.getPairs(req) : []
+    const mergedArrays = [...binancePairs, ...kucoinPairs, ...krakenPairs]
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),
     ]
@@ -80,7 +79,7 @@ router.get(
         timeRange,
         interval
       )
-      const gateIoGraphData = await gateio.getGraphData(
+      const krakenGraphData = await kraken.getGraphData(
         symbol,
         pairSymbol,
         timeRange,
@@ -91,7 +90,7 @@ router.get(
           symbol: symbol,
           binanceData: binanceGraphData,
           kucoinData: kucoinGraphData,
-          gateIoData: gateIoGraphData,
+          krakenData: krakenGraphData,
         },
       })
     } catch (err) {

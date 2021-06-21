@@ -67,10 +67,10 @@ const getCurrencies = (
   func,
   toggleBinanceData,
   toggleKucoinData,
-  toggleGateIoData
+  toggleKrakenData
 ) => {
   fetch(
-    `/api/graph/currencies/${toggleBinanceData}/${toggleKucoinData}/${toggleGateIoData}`,
+    `/api/graph/currencies/${toggleBinanceData}/${toggleKucoinData}/${toggleKrakenData}`,
     {
       method: 'GET',
       headers: {
@@ -93,10 +93,10 @@ const getPairs = (
   func,
   toggleBinanceData,
   toggleKucoinData,
-  toggleGateIoData
+  toggleKrakenData
 ) => {
   fetch(
-    `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}/${toggleGateIoData}`,
+    `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}/${toggleKrakenData}`,
     {
       method: 'GET',
       headers: {
@@ -149,8 +149,8 @@ const getGraphData = (
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
           })
         : null
-      const gateIoProcessedData = data.data.gateIoData
-        ? data.data.gateIoData.map((obj) => {
+      const krakenProcessedData = data.data.krakenData
+        ? data.data.krakenData.map((obj) => {
             return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
           })
         : null
@@ -161,8 +161,8 @@ const getGraphData = (
       const dateToCheckKucoin = data.data.kucoinData
         ? data.data.kucoinData[data.data.kucoinData.length - 1].timestamp
         : null
-      const dateToCheckGateIo = data.data.gateIoData
-        ? data.data.gateIoData[data.data.gateIoData.length - 1].timestamp
+      const dateToCheckKraken = data.data.krakenData
+        ? data.data.krakenData[data.data.krakenData.length - 1].timestamp
         : null
 
       func({
@@ -170,10 +170,10 @@ const getGraphData = (
         pairSymbol: pairSymbol,
         binanceData: binanceProcessedData,
         kucoinData: kucoinProcessedData,
-        gateIoData: gateIoProcessedData,
+        krakenData: krakenProcessedData,
         isTradingBinance: isCurrentlyTrading(dateToCheckBinance),
         isTradingKucoin: isCurrentlyTrading(dateToCheckKucoin),
-        isTradingGateIo: isCurrentlyTrading(dateToCheckGateIo),
+        isTradingKraken: isCurrentlyTrading(dateToCheckKraken),
       })
 
       setLoading(false)

@@ -1,12 +1,12 @@
 const ccxt = require('ccxt')
 
-const gateIoClient = new ccxt.gateio()
+const krakenClient = new ccxt.kraken()
 
 const getCurrencies = () => {
-  return gateIoClient
+  return krakenClient
     .loadMarkets()
     .then((data) => {
-      const processedData = Object.values(gateIoClient.currencies).map(
+      const processedData = Object.values(krakenClient.currencies).map(
         (currency) => {
           return { value: currency.id, label: currency.id }
         }
@@ -20,10 +20,10 @@ const getCurrencies = () => {
 
 const getPairs = (req) => {
   const currency = req.params.currency
-  return gateIoClient
+  return krakenClient
     .loadMarkets()
     .then((data) => {
-      const allMarkets = gateIoClient.markets
+      const allMarkets = krakenClient.markets
       const availablePairs = Object.keys(allMarkets).filter((pair) => {
         // user inputs currency which is needed to find available trade pairs
         return pair.includes(currency) && pair.split('/')[0] === currency
@@ -44,16 +44,16 @@ const getPairs = (req) => {
 
 const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
   const index = 4 // [ timestamp, open, high, low, close, volume ]
-  return gateIoClient
+  return krakenClient
     .fetchOHLCV(`${symbol}/${pairSymbol}`, increment)
     .then((data) => {
-      let gateIoData
+      let krakenData
       switch (timeRange) {
         // timestamp and closing price objects for the last 90 days
         case '90days':
           switch (increment) {
             case '1d':
-              gateIoData = data.slice(-90).map((x) => {
+              krakenData = data.slice(-90).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -61,7 +61,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '12h':
-              gateIoData = data.slice(-180).map((x) => {
+              krakenData = data.slice(-180).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -69,7 +69,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '8h':
-              gateIoData = data.slice(-270).map((x) => {
+              krakenData = data.slice(-270).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -77,7 +77,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              gateIoData = data.slice(-500).map((x) => {
+              krakenData = data.slice(-500).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -90,7 +90,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
         case '30days':
           switch (increment) {
             case '1d':
-              gateIoData = data.slice(-30).map((x) => {
+              krakenData = data.slice(-30).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -98,7 +98,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '12h':
-              gateIoData = data.slice(-60).map((x) => {
+              krakenData = data.slice(-60).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -106,7 +106,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '8h':
-              gateIoData = data.slice(-90).map((x) => {
+              krakenData = data.slice(-90).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -114,7 +114,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              gateIoData = data.slice(-180).map((x) => {
+              krakenData = data.slice(-180).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -126,7 +126,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
         case '7days':
           switch (increment) {
             case '1d':
-              gateIoData = data.slice(-7).map((x) => {
+              krakenData = data.slice(-7).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -134,7 +134,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '12h':
-              gateIoData = data.slice(-14).map((x) => {
+              krakenData = data.slice(-14).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -142,7 +142,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '8h':
-              gateIoData = data.slice(-21).map((x) => {
+              krakenData = data.slice(-21).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -150,7 +150,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
               })
               break
             case '4h':
-              gateIoData = data.slice(-42).map((x) => {
+              krakenData = data.slice(-42).map((x) => {
                 return {
                   timestamp: x[0],
                   closingPrice: x[index],
@@ -160,7 +160,7 @@ const getGraphData = (symbol, pairSymbol, timeRange, increment) => {
           }
           break
       }
-      return gateIoData
+      return krakenData
     })
     .catch((err) => {
       if (err.name === 'BadSymbol') {
