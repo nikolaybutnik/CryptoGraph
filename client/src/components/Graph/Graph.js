@@ -47,6 +47,8 @@ const Graph = ({
     const ctx = graphRef.current.getContext('2d')
 
     let labels
+    // Note: down the road, redo logic to allow for working with more marketplaces.
+    // Idea: select the longest array and use it for labels.
     if (graphData.binanceData) {
       labels = graphData.binanceData.map((data) => {
         return data.timestamp
@@ -191,6 +193,30 @@ const Graph = ({
               >
                 <AiOutlineWarning size={20} /> This pair is not trading on
                 Kucoin
+              </p>
+            )}
+          </>
+        )}
+        {toggleKrakenData && (
+          <>
+            {graphData.isTradingKraken ? (
+              <a
+                href={`https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
+                  <AiOutlineCheckCircle size={20} /> This pair is trading on
+                  Kraken <BiRightArrow className="marketplaceLink" />
+                </p>
+              </a>
+            ) : (
+              <p
+                style={{ backgroundColor: '#fffd9e' }}
+                className="isNotTrading"
+              >
+                <AiOutlineWarning size={20} /> This pair is not trading on
+                Kraken
               </p>
             )}
           </>
