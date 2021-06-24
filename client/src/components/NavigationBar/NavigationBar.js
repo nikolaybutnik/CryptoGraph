@@ -4,8 +4,9 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Toggle from 'react-toggle'
-import 'react-toggle/style.css'
+
+import markets from '../../utils/markets'
+import MarketDropdownItem from './MarketDropdownItem/MarketDropdownItem'
 
 const NavigationBar = ({
   props: {
@@ -15,12 +16,8 @@ const NavigationBar = ({
     setPairSymbol,
     favorites,
     setFavorites,
-    toggleBinanceData,
-    setToggleBinanceData,
-    toggleKucoinData,
-    setToggleKucoinData,
-    toggleKrakenData,
-    setToggleKrakenData,
+    toggleMarketData,
+    setToggleMarketData,
   },
 }) => {
   useEffect(() => {
@@ -57,30 +54,15 @@ const NavigationBar = ({
               })}
           </NavDropdown>
           <NavDropdown title="Markets" id="collasible-nav-dropdown">
-            <NavDropdown.ItemText>
-              <label htmlFor="binanceStatus">Binance</label>
-              <Toggle
-                className="binanceStatus"
-                defaultChecked={toggleBinanceData}
-                onChange={() => setToggleBinanceData(() => !toggleBinanceData)}
-              />
-            </NavDropdown.ItemText>
-            <NavDropdown.ItemText>
-              <label htmlFor="kucoinStatus">KuCoin</label>
-              <Toggle
-                className="kucoinStatus"
-                defaultChecked={toggleKucoinData}
-                onChange={() => setToggleKucoinData(() => !toggleKucoinData)}
-              />
-            </NavDropdown.ItemText>
-            <NavDropdown.ItemText>
-              <label htmlFor="krakenStatus">Kraken</label>
-              <Toggle
-                className="krakenStatus"
-                defaultChecked={toggleKrakenData}
-                onChange={() => setToggleKrakenData(() => !toggleKrakenData)}
-              />
-            </NavDropdown.ItemText>
+            {markets.map((market) => {
+              const marketName = market.name
+              return (
+                <MarketDropdownItem
+                  key={marketName}
+                  props={{ marketName, toggleMarketData, setToggleMarketData }}
+                />
+              )
+            })}
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

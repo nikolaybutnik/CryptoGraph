@@ -8,9 +8,7 @@
   font-size: 22px;
 }
 
-.dropdown-item-text .binanceStatus,
-.dropdown-item-text .kucoinStatus,
-.dropdown-item-text .krakenStatus {
+.dropdown-item-text .marketStatus {
   vertical-align: middle;
   float: right;
 }

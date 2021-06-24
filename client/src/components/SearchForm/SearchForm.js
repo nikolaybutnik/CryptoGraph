@@ -29,6 +29,7 @@ const SearchForm = ({
     toggleBinanceData,
     toggleKucoinData,
     toggleKrakenData,
+    toggleMarketData,
   },
 }) => {
   const [loading, setLoading] = useState(false)
