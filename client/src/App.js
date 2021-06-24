@@ -42,9 +42,9 @@ const App = () => {
   const [toggleKucoinData, setToggleKucoinData] = useState(true)
   const [toggleKrakenData, setToggleKrakenData] = useState(true)
 
-  useEffect(() => {
-    console.log(toggleMarketData)
-  }, [toggleMarketData])
+  // useEffect(() => {
+  //   console.log(toggleMarketData)
+  // }, [toggleMarketData])
 
   // Properties to be passed down to the various components
   const props = {

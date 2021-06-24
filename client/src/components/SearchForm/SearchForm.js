@@ -26,9 +26,6 @@ const SearchForm = ({
     allCurrencies,
     setAllCurrencies,
     timeSpan,
-    toggleBinanceData,
-    toggleKucoinData,
-    toggleKrakenData,
     toggleMarketData,
   },
 }) => {
@@ -37,34 +34,17 @@ const SearchForm = ({
   // Initial call to populate dropdown with all available options
   useEffect(() => {
     const getData = async () => {
-      await getCurrencies(
-        setAllCurrencies,
-        toggleBinanceData,
-        toggleKucoinData,
-        toggleKrakenData
-      )
+      await getCurrencies(setAllCurrencies, toggleMarketData)
     }
     getData()
-  }, [setAllCurrencies, toggleBinanceData, toggleKrakenData, toggleKucoinData])
+  }, [setAllCurrencies, toggleMarketData])
 
   // Update available pairs dynamically
   useEffect(() => {
     if (symbol) {
-      getPairs(
-        symbol,
-        setPairOptions,
-        toggleBinanceData,
-        toggleKucoinData,
-        toggleKrakenData
-      )
+      getPairs(symbol, setPairOptions, toggleMarketData)
     }
-  }, [
-    setPairOptions,
-    symbol,
-    toggleBinanceData,
-    toggleKrakenData,
-    toggleKucoinData,
-  ])
+  }, [setPairOptions, symbol, toggleMarketData])
 
   // Data is fetched only when both dropdown fields are populated
   useEffect(() => {

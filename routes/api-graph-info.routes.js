@@ -6,18 +6,21 @@ const kraken = require('./exchange-operations/kraken-operations')
 
 // Get all currencies available on the exchange
 // Payload sent [array of 'string']
-router.get('/currencies/:binance/:kucoin/:kraken', async (req, res) => {
+router.get('/currencies/:markets', async (req, res) => {
   try {
-    const toggleBinanceData = req.params.binance
-    const toggleKucoinData = req.params.kucoin
-    const toggleKrakenData = req.params.kraken
+    const marketArray = req.params.markets
+      .split('&')
+      .filter((data) => data !== '')
+    const toggleBinanceData = marketArray[0].split('=')[1]
+    const toggleKucoinData = marketArray[1].split('=')[1]
+    const toggleKrakenData = marketArray[2].split('=')[1]
 
     const binanceCurrencies =
-      toggleBinanceData === 'true' ? await binance.getCurrencies() : []
+      toggleBinanceData === '1' ? await binance.getCurrencies() : []
     const kucoinCurrencies =
-      toggleKucoinData === 'true' ? await kucoin.getCurrencies() : []
+      toggleKucoinData === '1' ? await kucoin.getCurrencies() : []
     const krakenCurrencies =
-      toggleKrakenData === 'true' ? await kraken.getCurrencies() : []
+      toggleKrakenData === '1' ? await kraken.getCurrencies() : []
     // Combine all retrieved currencies and remove duplicates
     const mergedArrays = [
       ...binanceCurrencies,
@@ -35,18 +38,21 @@ router.get('/currencies/:binance/:kucoin/:kraken', async (req, res) => {
 
 // Get all available trade pairs for the currently selected currency
 // Payload sent: [array of 'string']
-router.get('/pairs/:currency/:binance/:kucoin/:kraken', async (req, res) => {
+router.get('/pairs/:currency/:markets', async (req, res) => {
   try {
-    const toggleBinanceData = req.params.binance
-    const toggleKucoinData = req.params.kucoin
-    const toggleKrakenData = req.params.kraken
+    const marketArray = req.params.markets
+      .split('&')
+      .filter((data) => data !== '')
+    const toggleBinanceData = marketArray[0].split('=')[1]
+    const toggleKucoinData = marketArray[1].split('=')[1]
+    const toggleKrakenData = marketArray[2].split('=')[1]
 
     const binancePairs =
-      toggleBinanceData === 'true' ? await binance.getPairs(req) : []
+      toggleBinanceData === '1' ? await binance.getPairs(req) : []
     const kucoinPairs =
-      toggleKucoinData === 'true' ? await kucoin.getPairs(req) : []
+      toggleKucoinData === '1' ? await kucoin.getPairs(req) : []
     const krakenPairs =
-      toggleKrakenData === 'true' ? await kraken.getPairs(req) : []
+      toggleKrakenData === '1' ? await kraken.getPairs(req) : []
     const mergedArrays = [...binancePairs, ...kucoinPairs, ...krakenPairs]
     const uniqueSelections = [
       ...new Map(mergedArrays.map((item) => [item.value, item])).values(),

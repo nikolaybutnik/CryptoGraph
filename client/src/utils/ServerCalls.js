@@ -63,22 +63,19 @@ const getExchangeRate = (func) => {
 // Get all available currencies on the exchange
 // Payload received [array of 'string']
 // Action: set allCurrencies state as array of strings containing currency codes
-const getCurrencies = (
-  func,
-  toggleBinanceData,
-  toggleKucoinData,
-  toggleKrakenData
-) => {
-  fetch(
-    `/api/graph/currencies/${toggleBinanceData}/${toggleKucoinData}/${toggleKrakenData}`,
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    }
-  )
+const getCurrencies = (func, toggleMarketData) => {
+  const marketData = toggleMarketData.map((data) => {
+    const name = Object.keys(data)[0]
+    const status = Object.values(data)[0]
+    return `&${name}=${status}`
+  })
+  fetch(`/api/graph/currencies/${marketData.join('')}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       const sortedData = data.data.sort((a, b) =>
@@ -88,23 +85,19 @@ const getCurrencies = (
     })
 }
 
-const getPairs = (
-  currency,
-  func,
-  toggleBinanceData,
-  toggleKucoinData,
-  toggleKrakenData
-) => {
-  fetch(
-    `/api/graph/pairs/${currency}/${toggleBinanceData}/${toggleKucoinData}/${toggleKrakenData}`,
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-    }
-  )
+const getPairs = (currency, func, toggleMarketData) => {
+  const marketData = toggleMarketData.map((data) => {
+    const name = Object.keys(data)[0]
+    const status = Object.values(data)[0]
+    return `&${name}=${status}`
+  })
+  fetch(`/api/graph/pairs/${currency}/${marketData.join('')}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       const sortedData = data.data.sort((a, b) =>
