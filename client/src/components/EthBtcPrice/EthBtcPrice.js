@@ -22,6 +22,7 @@ const EthPrice = ({
     setSymbol,
     setPairSymbol,
     setPairOptions,
+    toggleMarketData,
   },
 }) => {
   useEffect(() => {
@@ -50,7 +51,7 @@ const EthPrice = ({
           setSymbol('ETH')
           setPairSymbol('USDT')
           getCurrencyData('ETH', setSymbolData)
-          getPairs('ETH', setPairOptions)
+          getPairs('ETH', setPairOptions, toggleMarketData)
         }}
       >
         <img
@@ -74,7 +75,7 @@ const EthPrice = ({
           setSymbol('BTC')
           setPairSymbol('USDT')
           getCurrencyData('BTC', setSymbolData)
-          getPairs('BTC', setPairOptions)
+          getPairs('BTC', setPairOptions, toggleMarketData)
         }}
       >
         <img
