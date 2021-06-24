@@ -13,14 +13,7 @@ import {
 import { BiRightArrow } from 'react-icons/bi'
 
 const Graph = ({
-  props: {
-    graphData,
-    favStatus,
-    setFavStatus,
-    toggleBinanceData,
-    toggleKucoinData,
-    toggleKrakenData,
-  },
+  props: { graphData, favStatus, setFavStatus, toggleMarketData },
 }) => {
   const [graph, setGraph] = useState(null)
   const graphRef = useRef()
@@ -69,12 +62,7 @@ const Graph = ({
         type: 'line',
         data: {
           labels: labels,
-          datasets: filterDatasets(
-            graphData,
-            toggleBinanceData,
-            toggleKucoinData,
-            toggleKrakenData
-          ),
+          datasets: filterDatasets(graphData, toggleMarketData),
         },
         options: {
           scales: {
@@ -95,16 +83,11 @@ const Graph = ({
     else {
       graph.data = {
         labels: labels,
-        datasets: filterDatasets(
-          graphData,
-          toggleBinanceData,
-          toggleKucoinData,
-          toggleKrakenData
-        ),
+        datasets: filterDatasets(graphData, toggleMarketData),
       }
       graph.update()
     }
-  }, [graphData, graph, toggleBinanceData, toggleKucoinData, toggleKrakenData])
+  }, [graphData, graph, toggleMarketData])
 
   const toggleFavorite = (symbol, pairSymbol) => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }
@@ -149,7 +132,7 @@ const Graph = ({
         {symbol}/{pairSymbol}
       </h2>
       <div className="tradingStatus">
-        {toggleBinanceData && (
+        {toggleMarketData[0].Binance === 1 && (
           <>
             {graphData.isTradingBinance ? (
               <a
@@ -173,7 +156,7 @@ const Graph = ({
             )}
           </>
         )}
-        {toggleKucoinData && (
+        {toggleMarketData[1].KuCoin === 1 && (
           <>
             {graphData.isTradingKucoin ? (
               <a
@@ -197,7 +180,7 @@ const Graph = ({
             )}
           </>
         )}
-        {toggleKrakenData && (
+        {toggleMarketData[2].Kraken === 1 && (
           <>
             {graphData.isTradingKraken ? (
               <a

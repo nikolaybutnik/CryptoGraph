@@ -6,28 +6,23 @@ const numberWithCommas = (num) => {
 }
 
 // Logic which filters which datasets to display on the graph, to avoid empty data from being displayed
-const filterDatasets = (
-  graphData,
-  toggleBinanceData,
-  toggleKucoinData,
-  toggleKrakenData
-) => {
+const filterDatasets = (graphData, toggleMarketData) => {
   let binanceData, kucoinData, krakenData
-  if (toggleBinanceData) {
+  if (toggleMarketData[0].Binance === 1) {
     binanceData = graphData.binanceData
       ? graphData.binanceData.map((data) => {
           return data.closingPrice
         })
       : null
   } else binanceData = null
-  if (toggleKucoinData) {
+  if (toggleMarketData[1].KuCoin === 1) {
     kucoinData = graphData.kucoinData
       ? graphData.kucoinData.map((data) => {
           return data.closingPrice
         })
       : null
   } else kucoinData = null
-  if (toggleKrakenData) {
+  if (toggleMarketData[2].Kraken === 1) {
     krakenData = graphData.krakenData
       ? graphData.krakenData.map((data) => {
           return data.closingPrice
