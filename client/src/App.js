@@ -36,15 +36,7 @@ const App = () => {
   const marketData = markets.map((market) => {
     return { [market.name]: 1 }
   })
-  // const testData = [{ Binance: 1 }, { KuCoin: 0 }, { Kraken: 1 }]
   const [toggleMarketData, setToggleMarketData] = useState(marketData)
-  const [toggleBinanceData, setToggleBinanceData] = useState(true)
-  const [toggleKucoinData, setToggleKucoinData] = useState(true)
-  const [toggleKrakenData, setToggleKrakenData] = useState(true)
-
-  // useEffect(() => {
-  //   console.log(toggleMarketData)
-  // }, [toggleMarketData])
 
   // Properties to be passed down to the various components
   const props = {
@@ -75,12 +67,6 @@ const App = () => {
     setFavorites,
     favStatus,
     setFavStatus,
-    toggleBinanceData,
-    setToggleBinanceData,
-    toggleKucoinData,
-    setToggleKucoinData,
-    toggleKrakenData,
-    setToggleKrakenData,
     toggleMarketData,
     setToggleMarketData,
   }
