@@ -5,7 +5,7 @@ import { numberWithCommas } from '../../utils/HelperFunctions'
 
 import { AiOutlineTwitter } from 'react-icons/ai'
 
-const CoinInfo = ({ props: { symbolData, symbol } }) => {
+const CoinInfo = ({ props: { symbolData, symbol, currency } }) => {
   const [twitterBtnMouseOver, setTwitterBtnMouseOver] = useState(false)
 
   const currentlySelectedSymbol =
@@ -51,8 +51,11 @@ const CoinInfo = ({ props: { symbolData, symbol } }) => {
               ? `1 ${
                   symbolData.generalData[currentlySelectedSymbol].symbol
                 }: ${numberWithCommas(
-                  symbolData.conversionData.quote['USD'].price.toFixed(2)
-                )} USD`
+                  (
+                    symbolData.conversionData.quote['USD'].price *
+                    currency.exchange
+                  ).toFixed(2)
+                )} ${currency.currency}`
               : 'Price information not available'}
           </h5>
           {symbolData.generalData[currentlySelectedSymbol].description ? (
