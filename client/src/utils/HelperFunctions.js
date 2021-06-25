@@ -8,29 +8,17 @@ const numberWithCommas = (num) => {
 
 // Logic which filters which datasets to display on the graph, to avoid empty data from being displayed
 const filterDatasets = (graphData, toggleMarketData) => {
-  let binanceData, kucoinData, krakenData
-  if (toggleMarketData[0].Binance === 1) {
-    binanceData = graphData.binanceData
-      ? graphData.binanceData.map((data) => {
-          return data.closingPrice
-        })
-      : null
-  } else binanceData = null
-  if (toggleMarketData[1].KuCoin === 1) {
-    kucoinData = graphData.kucoinData
-      ? graphData.kucoinData.map((data) => {
-          return data.closingPrice
-        })
-      : null
-  } else kucoinData = null
-  if (toggleMarketData[2].Kraken === 1) {
-    krakenData = graphData.krakenData
-      ? graphData.krakenData.map((data) => {
-          return data.closingPrice
-        })
-      : null
-  } else krakenData = null
-  const dataArray = [binanceData, kucoinData, krakenData]
+  // Uses dynamic property names to check properties of retrieved graph data.
+  // Only assembles graph if toggle is on and graph data is present
+  const dataArray = markets.map((market, index) => {
+    if (Object.values(toggleMarketData[index])[0] === 1) {
+      return graphData[`${market.name.toLowerCase()}Data`]
+        ? graphData[`${market.name.toLowerCase()}Data`].map(
+            (data) => data.closingPrice
+          )
+        : null
+    } else return null
+  })
 
   const datasets = markets.map((market, index) => {
     return {
