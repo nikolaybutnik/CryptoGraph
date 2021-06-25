@@ -33,10 +33,11 @@ router.get('/btc', async (req, res) => {
 
 // Get USD/CAD conversion
 // Payload sent: {USD_CAD: number}
-router.get('/exchangerate', async (req, res) => {
+router.get('/exchangerate/:currency', async (req, res) => {
+  const currency = req.params.currency
   axios
     .get(
-      `https://free.currconv.com/api/v7/convert?q=USD_CAD&compact=ultra&apiKey=${process.env.REACT_APP_CURRENCY_EXCHANGE_API}`
+      `https://free.currconv.com/api/v7/convert?q=USD_${currency}&compact=ultra&apiKey=${process.env.REACT_APP_CURRENCY_EXCHANGE_API}`
     )
     .then((data) => {
       const retrievedData = data.data

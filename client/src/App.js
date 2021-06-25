@@ -13,7 +13,10 @@ import CoinInfo from './components/CoinInfo/CoinInfo'
 
 const App = () => {
   // states for data related to ETH and BTC prices and CAD exchange rate
-  const [exchangeRate, setExchangeRate] = useState(0)
+  const [currency, setCurrency] = useState({
+    currency: 'USD',
+    exchange: 1,
+  })
   const [ethPrice, setEthPrice] = useState('')
   const [btcPrice, setBtcPrice] = useState('')
   // state for all available currencies across all available marketplaces
@@ -40,8 +43,8 @@ const App = () => {
 
   // Properties to be passed down to the various components
   const props = {
-    exchangeRate,
-    setExchangeRate,
+    currency,
+    setCurrency,
     ethPrice,
     setEthPrice,
     btcPrice,

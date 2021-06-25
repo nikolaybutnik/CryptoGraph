@@ -4,7 +4,6 @@ import './EthBtcPrice.css'
 import {
   getEthPriceUSD,
   getBtcPriceUSD,
-  getExchangeRate,
   getCurrencyData,
   getPairs,
 } from '../../utils/ServerCalls'
@@ -12,8 +11,7 @@ import { numberWithCommas } from '../../utils/HelperFunctions'
 
 const EthPrice = ({
   props: {
-    exchangeRate,
-    setExchangeRate,
+    currency,
     ethPrice,
     setEthPrice,
     btcPrice,
@@ -25,23 +23,16 @@ const EthPrice = ({
     toggleMarketData,
   },
 }) => {
-  useEffect(() => {
-    const getData = async () => {
-      await getExchangeRate(setExchangeRate)
-    }
-    getData()
-  }, [setExchangeRate])
-
   // Update ETH and BTC price every 5 seconds
   useEffect(() => {
-    getEthPriceUSD(setEthPrice)
-    getBtcPriceUSD(setBtcPrice)
+    getEthPriceUSD(currency.exchange, setEthPrice)
+    getBtcPriceUSD(currency.exchange, setBtcPrice)
     const interval = setInterval(() => {
-      getEthPriceUSD(setEthPrice)
-      getBtcPriceUSD(setBtcPrice)
+      getEthPriceUSD(currency.exchange, setEthPrice)
+      getBtcPriceUSD(currency.exchange, setBtcPrice)
     }, 5000)
     return () => clearInterval(interval)
-  }, [setBtcPrice, setEthPrice])
+  }, [currency.exchange, setBtcPrice, setEthPrice])
 
   return (
     <div className="ethBtcInfo">
@@ -61,12 +52,9 @@ const EthPrice = ({
         />
         <h2>Ethereum</h2>
         <div>
-          <div>{ethPrice && numberWithCommas(ethPrice)} USD</div>
-          {exchangeRate !== 0 && (
-            <div>
-              {numberWithCommas((exchangeRate * ethPrice).toFixed(2))} CAD
-            </div>
-          )}
+          <div>
+            {ethPrice && numberWithCommas(ethPrice)} {currency.currency}
+          </div>
         </div>
       </div>
       <div
@@ -85,12 +73,9 @@ const EthPrice = ({
         />
         <h2>Bitcoin</h2>
         <div>
-          <div>{btcPrice && numberWithCommas(btcPrice)} USD</div>
-          {exchangeRate !== 0 && (
-            <div>
-              {numberWithCommas((exchangeRate * btcPrice).toFixed(2))} CAD
-            </div>
-          )}
+          <div>
+            {btcPrice && numberWithCommas(btcPrice)} {currency.currency}
+          </div>
         </div>
       </div>
     </div>

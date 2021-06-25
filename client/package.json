@@ -11,6 +11,7 @@
     "jest": "^27.0.3",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.0",
+    "react-country-flag": "^2.3.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-loader-spinner": "^4.0.0",

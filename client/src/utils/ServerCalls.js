@@ -5,7 +5,7 @@ import { isCurrentlyTrading } from '../utils/HelperFunctions'
 // Get current ETH price in USD
 // Payload received: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
 // Action: set ethPrice state as number
-const getEthPriceUSD = (func) => {
+const getEthPriceUSD = (exchangeRate, setFunc) => {
   fetch('/api/info/eth', {
     method: 'GET',
     headers: {
@@ -15,14 +15,14 @@ const getEthPriceUSD = (func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      func(data.data.result.ethusd)
+      setFunc((data.data.result.ethusd * exchangeRate).toFixed(2))
     })
     .catch((err) => console.log(err))
 }
 
 // Get current BTC price in USD
 // Payload received: number
-const getBtcPriceUSD = (func) => {
+const getBtcPriceUSD = (exchangeRate, setFunc) => {
   fetch('/api/info/btc', {
     method: 'GET',
     headers: {
@@ -32,7 +32,7 @@ const getBtcPriceUSD = (func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      func(parseFloat(data.data).toFixed(2))
+      setFunc((parseFloat(data.data) * exchangeRate).toFixed(2))
     })
     .catch((err) => console.log(err))
 }
@@ -45,8 +45,8 @@ const getBtcPriceUSD = (func) => {
 // Number of Requests per Hour: 100
 // Date Range in History: 8 Days
 // Allowed Back in History: 1 Year(s)
-const getExchangeRate = (func) => {
-  fetch('/api/info/exchangerate', {
+const getExchangeRate = (currency, setFunc) => {
+  fetch(`/api/info/exchangerate/${currency}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -55,7 +55,9 @@ const getExchangeRate = (func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      func(data.data.USD_CAD)
+      const newCurrency = Object.keys(data.data).toString().split('_')[1]
+      const newExchangeRate = Object.values(data.data)[0]
+      setFunc({ currency: newCurrency, exchange: newExchangeRate })
     })
     .catch((err) => console.log(err))
 }

@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { getCurrencyData } from '../../utils/ServerCalls'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
+import ReactCountryFlag from 'react-country-flag'
 import './NavigationBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import markets from '../../utils/markets'
 import MarketDropdownItem from './MarketDropdownItem/MarketDropdownItem'
+
+import { getExchangeRate } from '../../utils/ServerCalls'
 
 const NavigationBar = ({
   props: {
@@ -18,6 +21,8 @@ const NavigationBar = ({
     setFavorites,
     toggleMarketData,
     setToggleMarketData,
+    currency,
+    setCurrency,
   },
 }) => {
   useEffect(() => {
@@ -29,6 +34,11 @@ const NavigationBar = ({
     setSymbol(symbol) // Note: available pairs are auto fetched on setSymbol in SearchForm.js
     setPairSymbol(pair)
     getCurrencyData(symbol, setSymbolData)
+  }
+
+  const handleSetCurrency = (e) => {
+    const newCurrency = e.target.firstChild.getAttribute('value')
+    getExchangeRate(newCurrency, setCurrency)
   }
 
   return (
@@ -63,6 +73,17 @@ const NavigationBar = ({
                 />
               )
             })}
+          </NavDropdown>
+          <NavDropdown title={currency.currency} id="collasible-nav-dropdown">
+            <NavDropdown.Item
+              onClick={() => setCurrency({ currency: 'USD', exchange: 1 })}
+            >
+              {<ReactCountryFlag value="USD" countryCode="US" svg />} United
+              States
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => handleSetCurrency(e)}>
+              {<ReactCountryFlag value="CAD" countryCode="CA" svg />} Canada
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
