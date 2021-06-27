@@ -110,7 +110,7 @@ const App = () => {
   return (
     <>
       <NavigationBar props={props} />
-      <UserMessage props={props} />
+      {message && <UserMessage props={props} />}
 
       <div className="mainContainer">
         <EthBtcPrice props={props} />
