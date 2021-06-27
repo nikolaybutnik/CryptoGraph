@@ -1,0 +1,17 @@
+.userMessage {
+  padding: 5px 10px 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(248, 247, 155);
+  svg {
+    flex-shrink: 0;
+  }
+  div {
+    margin: 0 10px 0 10px;
+  }
+  .dismissMessageBtn {
+    margin-left: auto;
+    order: 2;
+  }
+}

@@ -37,7 +37,7 @@ router.get('/exchangerate/:currency', async (req, res) => {
   const currency = req.params.currency
   axios
     .get(
-      `https://free.currconv.com/api/v7/convert?q=USD_${currency}&compact=ultra&apiKey=${process.env.REACT_APP_CURRENCY_EXCHANGE_API}`
+      `https://free.currconv.com/api/v7g/convert?q=USD_${currency}&compact=ultra&apiKey=${process.env.REACT_APP_CURRENCY_EXCHANGE_API}`
     )
     .then((data) => {
       const retrievedData = data.data
