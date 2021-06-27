@@ -59,7 +59,14 @@ const getExchangeRate = (currency, setFunc) => {
       const newExchangeRate = Object.values(data.data)[0]
       setFunc({ currency: newCurrency, exchange: newExchangeRate })
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      console.log(err)
+      // Heroku deployment issue: API call sometimes returns error 500 while deployed.
+      // Workaround, if error is thrown on setting CAD, set exchange rate manually.
+      if (TypeError && currency === 'CAD') {
+        setFunc({ currency: 'CAD', exchange: 1.23 })
+      }
+    })
 }
 
 // Get all available currencies on the exchange
