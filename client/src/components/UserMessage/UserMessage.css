@@ -28,4 +28,9 @@
       -ms-flex-order: 2;
           order: 2;
 }
+
+.userMessage .dismissMessageBtn:hover {
+  color: red;
+  cursor: pointer;
+}
 /*# sourceMappingURL=UserMessage.css.map */

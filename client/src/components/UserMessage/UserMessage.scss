@@ -14,5 +14,9 @@
   .dismissMessageBtn {
     margin-left: auto;
     order: 2;
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
   }
 }
