@@ -10,8 +10,11 @@ import EthBtcPrice from './components/EthBtcPrice/EthBtcPrice'
 import GraphControls from './components/GraphControls/GraphControls'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import CoinInfo from './components/CoinInfo/CoinInfo'
+import UserMessage from './components/UserMessage/UserMessage'
 
 const App = () => {
+  // state for displaying use notifications
+  const [message, setMessage] = useState('')
   // states for data related to ETH and BTC prices and CAD exchange rate
   const [currency, setCurrency] = useState({
     currency: 'USD',
@@ -43,6 +46,8 @@ const App = () => {
 
   // Properties to be passed down to the various components
   const props = {
+    message,
+    setMessage,
     currency,
     setCurrency,
     ethPrice,
@@ -105,6 +110,7 @@ const App = () => {
   return (
     <>
       <NavigationBar props={props} />
+      <UserMessage props={props} />
 
       <div className="mainContainer">
         <EthBtcPrice props={props} />

@@ -45,7 +45,7 @@ const getBtcPriceUSD = (exchangeRate, setFunc) => {
 // Number of Requests per Hour: 100
 // Date Range in History: 8 Days
 // Allowed Back in History: 1 Year(s)
-const getExchangeRate = (currency, setFunc) => {
+const getExchangeRate = (currency, setFunc, setMessage) => {
   fetch(`/api/info/exchangerate/${currency}`, {
     method: 'GET',
     headers: {
@@ -65,6 +65,9 @@ const getExchangeRate = (currency, setFunc) => {
       // Workaround, if error is thrown on setting CAD, set exchange rate manually.
       if (TypeError && currency === 'CAD') {
         setFunc({ currency: 'CAD', exchange: 1.23 })
+        setMessage(
+          'Most recent conversion rate could not be obtained. The current numbers are estimated.'
+        )
       }
     })
 }

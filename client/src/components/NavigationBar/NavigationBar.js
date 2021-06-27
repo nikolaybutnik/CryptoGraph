@@ -13,6 +13,7 @@ import { getExchangeRate } from '../../utils/ServerCalls'
 
 const NavigationBar = ({
   props: {
+    setMessage,
     favStatus,
     setSymbolData,
     setSymbol,
@@ -38,7 +39,7 @@ const NavigationBar = ({
 
   const handleSetCurrency = (e) => {
     const newCurrency = e.target.firstChild.getAttribute('value')
-    getExchangeRate(newCurrency, setCurrency)
+    getExchangeRate(newCurrency, setCurrency, setMessage)
   }
 
   return (
