@@ -42,11 +42,17 @@ CryptoGraph is a work in progress application that allows the user to graph and 
 - [Sass](https://sass-lang.com/)
 - [Bootstrap](https://getbootstrap.com/)
 - [React Bootstrap Navbar](https://react-bootstrap.github.io/components/navbar/)
+- [CCXT](https://github.com/ccxt/ccxt)
 
 ### Features
 
-- [x] Add support for Binance and KuCoin marketplaces
-- [x] Display crypto price in USD where available
-- [x] Implement favorites feature
-- [ ] Add support for more marketplaces
-- [ ] Optionally display wallet balances (requires API keys)
+- [x] Add support for Binance
+- [x] Add support for KuCoin
+- [x] Add support for Kraken
+- [x] Add support for converting between USD and CAD prices
+- [x] Implement ability to save favorite pairs
+- [x] Implement toggles to filter out unwanted exchanges
+- [ ] Add support for more exchanges
+- [ ] Add support for more fiat currencies
+- [ ] Add support for user accounts
+- [ ] Add support for displaying personal wallet balances (requires API keys)
