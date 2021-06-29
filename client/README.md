@@ -3,7 +3,7 @@
   <h3 align="center">CryptoGraph</h3>
 
   <p align="center">
-    A cryptocurrency price graphing app
+    A cryptocurrency price graphing application
     <br />
     <a href="https://github.com/nikolaybutnik/CryptoGraph"><strong>Explore the docs »</strong></a>
     <br />
@@ -32,7 +32,7 @@
 
 ## About The Project
 
-![CryptoGraph Image](https://github.com/nikolaybutnik/CryptoGraph/blob/master/client/public/images/cryptograph-screenshotV2.png?raw=true)
+![CryptoGraph Image](https://github.com/nikolaybutnik/CryptoGraph/blob/master/client/public/images/cryptograph-screenshotV3.png?raw=true)
 
 CryptoGraph is a work in progress application that allows the user to graph and compare various cryptocurrency pairs on different marketplaces.
 
