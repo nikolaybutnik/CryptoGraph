@@ -1,6 +1,26 @@
-import { numberWithCommas, isCurrentlyTrading } from './HelperFunctions'
+import {
+  filterDatasets,
+  numberWithCommas,
+  isCurrentlyTrading,
+} from './HelperFunctions'
 
-test('Add commas to numbers', () => {
+test('Correctly filters out null data', () => {
+  const graphData = {
+    symbol: 'ETH',
+    pairSymbol: 'USDT',
+    isTradingBinance: true,
+    isTradingKucoin: false,
+    isTradingKraken: false,
+    binanceData: [],
+    kucoinData: null,
+    krakenData: null,
+  }
+  const toggleMarketData = [{ Binance: 1 }, { KuCoin: 1 }, { Kraken: 1 }]
+
+  expect(filterDatasets(graphData, toggleMarketData)).toHaveLength(1)
+})
+
+test('Adds commas to numbers', () => {
   expect(numberWithCommas(1000000)).toBe('1,000,000')
   expect(numberWithCommas(1000)).toBe('1,000')
   expect(numberWithCommas(100)).toBe('100')

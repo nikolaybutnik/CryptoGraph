@@ -44,6 +44,7 @@ const filterDatasets = (graphData, toggleMarketData) => {
     }
   })
 
+  console.log(datasets.filter((set) => set.data !== null))
   return datasets.filter((set) => set.data !== null)
 }
 
