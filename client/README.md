@@ -43,6 +43,10 @@ CryptoGraph is a work in progress application that allows the user to graph and 
 - [Bootstrap](https://getbootstrap.com/)
 - [React Bootstrap Navbar](https://react-bootstrap.github.io/components/navbar/)
 - [CCXT](https://github.com/ccxt/ccxt)
+- [Etherscan API](https://etherscan.io/apis)
+- [Coinbase API](https://developers.coinbase.com/)
+- [Free Currency Converter API](https://free.currencyconverterapi.com/)
+- [CoinMarketCap API](https://coinmarketcap.com/api/documentation/v1/)
 
 ### Features
 
