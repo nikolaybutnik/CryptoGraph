@@ -27,6 +27,7 @@ const NavigationBar = ({
   const fiatCurrencies = [
     { countryCode: 'US', fiat: 'USD', location: 'United States' },
     { countryCode: 'CA', fiat: 'CAD', location: 'Canada' },
+    { countryCode: 'EU', fiat: 'EUR', location: 'Europe' },
   ]
 
   useEffect(() => {

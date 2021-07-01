@@ -63,8 +63,17 @@ const getExchangeRate = (currency, setFunc, setMessage) => {
       console.log(err)
       // Heroku deployment issue: API call sometimes returns error 500 while deployed.
       // Workaround, if error is thrown on setting CAD, set exchange rate manually.
-      if (TypeError && currency === 'CAD') {
-        setFunc({ currency: 'CAD', exchange: 1.23 })
+      if (TypeError) {
+        switch (currency) {
+          case 'CAD':
+            setFunc({ currency: 'CAD', exchange: 1.23 })
+            break
+          case 'EUR':
+            setFunc({ currency: 'EUR', exchange: 0.84 })
+            break
+          default:
+            setFunc({ currency: 'USD', exchange: 1 })
+        }
         setMessage(
           'Most recent conversion rate could not be obtained. The current numbers are estimated.'
         )
