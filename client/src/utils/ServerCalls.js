@@ -77,6 +77,9 @@ const getExchangeRate = (currency, setFunc, setMessage) => {
           case 'JPY':
             setFunc({ currency: 'JPY', exchange: 111 })
             break
+          case 'CNY':
+            setFunc({ currency: 'CNY', exchange: 6.47 })
+            break
           default:
             setFunc({ currency: 'USD', exchange: 1 })
         }
