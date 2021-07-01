@@ -80,6 +80,7 @@ const SearchForm = ({
             id="coins"
             options={allCurrencies && allCurrencies}
             value={{ value: symbol, label: symbol }}
+            isDisabled={Object.keys(allCurrencies).length === 0 ? true : false}
             onChange={(e) => {
               setSymbol(e.value)
               setPairSymbol(null)
