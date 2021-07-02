@@ -83,6 +83,9 @@ const getExchangeRate = (currency, setFunc, setMessage) => {
           case 'HKD':
             setFunc({ currency: 'HKD', exchange: 7.77 })
             break
+          case 'CHF':
+            setFunc({ currency: 'CHF', exchange: 0.92 })
+            break
           default:
             setFunc({ currency: 'USD', exchange: 1 })
         }

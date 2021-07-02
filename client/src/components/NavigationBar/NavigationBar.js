@@ -32,6 +32,7 @@ const NavigationBar = ({
     { countryCode: 'JP', fiat: 'JPY', location: 'Japan' },
     { countryCode: 'CN', fiat: 'CNY', location: 'China' },
     { countryCode: 'HK', fiat: 'HKD', location: 'Hong Kong' },
+    { countryCode: 'CH', fiat: 'CHF', location: 'Switzerland' },
   ]
 
   useEffect(() => {
