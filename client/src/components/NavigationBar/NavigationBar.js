@@ -25,14 +25,14 @@ const NavigationBar = ({
   },
 }) => {
   const fiatCurrencies = [
-    { countryCode: 'US', fiat: 'USD', location: 'United States' },
-    { countryCode: 'CA', fiat: 'CAD', location: 'Canada' },
-    { countryCode: 'EU', fiat: 'EUR', location: 'Europe' },
-    { countryCode: 'GB', fiat: 'GBP', location: 'United Kingdom' },
-    { countryCode: 'JP', fiat: 'JPY', location: 'Japan' },
-    { countryCode: 'CN', fiat: 'CNY', location: 'China' },
-    { countryCode: 'HK', fiat: 'HKD', location: 'Hong Kong' },
-    { countryCode: 'CH', fiat: 'CHF', location: 'Switzerland' },
+    { countryCode: 'US', fiat: 'USD', location: 'United States (USD)' },
+    { countryCode: 'CA', fiat: 'CAD', location: 'Canada (CAD)' },
+    { countryCode: 'EU', fiat: 'EUR', location: 'Europe (EUR)' },
+    { countryCode: 'GB', fiat: 'GBP', location: 'United Kingdom (GBP)' },
+    { countryCode: 'JP', fiat: 'JPY', location: 'Japan (JPY)' },
+    { countryCode: 'CN', fiat: 'CNY', location: 'China (CNY)' },
+    { countryCode: 'HK', fiat: 'HKD', location: 'Hong Kong (HKD)' },
+    { countryCode: 'CH', fiat: 'CHF', location: 'Switzerland (CHF)' },
   ]
 
   useEffect(() => {
