@@ -5,7 +5,7 @@ import { Nav, NavDropdown } from 'react-bootstrap'
 import './NavigationBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import markets from '../../utils/markets'
+import exchanges from '../../utils/exchanges'
 import MarketDropdownItem from './MarketDropdownItem/MarketDropdownItem'
 import FiatDropdownItem from './FiatDropdownItem/FiatDropdownItem'
 
@@ -68,9 +68,9 @@ const NavigationBar = ({
                 )
               })}
           </NavDropdown>
-          <NavDropdown title="Markets" id="collasible-nav-dropdown">
-            {markets.map((market) => {
-              const marketName = market.name
+          <NavDropdown title="Exchanges" id="collasible-nav-dropdown">
+            {exchanges.map((exchange) => {
+              const marketName = exchange.name
               return (
                 <MarketDropdownItem
                   key={marketName}

@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3001
 const app = express()
 const ccxt = require('ccxt')
 
+// import { Request, Response } from 'express'
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -29,39 +31,39 @@ const kucoinClient = new ccxt.kucoin({
 })
 const krakenClient = new ccxt.kraken()
 
-const run = async () => {
-  // const balanceETH = await binanceClient.fetchBalance()
-  // console.log(balanceETH.total.ETH)
-  // console.log(binanceClient.has)
-  // console.log(await binanceClient)
-  // console.log(await binanceClient.fetchTrades('TRX/ETH'))
-  // console.log(binanceClient.timeframes)
-  console.log(
-    krakenClient.fetchOHLCV(`BTC/USDC`, '1d').then((data) => console.log(data))
-  )
-  // console.log(await binanceClient.fetchTicker('ETH/USDT'))
-  // console.log(await binanceClient.fetchBalance())
-}
+// const run = async () => {
+// const balanceETH = await binanceClient.fetchBalance()
+// console.log(balanceETH.total.ETH)
+// console.log(binanceClient.has)
+// console.log(await binanceClient)
+// console.log(await binanceClient.fetchTrades('TRX/ETH'))
+// console.log(binanceClient.timeframes)
+// console.log(
+//   krakenClient.fetchOHLCV(`BTC/USDC`, '1d').then((data) => console.log(data))
+// )
+// console.log(await binanceClient.fetchTicker('ETH/USDT'))
+// console.log(await binanceClient.fetchBalance())
+// }
 // run()
 
 // server route for test data
-app.get('/testdata/:symbol/:pair/:timerange/:interval', async (req, res) => {
-  const symbol = req.params.symbol
-  const pair = req.params.pair
-  const timerange = req.params.timerange
-  const interval = req.params.interval
-  try {
-    binanceClient.fetchOHLCV(`${symbol}/${pair}`, interval).then((data) => {
-      const timestamps = data.map((x) => {
-        return x[0]
-      })
-      // console.log(timestamps)
-      res.status(200).send({ data: timestamps })
-    })
-  } catch (err) {
-    console.log(err)
-  }
-})
+// app.get('/testdata/:symbol/:pair/:timerange/:interval', async (req, res) => {
+//   const symbol = req.params.symbol
+//   const pair = req.params.pair
+//   const timerange = req.params.timerange
+//   const interval = req.params.interval
+//   try {
+//     binanceClient.fetchOHLCV(`${symbol}/${pair}`, interval).then((data) => {
+//       const timestamps = data.map((x) => {
+//         return x[0]
+//       })
+//       // console.log(timestamps)
+//       res.status(200).send({ data: timestamps })
+//     })
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
 
 // Send every other request to the React app
 // Define any API routes before this runs

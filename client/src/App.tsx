@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 
 import { getGraphData } from './utils/ServerCalls'
-import markets from './utils/markets'
+import exchanges from './utils/exchanges'
 
 import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
@@ -39,8 +39,8 @@ const App = () => {
   // state for the currently selected pair, used to figure out if it's saved to favorites
   const [favStatus, setFavStatus] = useState(false)
   // states for market toggle switches
-  const marketData = markets.map((market) => {
-    return { [market.name]: 1 }
+  const marketData = exchanges.map((exchange) => {
+    return { [exchange.name]: 1 }
   })
   const [toggleMarketData, setToggleMarketData] = useState(marketData)
 

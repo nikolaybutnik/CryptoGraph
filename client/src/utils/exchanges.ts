@@ -1,4 +1,4 @@
-const markets = [
+const exchanges = [
   {
     name: 'Binance',
     chartColor: {
@@ -22,4 +22,4 @@ const markets = [
   },
 ]
 
-export default markets
+export default exchanges
