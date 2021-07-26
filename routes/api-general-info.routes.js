@@ -52,6 +52,7 @@ router.get('/exchangerate/:currency', async (req, res) => {
 // Payload sent {conversionData: {object}, generalData: {object}}
 router.get('/currencydata/:symbol', async (req, res) => {
   const symbol = req.params.symbol
+  console.log(symbol)
   const options = {
     headers: {
       'X-CMC_PRO_API_KEY': `${process.env.REACT_APP_CMC_API_KEY}`,
