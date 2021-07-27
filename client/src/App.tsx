@@ -29,7 +29,7 @@ const App = () => {
   const [pairSymbol, setPairSymbol] = useState('')
   const [pairOptions, setPairOptions] = useState([])
   // state for additional data for currently selected symbol
-  const [symbolData, setSymbolData] = useState({})
+  const [symbolData, setSymbolData] = useState(null)
   // states for the graph and controls
   const [graphData, setGraphData] = useState({})
   const [viewOption, setViewOption] = useState('1d')
