@@ -54,3 +54,14 @@ export interface PairOptionsType {
   value: string
   label: string
 }
+
+export interface GraphDataType {
+  binanceData?: { timestamp: string; closingPrice: number }[]
+  krakenData?: { timestamp: string; closingPrice: number }[]
+  kucoinData?: { timestamp: string; closingPrice: number }[]
+  isTradingBinance: boolean
+  isTradingKraken: boolean
+  isTradingKucoin: boolean
+  symbol: string
+  pairSymbol: string
+}

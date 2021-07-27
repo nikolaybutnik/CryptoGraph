@@ -12,7 +12,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import CoinInfo from './components/CoinInfo/CoinInfo'
 import UserMessage from './components/UserMessage/UserMessage'
 
-import { SymbolDataType, PairOptionsType } from './utils/types'
+import { SymbolDataType, PairOptionsType, GraphDataType } from './utils/types'
 
 const App = () => {
   // state for displaying user notifications
@@ -25,17 +25,19 @@ const App = () => {
   const [ethPrice, setEthPrice] = useState<string>('')
   const [btcPrice, setBtcPrice] = useState<string>('')
   // state for all available currencies across all available marketplaces
-  const [allCurrencies, setAllCurrencies] = useState({})
+  const [allCurrencies, setAllCurrencies] = useState<
+    { value: string; label: string }[]
+  >([])
   // states for the currently selected symbol and pair
   const [symbol, setSymbol] = useState<string>('')
-  const [pairSymbol, setPairSymbol] = useState<string>('')
+  const [pairSymbol, setPairSymbol] = useState<string | null>('')
   const [pairOptions, setPairOptions] = useState<PairOptionsType[]>([])
   // state for additional data for currently selected symbol
   const [symbolData, setSymbolData] = useState<SymbolDataType | null>(null)
   // states for the graph and controls
-  const [graphData, setGraphData] = useState({})
-  const [viewOption, setViewOption] = useState('1d')
-  const [timeSpan, setTimeSpan] = useState('90days')
+  const [graphData, setGraphData] = useState<GraphDataType | {}>({})
+  const [viewOption, setViewOption] = useState<string>('1d')
+  const [timeSpan, setTimeSpan] = useState<string>('90days')
   // state for all currently save favorites
   const [favorites, setFavorites] = useState([])
   // state for the currently selected pair, used to figure out if it's saved to favorites

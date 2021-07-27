@@ -38,9 +38,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.searchFormContainer .loading svg {
   -ms-flex-item-align: end;
       align-self: flex-end;
 }

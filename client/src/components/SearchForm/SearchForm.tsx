@@ -11,6 +11,38 @@ import {
   getCurrencyData,
 } from '../../utils/ServerCalls'
 
+import {
+  SymbolDataType,
+  PairOptionsType,
+  GraphDataType,
+} from '../../utils/types'
+
+interface Props {
+  props: {
+    getGraphData: (
+      symbol: string,
+      pairSymbol: string,
+      func: (value: GraphDataType) => void,
+      timeRange: string,
+      interval: string,
+      setLoading: (value: boolean) => void
+    ) => void
+    setGraphData: (value: GraphDataType) => void
+    symbol: string
+    setSymbol: (value: string) => void
+    pairSymbol: string | null
+    setPairSymbol: (value: string | null) => void
+    setSymbolData: (value: SymbolDataType) => void
+    viewOption: string
+    pairOptions: PairOptionsType[]
+    setPairOptions: (value: PairOptionsType[]) => void
+    allCurrencies: { value: string; label: string }[]
+    setAllCurrencies: (value: { value: string; label: string }[]) => void
+    timeSpan: string
+    toggleMarketData: { [name: string]: number }[]
+  }
+}
+
 const SearchForm = ({
   props: {
     getGraphData,
@@ -28,8 +60,8 @@ const SearchForm = ({
     timeSpan,
     toggleMarketData,
   },
-}) => {
-  const [loading, setLoading] = useState(false)
+}: Props) => {
+  const [loading, setLoading] = useState<boolean>(false)
 
   // Initial call to populate dropdown with all available options
   useEffect(() => {
@@ -82,7 +114,7 @@ const SearchForm = ({
             value={{ value: symbol, label: symbol }}
             isDisabled={Object.keys(allCurrencies).length === 0 ? true : false}
             onChange={(e) => {
-              setSymbol(e.value)
+              setSymbol(e!.value)
               setPairSymbol(null)
             }}
           />
@@ -99,21 +131,22 @@ const SearchForm = ({
             isLoading={!pairOptions && true}
             options={pairOptions && pairOptions}
             onChange={(e) => {
-              setPairSymbol(e.value)
+              console.log(e)
+              setPairSymbol(e!.label)
             }}
           />
         </div>
       </div>
-      {
+
+      <div className="loading">
         <Loader
-          className="loading"
           type="Oval"
           color="#e2e2e2"
           visible={loading}
           height={38}
           width={38}
         />
-      }
+      </div>
     </div>
   )
 }
