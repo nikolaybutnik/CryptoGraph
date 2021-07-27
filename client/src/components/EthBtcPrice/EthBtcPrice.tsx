@@ -9,6 +9,27 @@ import {
 } from '../../utils/ServerCalls'
 import { numberWithCommas } from '../../utils/HelperFunctions'
 
+import {
+  CurrencyType,
+  SymbolDataType,
+  PairOptionsType,
+} from '../../utils/types'
+
+interface Props {
+  props: {
+    currency: CurrencyType
+    ethPrice: string
+    setEthPrice: (value: string) => void
+    btcPrice: string
+    setBtcPrice: (value: string) => void
+    setSymbolData: (value: SymbolDataType) => void
+    setSymbol: (value: string) => void
+    setPairSymbol: (value: string) => void
+    setPairOptions: (value: PairOptionsType[]) => void
+    toggleMarketData: { [name: string]: number }[]
+  }
+}
+
 const EthPrice = ({
   props: {
     currency,
@@ -22,7 +43,7 @@ const EthPrice = ({
     setPairOptions,
     toggleMarketData,
   },
-}) => {
+}: Props) => {
   // Update ETH and BTC price every 5 seconds
   useEffect(() => {
     getEthPriceUSD(currency.exchange, setEthPrice)

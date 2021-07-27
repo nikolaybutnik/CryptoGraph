@@ -49,3 +49,8 @@ export interface CurrencyType {
   currency: string
   exchange: number
 }
+
+export interface PairOptionsType {
+  value: string
+  label: string
+}

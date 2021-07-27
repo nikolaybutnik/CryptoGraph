@@ -12,6 +12,8 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import CoinInfo from './components/CoinInfo/CoinInfo'
 import UserMessage from './components/UserMessage/UserMessage'
 
+import { SymbolDataType, PairOptionsType } from './utils/types'
+
 const App = () => {
   // state for displaying use notifications
   const [message, setMessage] = useState('')
@@ -20,16 +22,16 @@ const App = () => {
     currency: 'USD',
     exchange: 1,
   })
-  const [ethPrice, setEthPrice] = useState('')
-  const [btcPrice, setBtcPrice] = useState('')
+  const [ethPrice, setEthPrice] = useState<string>('')
+  const [btcPrice, setBtcPrice] = useState<string>('')
   // state for all available currencies across all available marketplaces
   const [allCurrencies, setAllCurrencies] = useState({})
   // states for the currently selected symbol and pair
-  const [symbol, setSymbol] = useState('')
-  const [pairSymbol, setPairSymbol] = useState('')
-  const [pairOptions, setPairOptions] = useState([])
+  const [symbol, setSymbol] = useState<string>('')
+  const [pairSymbol, setPairSymbol] = useState<string>('')
+  const [pairOptions, setPairOptions] = useState<PairOptionsType[]>([])
   // state for additional data for currently selected symbol
-  const [symbolData, setSymbolData] = useState(null)
+  const [symbolData, setSymbolData] = useState<SymbolDataType | null>(null)
   // states for the graph and controls
   const [graphData, setGraphData] = useState({})
   const [viewOption, setViewOption] = useState('1d')
