@@ -2,7 +2,17 @@ import React from 'react'
 
 import './GraphControls.css'
 
-const GraphControls = ({ props: { setViewOption, timeSpan, setTimeSpan } }) => {
+interface Props {
+  props: {
+    setViewOption: (value: string) => void
+    timeSpan: string
+    setTimeSpan: (value: string) => void
+  }
+}
+
+const GraphControls = ({
+  props: { setViewOption, timeSpan, setTimeSpan },
+}: Props) => {
   return (
     <div className="graphControls">
       <button
