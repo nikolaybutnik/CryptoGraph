@@ -4,9 +4,24 @@ import ReactCountryFlag from 'react-country-flag'
 
 import { getExchangeRate } from '../../../utils/ServerCalls'
 
-const FiatDropdownItem = ({ props: { setCurrency, setMessage, item } }) => {
-  const handleSetCurrency = (e) => {
-    const newCurrency = e.target.firstChild.getAttribute('value')
+interface Props {
+  props: {
+    setCurrency: (value: { currency: string; exchange: number }) => void
+    setMessage: (value: string) => void
+    item: {
+      countryCode: string
+      fiat: string
+      location: string
+    }
+  }
+}
+
+const FiatDropdownItem = ({
+  props: { setCurrency, setMessage, item },
+}: Props) => {
+  const handleSetCurrency = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const button = e.target as HTMLAnchorElement
+    const newCurrency = button.children[0].getAttribute('value')
     getExchangeRate(newCurrency, setCurrency, setMessage)
   }
 
@@ -15,7 +30,7 @@ const FiatDropdownItem = ({ props: { setCurrency, setMessage, item } }) => {
       onClick={
         item.fiat === 'USD'
           ? () => setCurrency({ currency: 'USD', exchange: 1 })
-          : (e) => handleSetCurrency(e)
+          : handleSetCurrency
       }
     >
       {
