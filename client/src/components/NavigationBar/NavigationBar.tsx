@@ -9,6 +9,24 @@ import exchanges from '../../utils/exchanges'
 import MarketDropdownItem from './MarketDropdownItem/MarketDropdownItem'
 import FiatDropdownItem from './FiatDropdownItem/FiatDropdownItem'
 
+import { SymbolDataType } from '../../utils/types'
+
+interface Props {
+  props: {
+    setMessage: (value: string) => void
+    favStatus: boolean
+    setSymbolData: (value: SymbolDataType) => void
+    setSymbol: (value: string) => void
+    setPairSymbol: (value: string) => void
+    favorites: { symbol: string; pair: string }[]
+    setFavorites: (value: { symbol: string; pair: string }[]) => void
+    toggleMarketData: { [name: string]: number }[]
+    setToggleMarketData: (value: { [name: string]: number }[]) => void
+    currency: { currency: string; exchange: number }
+    setCurrency: (value: { currency: string; exchange: number }) => void
+  }
+}
+
 const NavigationBar = ({
   props: {
     setMessage,
@@ -23,7 +41,7 @@ const NavigationBar = ({
     currency,
     setCurrency,
   },
-}) => {
+}: Props) => {
   const fiatCurrencies = [
     { countryCode: 'US', fiat: 'USD', location: 'United States (USD)' },
     { countryCode: 'CA', fiat: 'CAD', location: 'Canada (CAD)' },
@@ -36,12 +54,13 @@ const NavigationBar = ({
   ]
 
   useEffect(() => {
-    setFavorites(JSON.parse(localStorage.getItem('userFavorites')))
+    setFavorites(JSON.parse(localStorage.getItem('userFavorites') || '{}'))
   }, [favStatus, setFavorites])
 
-  const handleFetchGraph = (e) => {
-    const [symbol, pair] = e.target.textContent.split('/')
-    setSymbol(symbol) // Note: available pairs are auto fetched on setSymbol in SearchForm.js
+  const handleFetchGraph = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const button = e.target as HTMLAnchorElement
+    const [symbol, pair]: string[] = button.textContent!.split('/')
+    setSymbol(symbol) // Note: available pairs are auto fetched on setSymbol in SearchForm.tsx
     setPairSymbol(pair)
     getCurrencyData(symbol, setSymbolData)
   }
@@ -59,11 +78,11 @@ const NavigationBar = ({
               <NavDropdown.Item>You have no favorites saved</NavDropdown.Item>
             )}
             {favorites &&
-              favorites.map((item) => {
+              favorites.map((item: { symbol: string; pair: string }) => {
                 return (
                   <NavDropdown.Item
                     key={`${item.symbol}/${item.pair}`}
-                    onClick={(e) => handleFetchGraph(e)}
+                    onClick={handleFetchGraph}
                   >{`${item.symbol}/${item.pair}`}</NavDropdown.Item>
                 )
               })}

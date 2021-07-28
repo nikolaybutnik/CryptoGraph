@@ -39,14 +39,20 @@ const App = () => {
   const [viewOption, setViewOption] = useState<string>('1d')
   const [timeSpan, setTimeSpan] = useState<string>('90days')
   // state for all currently save favorites
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState<
+    { symbol: string; pair: string }[]
+  >([])
   // state for the currently selected pair, used to figure out if it's saved to favorites
-  const [favStatus, setFavStatus] = useState(false)
+  const [favStatus, setFavStatus] = useState<boolean>(false)
   // states for market toggle switches
   const marketData = exchanges.map((exchange) => {
     return { [exchange.name]: 1 }
   })
-  const [toggleMarketData, setToggleMarketData] = useState(marketData)
+  const [toggleMarketData, setToggleMarketData] = useState<
+    {
+      [x: string]: number
+    }[]
+  >(marketData)
 
   // Properties to be passed down to the various components
   const props = {
