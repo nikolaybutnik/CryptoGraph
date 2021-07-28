@@ -131,7 +131,6 @@ const SearchForm = ({
             isLoading={!pairOptions && true}
             options={pairOptions && pairOptions}
             onChange={(e) => {
-              console.log(e)
               setPairSymbol(e!.label)
             }}
           />
