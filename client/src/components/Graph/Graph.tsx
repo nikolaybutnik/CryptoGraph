@@ -12,18 +12,31 @@ import {
 } from 'react-icons/ai'
 import { BiRightArrow } from 'react-icons/bi'
 
+import { GraphDataType } from '../../utils/types'
+
+interface Props {
+  props: {
+    graphData: GraphDataType | null
+    favStatus: boolean
+    setFavStatus: (value: boolean) => void
+    toggleMarketData: { [name: string]: number }[]
+  }
+}
+
 const Graph = ({
   props: { graphData, favStatus, setFavStatus, toggleMarketData },
-}) => {
-  const [graph, setGraph] = useState(null)
-  const graphRef = useRef()
+}: Props) => {
+  const [graph, setGraph] = useState<any>(null)
+  const graphRef = useRef<HTMLCanvasElement>(null)
 
-  const symbol = graphData.symbol
-  const pairSymbol = graphData.pairSymbol
+  const symbol = graphData?.symbol
+  const pairSymbol = graphData?.pairSymbol
 
   // On graph render check if pair is fav'd to render empty or filled star icon
   useEffect(() => {
-    const checkIfFavorite = JSON.parse(localStorage.getItem('userFavorites'))
+    const checkIfFavorite: { symbol: string; pair: string }[] = JSON.parse(
+      localStorage.getItem('userFavorites') || '{}'
+    )
     if (
       checkIfFavorite.some(
         (item) => item.symbol === symbol && item.pair === pairSymbol
@@ -37,20 +50,20 @@ const Graph = ({
 
   // Graph rendering
   useEffect(() => {
-    const ctx = graphRef.current.getContext('2d')
+    const ctx = graphRef.current?.getContext('2d')
 
-    let labels
+    let labels: string[] = []
     // Note: down the road, redo logic to allow for working with more marketplaces.
     // Idea: select the longest array and use it for labels.
-    if (graphData.binanceData) {
+    if (graphData?.binanceData) {
       labels = graphData.binanceData.map((data) => {
         return data.timestamp
       })
-    } else if (graphData.kucoinData) {
+    } else if (graphData?.kucoinData) {
       labels = graphData.kucoinData.map((data) => {
         return data.timestamp
       })
-    } else if (graphData.krakenData) {
+    } else if (graphData?.krakenData) {
       labels = graphData.krakenData.map((data) => {
         return data.timestamp
       })
@@ -89,9 +102,11 @@ const Graph = ({
     }
   }, [graphData, graph, toggleMarketData])
 
-  const toggleFavorite = (symbol, pairSymbol) => {
+  const toggleFavorite = (symbol: string, pairSymbol: string): void => {
     const newFavorite = { symbol: symbol, pair: pairSymbol }
-    let currentFavorites = JSON.parse(localStorage.getItem('userFavorites'))
+    let currentFavorites: { symbol: string; pair: string }[] = JSON.parse(
+      localStorage.getItem('userFavorites') || '{}'
+    )
     if (
       currentFavorites.some(
         (item) => item.symbol === symbol && item.pair === pairSymbol
@@ -118,14 +133,14 @@ const Graph = ({
           <AiFillStar
             className="favIcon"
             onClick={() => {
-              toggleFavorite(symbol, pairSymbol)
+              toggleFavorite(symbol!, pairSymbol!)
             }}
           />
         ) : (
           <AiOutlineStar
             className="favIcon"
             onClick={() => {
-              toggleFavorite(symbol, pairSymbol)
+              toggleFavorite(symbol!, pairSymbol!)
             }}
           />
         )}
@@ -134,7 +149,7 @@ const Graph = ({
       <div className="tradingStatus">
         {toggleMarketData[0].Binance === 1 && (
           <>
-            {graphData.isTradingBinance ? (
+            {graphData?.isTradingBinance ? (
               <a
                 href={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
                 target="_blank"
@@ -158,7 +173,7 @@ const Graph = ({
         )}
         {toggleMarketData[1].KuCoin === 1 && (
           <>
-            {graphData.isTradingKucoin ? (
+            {graphData?.isTradingKucoin ? (
               <a
                 href={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
                 target="_blank"
@@ -182,7 +197,7 @@ const Graph = ({
         )}
         {toggleMarketData[2].Kraken === 1 && (
           <>
-            {graphData.isTradingKraken ? (
+            {graphData?.isTradingKraken ? (
               <a
                 href={`https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`}
                 target="_blank"

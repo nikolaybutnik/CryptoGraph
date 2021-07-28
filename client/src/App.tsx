@@ -35,7 +35,7 @@ const App = () => {
   // state for additional data for currently selected symbol
   const [symbolData, setSymbolData] = useState<SymbolDataType | null>(null)
   // states for the graph and controls
-  const [graphData, setGraphData] = useState<GraphDataType | {}>({})
+  const [graphData, setGraphData] = useState<GraphDataType | null>(null)
   const [viewOption, setViewOption] = useState<string>('1d')
   const [timeSpan, setTimeSpan] = useState<string>('90days')
   // state for all currently save favorites
