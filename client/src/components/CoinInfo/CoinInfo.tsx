@@ -15,7 +15,9 @@ interface Props {
   }
 }
 
-const CoinInfo = ({ props: { symbolData, symbol, currency } }: Props) => {
+const CoinInfo: React.FC<Props> = ({
+  props: { symbolData, symbol, currency },
+}) => {
   const [twitterBtnMouseOver, setTwitterBtnMouseOver] = useState(false)
 
   const currentlySelectedSymbol =

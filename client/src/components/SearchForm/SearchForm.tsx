@@ -43,7 +43,7 @@ interface Props {
   }
 }
 
-const SearchForm = ({
+const SearchForm: React.FC<Props> = ({
   props: {
     getGraphData,
     setGraphData,
@@ -60,7 +60,7 @@ const SearchForm = ({
     timeSpan,
     toggleMarketData,
   },
-}: Props) => {
+}) => {
   const [loading, setLoading] = useState<boolean>(false)
 
   // Initial call to populate dropdown with all available options

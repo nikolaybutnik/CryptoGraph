@@ -11,9 +11,9 @@ interface Props {
   }
 }
 
-const MarketDropdownItem = ({
+const MarketDropdownItem: React.FC<Props> = ({
   props: { marketName, toggleMarketData, setToggleMarketData },
-}: Props) => {
+}) => {
   const toggleStatusObject = toggleMarketData.filter(
     (data: { [name: string]: number }) => Object.keys(data)[0] === marketName
   )

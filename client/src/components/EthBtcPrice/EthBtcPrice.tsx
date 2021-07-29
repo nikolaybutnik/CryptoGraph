@@ -30,7 +30,7 @@ interface Props {
   }
 }
 
-const EthPrice = ({
+const EthPrice: React.FC<Props> = ({
   props: {
     currency,
     ethPrice,
@@ -43,7 +43,7 @@ const EthPrice = ({
     setPairOptions,
     toggleMarketData,
   },
-}: Props) => {
+}) => {
   // Update ETH and BTC price every 5 seconds
   useEffect(() => {
     getEthPriceUSD(currency.exchange, setEthPrice)

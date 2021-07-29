@@ -10,9 +10,9 @@ interface Props {
   }
 }
 
-const GraphControls = ({
+const GraphControls: React.FC<Props> = ({
   props: { setViewOption, timeSpan, setTimeSpan },
-}: Props) => {
+}) => {
   return (
     <div className="graphControls">
       <button

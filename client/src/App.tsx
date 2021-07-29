@@ -14,7 +14,7 @@ import UserMessage from './components/UserMessage/UserMessage'
 
 import { SymbolDataType, PairOptionsType, GraphDataType } from './utils/types'
 
-const App = () => {
+const App: React.FC = () => {
   // state for displaying user notifications
   const [message, setMessage] = useState<string>('')
   // states for data related to ETH and BTC prices and CAD exchange rate

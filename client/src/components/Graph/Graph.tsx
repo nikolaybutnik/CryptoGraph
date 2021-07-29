@@ -23,9 +23,9 @@ interface Props {
   }
 }
 
-const Graph = ({
+const Graph: React.FC<Props> = ({
   props: { graphData, favStatus, setFavStatus, toggleMarketData },
-}: Props) => {
+}) => {
   const [graph, setGraph] = useState<any>(null)
   const graphRef = useRef<HTMLCanvasElement>(null)
 

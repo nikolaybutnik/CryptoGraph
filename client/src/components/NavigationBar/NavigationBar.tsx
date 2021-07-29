@@ -27,7 +27,7 @@ interface Props {
   }
 }
 
-const NavigationBar = ({
+const NavigationBar: React.FC<Props> = ({
   props: {
     setMessage,
     favStatus,
@@ -41,7 +41,7 @@ const NavigationBar = ({
     currency,
     setCurrency,
   },
-}: Props) => {
+}) => {
   const fiatCurrencies = [
     { countryCode: 'US', fiat: 'USD', location: 'United States (USD)' },
     { countryCode: 'CA', fiat: 'CAD', location: 'Canada (CAD)' },

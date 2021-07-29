@@ -16,9 +16,9 @@ interface Props {
   }
 }
 
-const FiatDropdownItem = ({
+const FiatDropdownItem: React.FC<Props> = ({
   props: { setCurrency, setMessage, item },
-}: Props) => {
+}) => {
   const handleSetCurrency = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const button = e.target as HTMLAnchorElement
     const newCurrency = button.children[0].getAttribute('value')

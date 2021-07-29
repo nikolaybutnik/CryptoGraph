@@ -11,7 +11,7 @@ interface Props {
   }
 }
 
-const UserMessage = ({ props: { message, setMessage } }: Props) => {
+const UserMessage: React.FC<Props> = ({ props: { message, setMessage } }) => {
   return (
     <div className="userMessage">
       <BiMessageError size={25} />
