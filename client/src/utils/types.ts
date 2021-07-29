@@ -51,9 +51,9 @@ export type Currency = {
 }
 
 export type GraphData = {
-  binanceData?: { timestamp: string; closingPrice: number }[]
-  krakenData?: { timestamp: string; closingPrice: number }[]
-  kucoinData?: { timestamp: string; closingPrice: number }[]
+  binanceData?: { timestamp: string; closingPrice: number }[] | null
+  krakenData?: { timestamp: string; closingPrice: number }[] | null
+  kucoinData?: { timestamp: string; closingPrice: number }[] | null
   isTradingBinance: boolean
   isTradingKraken: boolean
   isTradingKucoin: boolean

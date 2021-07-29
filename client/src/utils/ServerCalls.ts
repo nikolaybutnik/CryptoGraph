@@ -2,10 +2,15 @@ import { format } from 'date-fns'
 
 import { isCurrentlyTrading } from '../utils/HelperFunctions'
 
+import { Currency, Exchange, Options, GraphData, SymbolData } from './types'
+
 // Get current ETH price in USD
 // Payload received: {status: string, message: string, result: {ethbtc: string, ethbtc_timestamp: string, ethusd: string, ethusd_timestamp: string}}}
 // Action: set ethPrice state as number
-const getEthPriceUSD = (exchangeRate, setFunc) => {
+const getEthPriceUSD = (
+  exchangeRate: number,
+  setFunc: React.Dispatch<React.SetStateAction<string>>
+) => {
   fetch('/api/info/eth', {
     method: 'GET',
     headers: {
@@ -15,14 +20,27 @@ const getEthPriceUSD = (exchangeRate, setFunc) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      setFunc((data.data.result.ethusd * exchangeRate).toFixed(2))
+      const retrievedData = data.data as {
+        message: string
+        result: {
+          ethbtc: string
+          ethbtc_timestamp: string
+          ethusd: string
+          ethusd_timestamp: string
+        }
+        status: string
+      }
+      setFunc((parseInt(retrievedData.result.ethusd) * exchangeRate).toFixed(2))
     })
     .catch((err) => console.log(err))
 }
 
 // Get current BTC price in USD
 // Payload received: number
-const getBtcPriceUSD = (exchangeRate, setFunc) => {
+const getBtcPriceUSD = (
+  exchangeRate: number,
+  setFunc: React.Dispatch<React.SetStateAction<string>>
+) => {
   fetch('/api/info/btc', {
     method: 'GET',
     headers: {
@@ -32,7 +50,8 @@ const getBtcPriceUSD = (exchangeRate, setFunc) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      setFunc((parseFloat(data.data) * exchangeRate).toFixed(2))
+      const retrievedData = data.data as string
+      setFunc((parseFloat(retrievedData) * exchangeRate).toFixed(2))
     })
     .catch((err) => console.log(err))
 }
@@ -45,7 +64,11 @@ const getBtcPriceUSD = (exchangeRate, setFunc) => {
 // Number of Requests per Hour: 100
 // Date Range in History: 8 Days
 // Allowed Back in History: 1 Year(s)
-const getExchangeRate = (currency, setFunc, setMessage) => {
+const getExchangeRate = (
+  currency: string,
+  setFunc: React.Dispatch<React.SetStateAction<Currency>>,
+  setMessage: React.Dispatch<React.SetStateAction<string>>
+) => {
   fetch(`/api/info/exchangerate/${currency}`, {
     method: 'GET',
     headers: {
@@ -55,15 +78,16 @@ const getExchangeRate = (currency, setFunc, setMessage) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      const newCurrency = Object.keys(data.data).toString().split('_')[1]
-      const newExchangeRate = Object.values(data.data)[0]
+      const retrievedData = data.data as { x: number }
+      const newCurrency = Object.keys(retrievedData).toString().split('_')[1]
+      const newExchangeRate = Object.values(retrievedData)[0]
       setFunc({ currency: newCurrency, exchange: newExchangeRate })
     })
     .catch((err) => {
       console.log(err)
       // Heroku deployment issue: API call sometimes returns error 500 while deployed.
       // Workaround, if error is thrown on setting CAD, set exchange rate manually.
-      if (TypeError) {
+      if (err === TypeError) {
         switch (currency) {
           case 'CAD':
             setFunc({ currency: 'CAD', exchange: 1.23 })
@@ -99,7 +123,10 @@ const getExchangeRate = (currency, setFunc, setMessage) => {
 // Get all available currencies on the exchange
 // Payload received [array of 'string']
 // Action: set allCurrencies state as array of strings containing currency codes
-const getCurrencies = (func, toggleMarketData) => {
+const getCurrencies = (
+  func: React.Dispatch<React.SetStateAction<Options[]>>,
+  toggleMarketData: Exchange[]
+) => {
   const marketData = toggleMarketData.map((data) => {
     const name = Object.keys(data)[0]
     const status = Object.values(data)[0]
@@ -114,14 +141,19 @@ const getCurrencies = (func, toggleMarketData) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      const sortedData = data.data.sort((a, b) =>
+      const retrievedData = data.data as Options[]
+      const sortedData = retrievedData.sort((a, b) =>
         a.value.localeCompare(b.value)
       )
       func(sortedData)
     })
 }
 
-const getPairs = (currency, func, toggleMarketData) => {
+const getPairs = (
+  currency: string,
+  func: React.Dispatch<React.SetStateAction<Options[]>>,
+  toggleMarketData: Exchange[]
+) => {
   const marketData = toggleMarketData.map((data) => {
     const name = Object.keys(data)[0]
     const status = Object.values(data)[0]
@@ -136,7 +168,8 @@ const getPairs = (currency, func, toggleMarketData) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      const sortedData = data.data.sort((a, b) =>
+      const retrievedData = data.data as Options[]
+      const sortedData = retrievedData.sort((a, b) =>
         a.value.localeCompare(b.value)
       )
       func(sortedData)
@@ -148,12 +181,12 @@ const getPairs = (currency, func, toggleMarketData) => {
 // Payload received: {symbol: string, exchangeData: [array of objects {timestamp: number, closingPrice: number}] OR null }
 // Action: set graphData state as object {symbol: string, data: [array of objects {timestamp: string, closingPrice: number}]}
 const getGraphData = (
-  symbol,
-  pairSymbol,
-  func,
-  timeRange,
-  interval,
-  setLoading
+  symbol: string,
+  pairSymbol: string,
+  func: React.Dispatch<React.SetStateAction<GraphData | null>>,
+  timeRange: string,
+  interval: string,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   fetch(
     `/api/graph/graphdata/${symbol}/${pairSymbol}/${timeRange}/${interval}`,
@@ -167,35 +200,48 @@ const getGraphData = (
   )
     .then((res) => res.json())
     .then((data) => {
+      const retrievedData = data.data as GraphData
       // Format the timestamps to be used as labels on graph
-      const binanceProcessedData = data.data.binanceData
-        ? data.data.binanceData.map((obj) => {
-            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
+      const binanceProcessedData = retrievedData.binanceData
+        ? retrievedData.binanceData.map((obj) => {
+            return {
+              ...obj,
+              timestamp: format(parseInt(obj.timestamp), 'MMM dd yyyy'),
+            }
           })
         : null
-      const kucoinProcessedData = data.data.kucoinData
-        ? data.data.kucoinData.map((obj) => {
-            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
+      const kucoinProcessedData = retrievedData.kucoinData
+        ? retrievedData.kucoinData.map((obj) => {
+            return {
+              ...obj,
+              timestamp: format(parseInt(obj.timestamp), 'MMM dd yyyy'),
+            }
           })
         : null
-      const krakenProcessedData = data.data.krakenData
-        ? data.data.krakenData.map((obj) => {
-            return { ...obj, timestamp: format(obj.timestamp, 'MMM dd yyyy') }
+      const krakenProcessedData = retrievedData.krakenData
+        ? retrievedData.krakenData.map((obj) => {
+            return {
+              ...obj,
+              timestamp: format(parseInt(obj.timestamp), 'MMM dd yyyy'),
+            }
           })
         : null
       // Check the recency of last timestamp to see if pair is currently trading
-      const dateToCheckBinance = data.data.binanceData
-        ? data.data.binanceData[data.data.binanceData.length - 1].timestamp
+      const dateToCheckBinance = retrievedData.binanceData
+        ? retrievedData.binanceData[retrievedData.binanceData.length - 1]
+            .timestamp
         : null
-      const dateToCheckKucoin = data.data.kucoinData
-        ? data.data.kucoinData[data.data.kucoinData.length - 1].timestamp
+      const dateToCheckKucoin = retrievedData.kucoinData
+        ? retrievedData.kucoinData[retrievedData.kucoinData.length - 1]
+            .timestamp
         : null
-      const dateToCheckKraken = data.data.krakenData
-        ? data.data.krakenData[data.data.krakenData.length - 1].timestamp
+      const dateToCheckKraken = retrievedData.krakenData
+        ? retrievedData.krakenData[retrievedData.krakenData.length - 1]
+            .timestamp
         : null
 
       func({
-        symbol: data.data.symbol,
+        symbol: retrievedData.symbol,
         pairSymbol: pairSymbol,
         binanceData: binanceProcessedData,
         kucoinData: kucoinProcessedData,
@@ -212,7 +258,10 @@ const getGraphData = (
 
 // Get general info and USD conversion data on the requested currency
 // Payload received {conversionData: {object}, generalData: {object}}
-const getCurrencyData = (symbol, func) => {
+const getCurrencyData = (
+  symbol: string,
+  func: React.Dispatch<React.SetStateAction<SymbolData | null>>
+) => {
   fetch(`/api/info/currencydata/${symbol}`, {
     method: 'GET',
     headers: {
@@ -222,7 +271,8 @@ const getCurrencyData = (symbol, func) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      func(data)
+      const retrievedData = data as SymbolData
+      func(retrievedData)
     })
     .catch((err) => console.log(err))
 }

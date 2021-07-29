@@ -23,7 +23,7 @@ const FiatDropdownItem: React.FC<Props> = ({
 }) => {
   const handleSetCurrency = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const button = e.target as HTMLAnchorElement
-    const newCurrency = button.children[0].getAttribute('value')
+    const newCurrency = button.children[0].getAttribute('value') as string
     getExchangeRate(newCurrency, setCurrency, setMessage)
   }
 
