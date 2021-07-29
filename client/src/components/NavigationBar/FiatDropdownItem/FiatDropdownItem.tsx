@@ -4,10 +4,12 @@ import ReactCountryFlag from 'react-country-flag'
 
 import { getExchangeRate } from '../../../utils/ServerCalls'
 
+import { Currency } from '../../../utils/types'
+
 interface Props {
   props: {
-    setCurrency: (value: { currency: string; exchange: number }) => void
-    setMessage: (value: string) => void
+    setCurrency: React.Dispatch<React.SetStateAction<Currency>>
+    setMessage: React.Dispatch<React.SetStateAction<string>>
     item: {
       countryCode: string
       fiat: string

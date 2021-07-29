@@ -12,47 +12,47 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import CoinInfo from './components/CoinInfo/CoinInfo'
 import UserMessage from './components/UserMessage/UserMessage'
 
-import { SymbolDataType, PairOptionsType, GraphDataType } from './utils/types'
+import {
+  SymbolData,
+  Options,
+  GraphData,
+  Currency,
+  Favorite,
+  Exchange,
+} from './utils/types'
 
 const App: React.FC = () => {
   // state for displaying user notifications
   const [message, setMessage] = useState<string>('')
   // states for data related to ETH and BTC prices and CAD exchange rate
-  const [currency, setCurrency] = useState({
+  const [currency, setCurrency] = useState<Currency>({
     currency: 'USD',
     exchange: 1,
   })
   const [ethPrice, setEthPrice] = useState<string>('')
   const [btcPrice, setBtcPrice] = useState<string>('')
   // state for all available currencies across all available marketplaces
-  const [allCurrencies, setAllCurrencies] = useState<
-    { value: string; label: string }[]
-  >([])
+  const [allCurrencies, setAllCurrencies] = useState<Options[]>([])
   // states for the currently selected symbol and pair
   const [symbol, setSymbol] = useState<string>('')
   const [pairSymbol, setPairSymbol] = useState<string | null>('')
-  const [pairOptions, setPairOptions] = useState<PairOptionsType[]>([])
+  const [pairOptions, setPairOptions] = useState<Options[]>([])
   // state for additional data for currently selected symbol
-  const [symbolData, setSymbolData] = useState<SymbolDataType | null>(null)
+  const [symbolData, setSymbolData] = useState<SymbolData | null>(null)
   // states for the graph and controls
-  const [graphData, setGraphData] = useState<GraphDataType | null>(null)
+  const [graphData, setGraphData] = useState<GraphData | null>(null)
   const [viewOption, setViewOption] = useState<string>('1d')
   const [timeSpan, setTimeSpan] = useState<string>('90days')
   // state for all currently save favorites
-  const [favorites, setFavorites] = useState<
-    { symbol: string; pair: string }[]
-  >([])
+  const [favorites, setFavorites] = useState<Favorite[]>([])
   // state for the currently selected pair, used to figure out if it's saved to favorites
   const [favStatus, setFavStatus] = useState<boolean>(false)
   // states for market toggle switches
-  const marketData = exchanges.map((exchange) => {
+  const exchangeData = exchanges.map((exchange) => {
     return { [exchange.name]: 1 }
   })
-  const [toggleMarketData, setToggleMarketData] = useState<
-    {
-      [x: string]: number
-    }[]
-  >(marketData)
+  const [toggleMarketData, setToggleMarketData] =
+    useState<Exchange[]>(exchangeData)
 
   // Properties to be passed down to the various components
   const props = {

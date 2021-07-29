@@ -3,11 +3,13 @@ import { NavDropdown } from 'react-bootstrap'
 import Toggle from 'react-toggle'
 import 'react-toggle/style.css'
 
+import { Exchange } from '../../../utils/types'
+
 interface Props {
   props: {
     marketName: string
-    toggleMarketData: { [name: string]: number }[]
-    setToggleMarketData: (value: { [name: string]: number }[]) => void
+    toggleMarketData: Exchange[]
+    setToggleMarketData: React.Dispatch<React.SetStateAction<Exchange[]>>
   }
 }
 

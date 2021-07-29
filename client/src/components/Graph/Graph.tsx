@@ -12,14 +12,14 @@ import {
 } from 'react-icons/ai'
 import { BiRightArrow } from 'react-icons/bi'
 
-import { GraphDataType } from '../../utils/types'
+import { GraphData, Exchange } from '../../utils/types'
 
 interface Props {
   props: {
-    graphData: GraphDataType | null
+    graphData: GraphData | null
     favStatus: boolean
-    setFavStatus: (value: boolean) => void
-    toggleMarketData: { [name: string]: number }[]
+    setFavStatus: React.Dispatch<React.SetStateAction<boolean>>
+    toggleMarketData: Exchange[]
   }
 }
 
@@ -27,7 +27,7 @@ const Graph: React.FC<Props> = ({
   props: { graphData, favStatus, setFavStatus, toggleMarketData },
 }) => {
   const [graph, setGraph] = useState<any>(null)
-  const graphRef = useRef<HTMLCanvasElement>(null)
+  const graphRef = useRef<HTMLCanvasElement | null>(null)
 
   const symbol = graphData?.symbol
   const pairSymbol = graphData?.pairSymbol

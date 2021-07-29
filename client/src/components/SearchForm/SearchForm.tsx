@@ -11,35 +11,31 @@ import {
   getCurrencyData,
 } from '../../utils/ServerCalls'
 
-import {
-  SymbolDataType,
-  PairOptionsType,
-  GraphDataType,
-} from '../../utils/types'
+import { SymbolData, Options, GraphData, Exchange } from '../../utils/types'
 
 interface Props {
   props: {
     getGraphData: (
       symbol: string,
       pairSymbol: string,
-      func: (value: GraphDataType) => void,
+      func: React.Dispatch<React.SetStateAction<GraphData | null>>,
       timeRange: string,
       interval: string,
-      setLoading: (value: boolean) => void
+      setLoading: React.Dispatch<React.SetStateAction<boolean>>
     ) => void
-    setGraphData: (value: GraphDataType) => void
+    setGraphData: React.Dispatch<React.SetStateAction<GraphData | null>>
     symbol: string
-    setSymbol: (value: string) => void
+    setSymbol: React.Dispatch<React.SetStateAction<string>>
     pairSymbol: string | null
-    setPairSymbol: (value: string | null) => void
-    setSymbolData: (value: SymbolDataType) => void
+    setPairSymbol: React.Dispatch<React.SetStateAction<string | null>>
+    setSymbolData: React.Dispatch<React.SetStateAction<SymbolData | null>>
     viewOption: string
-    pairOptions: PairOptionsType[]
-    setPairOptions: (value: PairOptionsType[]) => void
-    allCurrencies: { value: string; label: string }[]
-    setAllCurrencies: (value: { value: string; label: string }[]) => void
+    pairOptions: Options[]
+    setPairOptions: React.Dispatch<React.SetStateAction<Options[]>>
+    allCurrencies: Options[]
+    setAllCurrencies: React.Dispatch<React.SetStateAction<Options[]>>
     timeSpan: string
-    toggleMarketData: { [name: string]: number }[]
+    toggleMarketData: Exchange[]
   }
 }
 

@@ -4,9 +4,9 @@ import './GraphControls.css'
 
 interface Props {
   props: {
-    setViewOption: (value: string) => void
+    setViewOption: React.Dispatch<React.SetStateAction<string>>
     timeSpan: string
-    setTimeSpan: (value: string) => void
+    setTimeSpan: React.Dispatch<React.SetStateAction<string>>
   }
 }
 

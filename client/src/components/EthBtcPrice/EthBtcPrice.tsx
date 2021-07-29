@@ -9,24 +9,20 @@ import {
 } from '../../utils/ServerCalls'
 import { numberWithCommas } from '../../utils/HelperFunctions'
 
-import {
-  CurrencyType,
-  SymbolDataType,
-  PairOptionsType,
-} from '../../utils/types'
+import { Currency, SymbolData, Options, Exchange } from '../../utils/types'
 
 interface Props {
   props: {
-    currency: CurrencyType
+    currency: Currency
     ethPrice: string
-    setEthPrice: (value: string) => void
+    setEthPrice: React.Dispatch<React.SetStateAction<string>>
     btcPrice: string
-    setBtcPrice: (value: string) => void
-    setSymbolData: (value: SymbolDataType) => void
-    setSymbol: (value: string) => void
-    setPairSymbol: (value: string) => void
-    setPairOptions: (value: PairOptionsType[]) => void
-    toggleMarketData: { [name: string]: number }[]
+    setBtcPrice: React.Dispatch<React.SetStateAction<string>>
+    setSymbolData: React.Dispatch<React.SetStateAction<SymbolData | null>>
+    setSymbol: React.Dispatch<React.SetStateAction<string>>
+    setPairSymbol: React.Dispatch<React.SetStateAction<string | null>>
+    setPairOptions: React.Dispatch<React.SetStateAction<Options[]>>
+    toggleMarketData: Exchange[]
   }
 }
 

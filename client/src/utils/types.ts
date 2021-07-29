@@ -1,4 +1,4 @@
-export interface SymbolDataType {
+export type SymbolData = {
   conversionData: {
     amount: number
     id: number
@@ -45,17 +45,12 @@ export interface SymbolDataType {
   }
 }
 
-export interface CurrencyType {
+export type Currency = {
   currency: string
   exchange: number
 }
 
-export interface PairOptionsType {
-  value: string
-  label: string
-}
-
-export interface GraphDataType {
+export type GraphData = {
   binanceData?: { timestamp: string; closingPrice: number }[]
   krakenData?: { timestamp: string; closingPrice: number }[]
   kucoinData?: { timestamp: string; closingPrice: number }[]
@@ -64,4 +59,18 @@ export interface GraphDataType {
   isTradingKucoin: boolean
   symbol: string
   pairSymbol: string
+}
+
+export type Options = {
+  value: string
+  label: string
+}
+
+export type Favorite = {
+  symbol: string
+  pair: string
+}
+
+export type Exchange = {
+  [x: string]: number
 }

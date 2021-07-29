@@ -5,20 +5,20 @@ import { numberWithCommas } from '../../utils/HelperFunctions'
 
 import { AiOutlineTwitter } from 'react-icons/ai'
 
-import { SymbolDataType, CurrencyType } from '../../utils/types'
+import { SymbolData, Currency } from '../../utils/types'
 
 interface Props {
   props: {
-    symbolData: SymbolDataType | null
+    symbolData: SymbolData | null
     symbol: string
-    currency: CurrencyType
+    currency: Currency
   }
 }
 
 const CoinInfo: React.FC<Props> = ({
   props: { symbolData, symbol, currency },
 }) => {
-  const [twitterBtnMouseOver, setTwitterBtnMouseOver] = useState(false)
+  const [twitterBtnMouseOver, setTwitterBtnMouseOver] = useState<boolean>(false)
 
   const currentlySelectedSymbol =
     symbolData && symbolData.conversionData && symbolData.conversionData.symbol

@@ -9,21 +9,21 @@ import exchanges from '../../utils/exchanges'
 import MarketDropdownItem from './MarketDropdownItem/MarketDropdownItem'
 import FiatDropdownItem from './FiatDropdownItem/FiatDropdownItem'
 
-import { SymbolDataType } from '../../utils/types'
+import { SymbolData, Currency, Favorite, Exchange } from '../../utils/types'
 
 interface Props {
   props: {
-    setMessage: (value: string) => void
+    setMessage: React.Dispatch<React.SetStateAction<string>>
     favStatus: boolean
-    setSymbolData: (value: SymbolDataType) => void
-    setSymbol: (value: string) => void
-    setPairSymbol: (value: string) => void
-    favorites: { symbol: string; pair: string }[]
-    setFavorites: (value: { symbol: string; pair: string }[]) => void
-    toggleMarketData: { [name: string]: number }[]
-    setToggleMarketData: (value: { [name: string]: number }[]) => void
-    currency: { currency: string; exchange: number }
-    setCurrency: (value: { currency: string; exchange: number }) => void
+    setSymbolData: React.Dispatch<React.SetStateAction<SymbolData | null>>
+    setSymbol: React.Dispatch<React.SetStateAction<string>>
+    setPairSymbol: React.Dispatch<React.SetStateAction<string | null>>
+    favorites: Favorite[]
+    setFavorites: React.Dispatch<React.SetStateAction<Favorite[]>>
+    toggleMarketData: Exchange[]
+    setToggleMarketData: React.Dispatch<React.SetStateAction<Exchange[]>>
+    currency: Currency
+    setCurrency: React.Dispatch<React.SetStateAction<Currency>>
   }
 }
 

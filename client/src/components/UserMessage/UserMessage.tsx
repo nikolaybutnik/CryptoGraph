@@ -7,7 +7,7 @@ import { BiMessageError } from 'react-icons/bi'
 interface Props {
   props: {
     message: string
-    setMessage: (value: string) => void
+    setMessage: React.Dispatch<React.SetStateAction<string>>
   }
 }
 
