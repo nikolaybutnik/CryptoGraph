@@ -75,7 +75,7 @@ const Graph: React.FC<Props> = ({
         type: 'line',
         data: {
           labels: labels,
-          datasets: filterDatasets(graphData, toggleMarketData),
+          datasets: filterDatasets(graphData!, toggleMarketData),
         },
         options: {
           scales: {
@@ -96,7 +96,7 @@ const Graph: React.FC<Props> = ({
     else {
       graph.data = {
         labels: labels,
-        datasets: filterDatasets(graphData, toggleMarketData),
+        datasets: filterDatasets(graphData!, toggleMarketData),
       }
       graph.update()
     }

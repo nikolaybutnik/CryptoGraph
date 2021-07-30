@@ -10,12 +10,11 @@ const numberWithCommas = (num) => {
 const filterDatasets = (graphData, toggleMarketData) => {
   // Uses dynamic property names to check properties of retrieved graph data.
   // Only assembles graph if toggle is on and graph data is present
-  const dataArray = exchanges.map((market, index) => {
+  const dataArray = exchanges.map((exchange, index) => {
     if (Object.values(toggleMarketData[index])[0] === 1) {
-      return graphData[`${market.name.toLowerCase()}Data`]
-        ? graphData[`${market.name.toLowerCase()}Data`].map(
-            (data) => data.closingPrice
-          )
+      const exchangeName = `${exchange.name.toLowerCase()}Data`
+      return graphData[exchangeName]
+        ? graphData[exchangeName].map((data) => data.closingPrice)
         : null
     } else return null
   })
@@ -50,7 +49,7 @@ const filterDatasets = (graphData, toggleMarketData) => {
 // Check recency of last retrieved piece of data
 const isCurrentlyTrading = (timestamp) => {
   if (timestamp) {
-    if (isToday(timestamp) || isYesterday(timestamp)) {
+    if (isToday(parseInt(timestamp)) || isYesterday(parseInt(timestamp))) {
       return true
     } else return false
   } else return false

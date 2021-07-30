@@ -70,7 +70,8 @@ const EthPrice: React.FC<Props> = ({
         <h2>Ethereum</h2>
         <div>
           <div>
-            {ethPrice && numberWithCommas(ethPrice)} {currency.currency}
+            {ethPrice && numberWithCommas(parseInt(ethPrice))}{' '}
+            {currency.currency}
           </div>
         </div>
       </div>
@@ -91,7 +92,8 @@ const EthPrice: React.FC<Props> = ({
         <h2>Bitcoin</h2>
         <div>
           <div>
-            {btcPrice && numberWithCommas(btcPrice)} {currency.currency}
+            {btcPrice && numberWithCommas(parseInt(btcPrice))}{' '}
+            {currency.currency}
           </div>
         </div>
       </div>
