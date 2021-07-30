@@ -1,21 +1,25 @@
 import { isToday, isYesterday } from 'date-fns'
 import exchanges from './exchanges'
 
+import { GraphData, Exchange } from './types'
+
 // For visual aid only, comma every 3 digits
-const numberWithCommas = (num) => {
+const numberWithCommas = (num: number) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 // Logic which filters which datasets to display on the graph, to avoid empty data from being displayed
-const filterDatasets = (graphData, toggleMarketData) => {
+const filterDatasets = (graphData: GraphData, toggleMarketData: Exchange[]) => {
   // Uses dynamic property names to check properties of retrieved graph data.
   // Only assembles graph if toggle is on and graph data is present
   const dataArray = exchanges.map((exchange, index) => {
     if (Object.values(toggleMarketData[index])[0] === 1) {
-      const exchangeName = `${exchange.name.toLowerCase()}Data`
-      return graphData[exchangeName]
-        ? graphData[exchangeName].map((data) => data.closingPrice)
-        : null
+      const dataKey = `${exchange.name.toLowerCase()}Data` as keyof GraphData
+      const dataArray = graphData[dataKey] as {
+        timestamp: string
+        closingPrice: number
+      }[]
+      return dataArray ? dataArray.map((data) => data.closingPrice) : null
     } else return null
   })
 
@@ -47,7 +51,7 @@ const filterDatasets = (graphData, toggleMarketData) => {
 }
 
 // Check recency of last retrieved piece of data
-const isCurrentlyTrading = (timestamp) => {
+const isCurrentlyTrading = (timestamp: string | null) => {
   if (timestamp) {
     if (isToday(parseInt(timestamp)) || isYesterday(parseInt(timestamp))) {
       return true
