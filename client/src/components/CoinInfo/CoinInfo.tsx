@@ -73,12 +73,10 @@ const CoinInfo: React.FC<Props> = ({
               ? `1 ${
                   symbolData.generalData[currentlySelectedSymbol!].symbol
                 }: ${numberWithCommas(
-                  parseInt(
-                    (
-                      symbolData.conversionData.quote['USD'].price *
-                      currency.exchange
-                    ).toFixed(2)
-                  )
+                  (
+                    symbolData.conversionData.quote['USD'].price *
+                    currency.exchange
+                  ).toFixed(2)
                 )} ${currency.currency}`
               : 'Price information not available'}
           </h5>

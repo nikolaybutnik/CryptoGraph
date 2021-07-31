@@ -4,8 +4,8 @@ import exchanges from './exchanges'
 import { GraphData, Exchange } from './types'
 
 // For visual aid only, comma every 3 digits
-const numberWithCommas = (num: number) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+const numberWithCommas = (num: string) => {
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 // Logic which filters which datasets to display on the graph, to avoid empty data from being displayed

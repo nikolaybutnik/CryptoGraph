@@ -30,7 +30,9 @@ const getEthPriceUSD = (
         }
         status: string
       }
-      setFunc((parseInt(retrievedData.result.ethusd) * exchangeRate).toFixed(2))
+      setFunc(
+        (parseFloat(retrievedData.result.ethusd) * exchangeRate).toFixed(2)
+      )
     })
     .catch((err) => console.log(err))
 }
