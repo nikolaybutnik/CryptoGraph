@@ -8,7 +8,7 @@ const binanceClient = new ccxt.binance({
 const getCurrencies = () => {
   return binanceClient
     .loadMarkets()
-    .then((data) => {
+    .then(() => {
       const processedData = Object.values(binanceClient.currencies).map(
         (currency) => {
           return { value: currency.id, label: currency.id }
