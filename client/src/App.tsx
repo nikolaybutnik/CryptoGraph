@@ -29,7 +29,7 @@ const App: React.FC = () => {
     currency: 'USD',
     exchange: 1,
   })
-  const [ethPrice, setEthPrice] = useState<string>('')
+  const [ethPrice, setEthPrice] = useState<number>(0)
   const [btcPrice, setBtcPrice] = useState<string>('')
   // state for all available currencies across all available marketplaces
   const [allCurrencies, setAllCurrencies] = useState<Options[]>([])

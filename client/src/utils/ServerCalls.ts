@@ -9,7 +9,7 @@ import { Currency, Exchange, Options, GraphData, SymbolData } from './types'
 // Action: set ethPrice state as number
 const getEthPriceUSD = (
   exchangeRate: number,
-  setFunc: React.Dispatch<React.SetStateAction<string>>
+  setFunc: React.Dispatch<React.SetStateAction<number>>
 ) => {
   fetch('/api/info/eth', {
     method: 'GET',
@@ -30,9 +30,7 @@ const getEthPriceUSD = (
         }
         status: string
       }
-      setFunc(
-        (parseFloat(retrievedData.result.ethusd) * exchangeRate).toFixed(2)
-      )
+      setFunc(parseFloat(retrievedData.result.ethusd) * exchangeRate)
     })
     .catch((err) => console.log(err))
 }

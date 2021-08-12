@@ -15,8 +15,8 @@ import { Currency, SymbolData, Options, Exchange } from '../../utils/types'
 interface Props {
   props: {
     currency: Currency
-    ethPrice: string
-    setEthPrice: React.Dispatch<React.SetStateAction<string>>
+    ethPrice: number
+    setEthPrice: React.Dispatch<React.SetStateAction<number>>
     btcPrice: string
     setBtcPrice: React.Dispatch<React.SetStateAction<string>>
     setSymbolData: React.Dispatch<React.SetStateAction<SymbolData | null>>
@@ -52,6 +52,9 @@ const EthPrice: React.FC<Props> = ({
     return () => clearInterval(interval)
   }, [currency.exchange, setBtcPrice, setEthPrice])
 
+  // Function to format the animated into string on each change
+  const formatValue = (value: number) => `${numberWithCommas(value.toFixed(2))}`
+
   return (
     <div className="ethBtcInfo">
       <div
@@ -71,7 +74,14 @@ const EthPrice: React.FC<Props> = ({
         <h2>Ethereum</h2>
         <div>
           <div>
-            {ethPrice && numberWithCommas(ethPrice)} {currency.currency}
+            {
+              <AnimatedNumber
+                value={ethPrice}
+                formatValue={formatValue}
+                duration={500}
+              />
+            }{' '}
+            {currency.currency}
           </div>
         </div>
       </div>
