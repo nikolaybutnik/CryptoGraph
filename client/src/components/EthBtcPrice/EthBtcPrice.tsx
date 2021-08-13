@@ -17,8 +17,8 @@ interface Props {
     currency: Currency
     ethPrice: number
     setEthPrice: React.Dispatch<React.SetStateAction<number>>
-    btcPrice: string
-    setBtcPrice: React.Dispatch<React.SetStateAction<string>>
+    btcPrice: number
+    setBtcPrice: React.Dispatch<React.SetStateAction<number>>
     setSymbolData: React.Dispatch<React.SetStateAction<SymbolData | null>>
     setSymbol: React.Dispatch<React.SetStateAction<string>>
     setPairSymbol: React.Dispatch<React.SetStateAction<string | null>>
@@ -102,7 +102,14 @@ const EthPrice: React.FC<Props> = ({
         <h2>Bitcoin</h2>
         <div>
           <div>
-            {btcPrice && numberWithCommas(btcPrice)} {currency.currency}
+            {
+              <AnimatedNumber
+                value={btcPrice}
+                formatValue={formatValue}
+                duration={500}
+              />
+            }{' '}
+            {currency.currency}
           </div>
         </div>
       </div>
