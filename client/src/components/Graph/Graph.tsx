@@ -155,18 +155,39 @@ const Graph: React.FC<Props> = ({
                 target="_blank"
                 rel="noreferrer"
               >
-                <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
-                  <AiOutlineCheckCircle size={20} /> This pair is trading on
-                  Binance <BiRightArrow className="marketplaceLink" />
+                <p
+                  style={{
+                    backgroundColor: '#cdf584',
+                    fontWeight: 'bold',
+                  }}
+                  className="isTrading"
+                >
+                  <img
+                    style={{
+                      width: '25px',
+                    }}
+                    src="images/binance-logo.png"
+                    alt="Binance Logo"
+                  />{' '}
+                  BINANCE <BiRightArrow className="marketplaceLink" />
                 </p>
               </a>
             ) : (
               <p
-                style={{ backgroundColor: '#fffd9e' }}
+                style={{
+                  backgroundColor: '#fffd9e',
+                  fontWeight: 'bold',
+                }}
                 className="isNotTrading"
               >
-                <AiOutlineWarning size={20} /> This pair is not trading on
-                Binance
+                <img
+                  style={{
+                    width: '25px',
+                  }}
+                  src="images/binance-logo.png"
+                  alt="Binance Logo"
+                />{' '}
+                BINANCE
               </p>
             )}
           </>
