@@ -164,7 +164,7 @@ const Graph: React.FC<Props> = ({
                 >
                   <img
                     style={{
-                      width: '25px',
+                      height: '25px',
                     }}
                     src="images/binance-logo.png"
                     alt="Binance Logo"
@@ -182,7 +182,7 @@ const Graph: React.FC<Props> = ({
               >
                 <img
                   style={{
-                    width: '25px',
+                    height: '25px',
                   }}
                   src="images/binance-logo.png"
                   alt="Binance Logo"
@@ -200,18 +200,33 @@ const Graph: React.FC<Props> = ({
                 target="_blank"
                 rel="noreferrer"
               >
-                <p style={{ backgroundColor: '#cdf584' }} className="isTrading">
-                  <AiOutlineCheckCircle size={20} /> This pair is trading on
-                  KuCoin <BiRightArrow className="marketplaceLink" />
+                <p
+                  style={{ backgroundColor: '#cdf584', fontWeight: 'bold' }}
+                  className="isTrading"
+                >
+                  <img
+                    style={{
+                      height: '25px',
+                    }}
+                    src="images/kucoin-logo.png"
+                    alt="KuCoin Logo"
+                  />{' '}
+                  KUCOIN <BiRightArrow className="marketplaceLink" />
                 </p>
               </a>
             ) : (
               <p
-                style={{ backgroundColor: '#fffd9e' }}
+                style={{ backgroundColor: '#fffd9e', fontWeight: 'bold' }}
                 className="isNotTrading"
               >
-                <AiOutlineWarning size={20} /> This pair is not trading on
-                Kucoin
+                <img
+                  style={{
+                    width: '25px',
+                  }}
+                  src="images/kucoin-logo.png"
+                  alt="KuCoin Logo"
+                />{' '}
+                KUCOIN
               </p>
             )}
           </>
