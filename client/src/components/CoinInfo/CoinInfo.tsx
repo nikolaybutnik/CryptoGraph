@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './CoinInfo.css'
+import '../../css/CoinInfo.css'
 
 import { numberWithCommas } from '../../utils/HelperFunctions'
 

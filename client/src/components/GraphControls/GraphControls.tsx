@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './GraphControls.css'
+import '../../css/GraphControls.css'
 
 interface Props {
   props: {

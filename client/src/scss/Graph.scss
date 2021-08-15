@@ -22,14 +22,14 @@
   }
   .tradingStatus {
     @include non-selectable;
+    img {
+      margin-right: 5px;
+    }
     p {
       padding: 5px 10px 5px 10px;
       margin: 3px 5px 3px 5px;
       border-radius: 15px;
       color: rgb(51, 51, 51);
-      svg {
-        margin-bottom: 3px;
-      }
       .marketplaceLink {
         animation: bounce 1s infinite;
         @keyframes bounce {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { getCurrencyData } from '../../utils/ServerCalls'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
-import './NavigationBar.css'
+import '../../css/NavigationBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import exchanges from '../../utils/exchanges'

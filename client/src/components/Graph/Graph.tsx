@@ -1,15 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Chart from 'chart.js/auto'
-import './Graph.css'
+import '../../css/Graph.css'
 
 import { filterDatasets } from '../../utils/HelperFunctions'
 
-import {
-  AiOutlineStar,
-  AiFillStar,
-  AiOutlineCheckCircle,
-  AiOutlineWarning,
-} from 'react-icons/ai'
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BiRightArrow } from 'react-icons/bi'
 
 import { GraphData, Exchange } from '../../utils/types'
@@ -159,6 +154,8 @@ const Graph: React.FC<Props> = ({
                   style={{
                     backgroundColor: '#cdf584',
                     fontWeight: 'bold',
+                    display: 'inline-flex',
+                    alignItems: 'center',
                   }}
                   className="isTrading"
                 >
@@ -177,6 +174,8 @@ const Graph: React.FC<Props> = ({
                 style={{
                   backgroundColor: '#fffd9e',
                   fontWeight: 'bold',
+                  display: 'inline-flex',
+                  alignItems: 'center',
                 }}
                 className="isNotTrading"
               >
@@ -201,7 +200,12 @@ const Graph: React.FC<Props> = ({
                 rel="noreferrer"
               >
                 <p
-                  style={{ backgroundColor: '#cdf584', fontWeight: 'bold' }}
+                  style={{
+                    backgroundColor: '#cdf584',
+                    fontWeight: 'bold',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                  }}
                   className="isTrading"
                 >
                   <img
@@ -216,7 +220,12 @@ const Graph: React.FC<Props> = ({
               </a>
             ) : (
               <p
-                style={{ backgroundColor: '#fffd9e', fontWeight: 'bold' }}
+                style={{
+                  backgroundColor: '#fffd9e',
+                  fontWeight: 'bold',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                }}
                 className="isNotTrading"
               >
                 <img
@@ -240,7 +249,12 @@ const Graph: React.FC<Props> = ({
                 rel="noreferrer"
               >
                 <p
-                  style={{ backgroundColor: '#cdf584', fontWeight: 'bold' }}
+                  style={{
+                    backgroundColor: '#cdf584',
+                    fontWeight: 'bold',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                  }}
                   className="isTrading"
                 >
                   <img
@@ -255,7 +269,12 @@ const Graph: React.FC<Props> = ({
               </a>
             ) : (
               <p
-                style={{ backgroundColor: '#fffd9e', fontWeight: 'bold' }}
+                style={{
+                  backgroundColor: '#fffd9e',
+                  fontWeight: 'bold',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                }}
                 className="isNotTrading"
               >
                 <img

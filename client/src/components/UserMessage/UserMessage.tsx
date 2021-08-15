@@ -1,5 +1,5 @@
 import React from 'react'
-import './UserMessage.css'
+import '../../css/UserMessage.css'
 
 import { AiOutlineCloseSquare } from 'react-icons/ai'
 import { BiMessageError } from 'react-icons/bi'

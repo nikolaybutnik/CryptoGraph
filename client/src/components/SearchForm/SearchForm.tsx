@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './SearchForm.css'
+import '../../css/SearchForm.css'
 
 import Select from 'react-select'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'

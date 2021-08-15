@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './EthBtcPrice.css'
+import '../../css/EthBtcPrice.css'
 import AnimatedNumber from 'animated-number-react'
 
 import {

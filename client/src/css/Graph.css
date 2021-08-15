@@ -50,15 +50,15 @@
   /* Likely future */
 }
 
+.graphInfoContainer .tradingStatus img {
+  margin-right: 5px;
+}
+
 .graphInfoContainer .tradingStatus p {
   padding: 5px 10px 5px 10px;
   margin: 3px 5px 3px 5px;
   border-radius: 15px;
   color: #333333;
-}
-
-.graphInfoContainer .tradingStatus p svg {
-  margin-bottom: 3px;
 }
 
 .graphInfoContainer .tradingStatus p .marketplaceLink {
@@ -129,4 +129,3 @@
     height: 100%;
   }
 }
-/*# sourceMappingURL=Graph.css.map */

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
+import './css/App.css'
 
 import { getGraphData } from './utils/ServerCalls'
 import exchanges from './utils/exchanges'
