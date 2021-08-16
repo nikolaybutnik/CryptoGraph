@@ -5,9 +5,10 @@ import '../../css/Graph.css'
 import { filterDatasets } from '../../utils/HelperFunctions'
 
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
-import { BiRightArrow } from 'react-icons/bi'
 
 import { GraphData, Exchange } from '../../utils/types'
+
+import TradingStatusLabel from './TradingStatusLabel/TradingStatusLabel'
 
 interface Props {
   props: {
@@ -142,153 +143,30 @@ const Graph: React.FC<Props> = ({
         {symbol}/{pairSymbol}
       </h2>
       <div className="tradingStatus">
-        {toggleMarketData[0].Binance === 1 && (
-          <>
-            {graphData?.isTradingBinance ? (
-              <a
-                href={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p
-                  style={{
-                    backgroundColor: '#cdf584',
-                    fontWeight: 'bold',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                  }}
-                  className="isTrading"
-                >
-                  <img
-                    style={{
-                      height: '20px',
-                    }}
-                    src="images/binance-logo.png"
-                    alt="Binance Logo"
-                  />{' '}
-                  BINANCE <BiRightArrow className="marketplaceLink" />
-                </p>
-              </a>
-            ) : (
-              <p
-                style={{
-                  backgroundColor: '#fffd9e',
-                  fontWeight: 'bold',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                }}
-                className="isNotTrading"
-              >
-                <img
-                  style={{
-                    height: '20px',
-                  }}
-                  src="images/binance-logo.png"
-                  alt="Binance Logo"
-                />{' '}
-                BINANCE
-              </p>
-            )}
-          </>
-        )}
-        {toggleMarketData[1].KuCoin === 1 && (
-          <>
-            {graphData?.isTradingKucoin ? (
-              <a
-                href={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p
-                  style={{
-                    backgroundColor: '#cdf584',
-                    fontWeight: 'bold',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                  }}
-                  className="isTrading"
-                >
-                  <img
-                    style={{
-                      height: '20px',
-                    }}
-                    src="images/kucoin-logo.png"
-                    alt="KuCoin Logo"
-                  />{' '}
-                  KUCOIN <BiRightArrow className="marketplaceLink" />
-                </p>
-              </a>
-            ) : (
-              <p
-                style={{
-                  backgroundColor: '#fffd9e',
-                  fontWeight: 'bold',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                }}
-                className="isNotTrading"
-              >
-                <img
-                  style={{
-                    height: '20px',
-                  }}
-                  src="images/kucoin-logo.png"
-                  alt="KuCoin Logo"
-                />{' '}
-                KUCOIN
-              </p>
-            )}
-          </>
-        )}
-        {toggleMarketData[2].Kraken === 1 && (
-          <>
-            {graphData?.isTradingKraken ? (
-              <a
-                href={`https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p
-                  style={{
-                    backgroundColor: '#cdf584',
-                    fontWeight: 'bold',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                  }}
-                  className="isTrading"
-                >
-                  <img
-                    style={{
-                      height: '20px',
-                    }}
-                    src="images/kraken-logo.png"
-                    alt="Kraken Logo"
-                  />{' '}
-                  KRAKEN <BiRightArrow className="marketplaceLink" />
-                </p>
-              </a>
-            ) : (
-              <p
-                style={{
-                  backgroundColor: '#fffd9e',
-                  fontWeight: 'bold',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                }}
-                className="isNotTrading"
-              >
-                <img
-                  style={{
-                    height: '20px',
-                  }}
-                  src="images/kraken-logo.png"
-                  alt="Kraken Logo"
-                />{' '}
-                KRAKEN
-              </p>
-            )}
-          </>
-        )}
+        <TradingStatusLabel
+          index={0}
+          graphData={graphData}
+          toggleMarketData={toggleMarketData}
+          name={'Binance'}
+          trading={'isTradingBinance'}
+          link={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
+        />
+        <TradingStatusLabel
+          index={1}
+          graphData={graphData}
+          toggleMarketData={toggleMarketData}
+          name={'KuCoin'}
+          trading={'isTradingKucoin'}
+          link={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
+        />
+        <TradingStatusLabel
+          index={2}
+          graphData={graphData}
+          toggleMarketData={toggleMarketData}
+          name={'Kraken'}
+          trading={'isTradingKraken'}
+          link={`https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`}
+        />
       </div>
       <canvas id="myGraph" ref={graphRef}></canvas>
     </>
