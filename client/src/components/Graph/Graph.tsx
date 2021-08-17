@@ -9,7 +9,6 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { GraphData, Exchange } from '../../utils/types'
 
 import TradingStatusLabel from './TradingStatusLabel/TradingStatusLabel'
-
 interface Props {
   props: {
     graphData: GraphData | null
@@ -27,6 +26,28 @@ const Graph: React.FC<Props> = ({
 
   const symbol = graphData?.symbol
   const pairSymbol = graphData?.pairSymbol
+
+  // List of available exchanges for generating trading status labels
+  const availableExchanges = [
+    {
+      index: 0,
+      name: 'Binance',
+      tradingLabel: 'isTradingBinance',
+      link: `https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`,
+    },
+    {
+      index: 1,
+      name: 'KuCoin',
+      tradingLabel: 'isTradingKucoin',
+      link: `https://trade.kucoin.com/${symbol}-${pairSymbol}`,
+    },
+    {
+      index: 2,
+      name: 'Kraken',
+      tradingLabel: 'isTradingKraken',
+      link: `https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`,
+    },
+  ]
 
   // On graph render check if pair is fav'd to render empty or filled star icon
   useEffect(() => {
@@ -143,30 +164,19 @@ const Graph: React.FC<Props> = ({
         {symbol}/{pairSymbol}
       </h2>
       <div className="tradingStatus">
-        <TradingStatusLabel
-          index={0}
-          graphData={graphData}
-          toggleMarketData={toggleMarketData}
-          name={'Binance'}
-          trading={'isTradingBinance'}
-          link={`https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`}
-        />
-        <TradingStatusLabel
-          index={1}
-          graphData={graphData}
-          toggleMarketData={toggleMarketData}
-          name={'KuCoin'}
-          trading={'isTradingKucoin'}
-          link={`https://trade.kucoin.com/${symbol}-${pairSymbol}`}
-        />
-        <TradingStatusLabel
-          index={2}
-          graphData={graphData}
-          toggleMarketData={toggleMarketData}
-          name={'Kraken'}
-          trading={'isTradingKraken'}
-          link={`https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`}
-        />
+        {availableExchanges.map((exchange) => {
+          return (
+            <TradingStatusLabel
+              key={exchange.index}
+              index={exchange.index}
+              graphData={graphData}
+              toggleMarketData={toggleMarketData}
+              name={exchange.name}
+              trading={exchange.tradingLabel}
+              link={exchange.link}
+            />
+          )
+        })}
       </div>
       <canvas id="myGraph" ref={graphRef}></canvas>
     </>
