@@ -7,8 +7,9 @@ interface Props {
   graphData: any
   toggleMarketData: Exchange[]
   name: string
-  trading: string
-  link: string
+  tradingStatusLabel: string
+  symbol: string | undefined
+  pairSymbol: string | undefined
 }
 
 const tradingStatusLabel: React.FC<Props> = ({
@@ -16,14 +17,28 @@ const tradingStatusLabel: React.FC<Props> = ({
   graphData,
   toggleMarketData,
   name,
-  trading,
-  link,
+  tradingStatusLabel,
+  symbol,
+  pairSymbol,
 }) => {
+  let link
+  switch (name) {
+    case 'Binance':
+      link = `https://binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`
+      break
+    case 'KuCoin':
+      link = `https://trade.kucoin.com/${symbol}-${pairSymbol}`
+      break
+    case 'Kraken':
+      link = `https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`
+      break
+  }
+
   return (
     <>
       {toggleMarketData[index][name] === 1 && (
         <>
-          {graphData[trading] ? (
+          {graphData[tradingStatusLabel] ? (
             <a href={link} target="_blank" rel="noreferrer">
               <p
                 style={{

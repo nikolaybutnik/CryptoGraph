@@ -9,6 +9,9 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { GraphData, Exchange } from '../../utils/types'
 
 import TradingStatusLabel from './TradingStatusLabel/TradingStatusLabel'
+
+import exchanges from '../../utils/exchanges'
+
 interface Props {
   props: {
     graphData: GraphData | null
@@ -26,28 +29,6 @@ const Graph: React.FC<Props> = ({
 
   const symbol = graphData?.symbol
   const pairSymbol = graphData?.pairSymbol
-
-  // List of available exchanges for generating trading status labels
-  const availableExchanges = [
-    {
-      index: 0,
-      name: 'Binance',
-      tradingLabel: 'isTradingBinance',
-      link: `https://www.binance.com/en/trade/${symbol}_${pairSymbol}?layout=pro&type=spot`,
-    },
-    {
-      index: 1,
-      name: 'KuCoin',
-      tradingLabel: 'isTradingKucoin',
-      link: `https://trade.kucoin.com/${symbol}-${pairSymbol}`,
-    },
-    {
-      index: 2,
-      name: 'Kraken',
-      tradingLabel: 'isTradingKraken',
-      link: `https://trade.kraken.com/charts/KRAKEN:${symbol}-${pairSymbol}`,
-    },
-  ]
 
   // On graph render check if pair is fav'd to render empty or filled star icon
   useEffect(() => {
@@ -164,7 +145,7 @@ const Graph: React.FC<Props> = ({
         {symbol}/{pairSymbol}
       </h2>
       <div className="tradingStatus">
-        {availableExchanges.map((exchange) => {
+        {exchanges.map((exchange) => {
           return (
             <TradingStatusLabel
               key={exchange.index}
@@ -172,8 +153,9 @@ const Graph: React.FC<Props> = ({
               graphData={graphData}
               toggleMarketData={toggleMarketData}
               name={exchange.name}
-              trading={exchange.tradingLabel}
-              link={exchange.link}
+              tradingStatusLabel={exchange.tradingStatusLabel}
+              symbol={symbol}
+              pairSymbol={pairSymbol}
             />
           )
         })}
