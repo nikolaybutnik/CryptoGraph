@@ -1,16 +1,18 @@
+// Libraries
 import React, { useEffect, useState, useRef } from 'react'
-import Chart from 'chart.js/auto'
-import '../../css/Graph.css'
-
-import { filterDatasets } from '../../utils/HelperFunctions'
-
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import Chart from 'chart.js/auto'
 
-import { GraphData, Exchange } from '../../utils/types'
-
+// Components
 import TradingStatusLabel from './TradingStatusLabel/TradingStatusLabel'
 
+// Utilities
+import { filterDatasets } from '../../utils/HelperFunctions'
+import { GraphData, Exchange } from '../../utils/types'
 import exchanges from '../../utils/exchanges'
+
+// Styles
+import '../../css/Graph.css'
 
 interface Props {
   props: {
@@ -35,24 +37,30 @@ const Graph: React.FC<Props> = ({
     const checkIfFavorite: { symbol: string; pair: string }[] = JSON.parse(
       localStorage.getItem('userFavorites') || '{}'
     )
-    if (
-      checkIfFavorite.some(
-        (item) => item.symbol === symbol && item.pair === pairSymbol
-      )
-    ) {
-      setFavStatus(true)
-    } else {
-      setFavStatus(false)
-    }
+    checkIfFavorite.some(
+      (item) => item.symbol === symbol && item.pair === pairSymbol
+    )
+      ? setFavStatus(true)
+      : setFavStatus(false)
   }, [symbol, pairSymbol, setFavStatus])
 
   // Graph rendering
   useEffect(() => {
     const ctx = graphRef.current?.getContext('2d')
 
-    let labels: string[] = []
+    // Array of all available arrays that hold graph data, to be used in future for label generation
+    // const graphDataArray: (
+    //   | {
+    //       timestamp: string
+    //       closingPrice: number
+    //     }[]
+    //   | null
+    //   | undefined
+    // )[] = [graphData?.binanceData, graphData?.kucoinData, graphData?.krakenData]
+
     // Note: down the road, redo logic to allow for working with more marketplaces.
     // Idea: select the longest array and use it for labels.
+    let labels: string[] = []
     if (graphData?.binanceData) {
       labels = graphData.binanceData.map((data) => {
         return data.timestamp
