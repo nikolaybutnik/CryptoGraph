@@ -38,37 +38,23 @@ const tradingStatusLabel: React.FC<Props> = ({
     <>
       {toggleMarketData[index][name] === 1 && (
         <>
-          {graphData[tradingStatusLabel] ? (
-            <a href={link} target="_blank" rel="noreferrer">
-              <p
-                style={{
-                  backgroundColor: '#cdf584',
-                  fontWeight: 'bold',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                }}
-                className="isTrading"
-              >
-                <img
-                  style={{
-                    height: '20px',
-                  }}
-                  src={`images/${name.toLowerCase()}-logo.png`}
-                  alt={`${name} Logo`}
-                />{' '}
-                {name.toUpperCase()}{' '}
-                <BiRightArrow className="marketplaceLink" />
-              </p>
-            </a>
-          ) : (
+          <a
+            href={graphData[tradingStatusLabel] ? link : undefined}
+            target="_blank"
+            rel="noreferrer"
+          >
             <p
               style={{
-                backgroundColor: '#fffd9e',
+                backgroundColor: graphData[tradingStatusLabel]
+                  ? '#cdf584'
+                  : '#fffd9e',
                 fontWeight: 'bold',
                 display: 'inline-flex',
                 alignItems: 'center',
               }}
-              className="isNotTrading"
+              className={
+                graphData[tradingStatusLabel] ? 'isTrading' : 'isNotTrading'
+              }
             >
               <img
                 style={{
@@ -78,8 +64,11 @@ const tradingStatusLabel: React.FC<Props> = ({
                 alt={`${name} Logo`}
               />{' '}
               {name.toUpperCase()}{' '}
+              {graphData[tradingStatusLabel] && (
+                <BiRightArrow className="marketplaceLink" />
+              )}
             </p>
-          )}
+          </a>
         </>
       )}
     </>
