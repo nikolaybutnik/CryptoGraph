@@ -96,7 +96,8 @@ const CoinInfo: React.FC<Props> = ({
             className="confusedFaceImg"
           />
           <h5>
-            There is currently no information available about {symbol} on{' '}
+            There is currently no information available about this
+            cryptocurrency on{' '}
             <a
               href="https://coinmarketcap.com/"
               target="_blank"
@@ -104,8 +105,7 @@ const CoinInfo: React.FC<Props> = ({
             >
               CoinMarketCap
             </a>
-            . A possible reason for this is that {symbol} may be too new, or
-            goes by a different symbol.
+            .
           </h5>
         </div>
       )}
