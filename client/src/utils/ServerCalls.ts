@@ -167,7 +167,7 @@ const getPairs = (
     },
   })
     .then((res) => res.json())
-    .then((data) => {
+    .then((data: { data: { value: string; label: string }[] }) => {
       const retrievedData = data.data as Options[]
       const sortedData = retrievedData.sort((a, b) =>
         a.value.localeCompare(b.value)
