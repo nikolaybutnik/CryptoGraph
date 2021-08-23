@@ -151,7 +151,7 @@ const getCurrencies = (
 
 const getPairs = (
   currency: string,
-  func: React.Dispatch<React.SetStateAction<Options[]>>,
+  setPairOptions: React.Dispatch<React.SetStateAction<Options[]>>,
   toggleMarketData: Exchange[]
 ) => {
   const marketData = toggleMarketData.map((data) => {
@@ -167,12 +167,11 @@ const getPairs = (
     },
   })
     .then((res) => res.json())
-    .then((data: { data: { value: string; label: string }[] }) => {
-      const retrievedData = data.data as Options[]
-      const sortedData = retrievedData.sort((a, b) =>
+    .then((data: { data: Options[] }) => {
+      const sortedData = data.data.sort((a, b) =>
         a.value.localeCompare(b.value)
       )
-      func(sortedData)
+      setPairOptions(sortedData)
     })
     .catch((err) => console.log(err))
 }
