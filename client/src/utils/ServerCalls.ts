@@ -9,7 +9,7 @@ import { Currency, Exchange, Options, GraphData, SymbolData } from './types'
 // Action: set ethPrice state as number
 const getEthPriceUSD = (
   exchangeRate: number,
-  setFunc: React.Dispatch<React.SetStateAction<number>>
+  setEthPrice: React.Dispatch<React.SetStateAction<number>>
 ) => {
   fetch('/api/info/eth', {
     method: 'GET',
@@ -19,19 +19,22 @@ const getEthPriceUSD = (
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const retrievedData = data.data as {
-        message: string
-        result: {
-          ethbtc: string
-          ethbtc_timestamp: string
-          ethusd: string
-          ethusd_timestamp: string
+    .then(
+      (data: {
+        data: {
+          message: string
+          result: {
+            ethbtc: string
+            ethbtc_timestamp: string
+            ethusd: string
+            ethusd_timestamp: string
+          }
+          status: string
         }
-        status: string
+      }) => {
+        setEthPrice(parseFloat(data.data.result.ethusd) * exchangeRate)
       }
-      setFunc(parseFloat(retrievedData.result.ethusd) * exchangeRate)
-    })
+    )
     .catch((err) => console.log(err))
 }
 
