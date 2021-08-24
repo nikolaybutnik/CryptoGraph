@@ -269,9 +269,8 @@ const getCurrencyData = (
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const retrievedData = data as SymbolData
-      func(retrievedData)
+    .then((data: SymbolData) => {
+      func(data)
     })
     .catch((err) => console.log(err))
 }
