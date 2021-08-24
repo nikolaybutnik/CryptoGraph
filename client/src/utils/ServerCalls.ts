@@ -141,9 +141,8 @@ const getCurrencies = (
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const retrievedData = data.data as Options[]
-      const sortedData = retrievedData.sort((a, b) =>
+    .then((data: { data: Options[] }) => {
+      const sortedData = data.data.sort((a, b) =>
         a.value.localeCompare(b.value)
       )
       func(sortedData)
