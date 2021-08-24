@@ -68,7 +68,7 @@ const getBtcPriceUSD = (
 // Allowed Back in History: 1 Year(s)
 const getExchangeRate = (
   currency: string,
-  setFunc: React.Dispatch<React.SetStateAction<Currency>>,
+  setCurrency: React.Dispatch<React.SetStateAction<Currency>>,
   setMessage: React.Dispatch<React.SetStateAction<string>>
 ) => {
   fetch(`/api/info/exchangerate/${currency}`, {
@@ -79,41 +79,40 @@ const getExchangeRate = (
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const retrievedData = data.data as { x: number }
-      const newCurrency = Object.keys(retrievedData).toString().split('_')[1]
-      const newExchangeRate = Object.values(retrievedData)[0]
-      setFunc({ currency: newCurrency, exchange: newExchangeRate })
+    .then((data: { data: { x: number } }) => {
+      const newCurrency = Object.keys(data.data).toString().split('_')[1]
+      const newExchangeRate = Object.values(data.data)[0]
+      setCurrency({ currency: newCurrency, exchange: newExchangeRate })
     })
     .catch((err) => {
       console.log(err)
       // Heroku deployment issue: API call sometimes returns error 500 while deployed.
-      // Workaround, if error is thrown on setting CAD, set exchange rate manually.
+      // Workaround, if error is thrown on setting exchange rate, set manually.
       if (err === TypeError) {
         switch (currency) {
           case 'CAD':
-            setFunc({ currency: 'CAD', exchange: 1.23 })
+            setCurrency({ currency: 'CAD', exchange: 1.23 })
             break
           case 'EUR':
-            setFunc({ currency: 'EUR', exchange: 0.84 })
+            setCurrency({ currency: 'EUR', exchange: 0.84 })
             break
           case 'GBP':
-            setFunc({ currency: 'GBP', exchange: 0.73 })
+            setCurrency({ currency: 'GBP', exchange: 0.73 })
             break
           case 'JPY':
-            setFunc({ currency: 'JPY', exchange: 111 })
+            setCurrency({ currency: 'JPY', exchange: 111 })
             break
           case 'CNY':
-            setFunc({ currency: 'CNY', exchange: 6.47 })
+            setCurrency({ currency: 'CNY', exchange: 6.47 })
             break
           case 'HKD':
-            setFunc({ currency: 'HKD', exchange: 7.77 })
+            setCurrency({ currency: 'HKD', exchange: 7.77 })
             break
           case 'CHF':
-            setFunc({ currency: 'CHF', exchange: 0.92 })
+            setCurrency({ currency: 'CHF', exchange: 0.92 })
             break
           default:
-            setFunc({ currency: 'USD', exchange: 1 })
+            setCurrency({ currency: 'USD', exchange: 1 })
         }
         setMessage(
           'Most recent conversion rate could not be obtained. The current numbers are estimated.'
