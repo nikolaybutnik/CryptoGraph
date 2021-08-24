@@ -42,7 +42,7 @@ const getEthPriceUSD = (
 // Payload received: number
 const getBtcPriceUSD = (
   exchangeRate: number,
-  setFunc: React.Dispatch<React.SetStateAction<number>>
+  setBtcPrice: React.Dispatch<React.SetStateAction<number>>
 ) => {
   fetch('/api/info/btc', {
     method: 'GET',
@@ -52,9 +52,8 @@ const getBtcPriceUSD = (
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      const retrievedData = data.data as string
-      setFunc(parseFloat(retrievedData) * exchangeRate)
+    .then((data: { data: string }) => {
+      setBtcPrice(parseFloat(data.data) * exchangeRate)
     })
     .catch((err) => console.log(err))
 }
