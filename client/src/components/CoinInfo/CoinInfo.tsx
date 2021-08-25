@@ -1,11 +1,13 @@
+// Libraries
 import React, { useState } from 'react'
-import '../../css/CoinInfo.css'
-
-import { numberWithCommas } from '../../utils/HelperFunctions'
-
 import { AiOutlineTwitter } from 'react-icons/ai'
 
+// Utilities
+import { numberWithCommas } from '../../utils/HelperFunctions'
 import { SymbolData, Currency } from '../../utils/types'
+
+// Styles
+import '../../css/CoinInfo.css'
 
 interface Props {
   props: {

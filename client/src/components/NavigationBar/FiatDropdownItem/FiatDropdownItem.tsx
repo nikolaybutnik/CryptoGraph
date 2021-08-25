@@ -1,9 +1,10 @@
+// Libraries
 import React from 'react'
 import { NavDropdown } from 'react-bootstrap'
 import ReactCountryFlag from 'react-country-flag'
 
+// Utilities
 import { getExchangeRate } from '../../../utils/ServerCalls'
-
 import { Currency } from '../../../utils/types'
 
 interface Props {

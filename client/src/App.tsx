@@ -1,9 +1,7 @@
+// Libraries
 import React, { useState, useEffect } from 'react'
-import './css/App.css'
 
-import { getGraphData } from './utils/ServerCalls'
-import exchanges from './utils/exchanges'
-
+// Components
 import Graph from './components/Graph/Graph'
 import SearchForm from './components/SearchForm/SearchForm'
 import EthBtcPrice from './components/EthBtcPrice/EthBtcPrice'
@@ -12,6 +10,9 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import CoinInfo from './components/CoinInfo/CoinInfo'
 import UserMessage from './components/UserMessage/UserMessage'
 
+// Utilites
+import { getGraphData } from './utils/ServerCalls'
+import exchanges from './utils/exchanges'
 import {
   SymbolData,
   Options,
@@ -20,6 +21,9 @@ import {
   Favorite,
   Exchange,
 } from './utils/types'
+
+// Styles
+import './css/App.css'
 
 const App: React.FC = () => {
   // state for displaying user notifications

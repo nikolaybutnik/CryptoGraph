@@ -1,8 +1,10 @@
+// Libraries
 import React from 'react'
-import '../../css/UserMessage.css'
-
 import { AiOutlineCloseSquare } from 'react-icons/ai'
 import { BiMessageError } from 'react-icons/bi'
+
+// Styles
+import '../../css/UserMessage.css'
 
 interface Props {
   props: {

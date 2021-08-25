@@ -1,17 +1,19 @@
+// Libraries
 import React, { useState, useEffect } from 'react'
-import '../../css/SearchForm.css'
-
 import Select from 'react-select'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import Loader from 'react-loader-spinner'
 
+// Utilities
 import {
   getCurrencies,
   getPairs,
   getCurrencyData,
 } from '../../utils/ServerCalls'
-
 import { SymbolData, Options, GraphData, Exchange } from '../../utils/types'
+
+// Styles
+import '../../css/SearchForm.css'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 interface Props {
   props: {

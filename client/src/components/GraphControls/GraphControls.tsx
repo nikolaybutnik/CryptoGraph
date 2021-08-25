@@ -1,5 +1,7 @@
+// Libraries
 import React from 'react'
 
+// Styles
 import '../../css/GraphControls.css'
 
 interface Props {

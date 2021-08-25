@@ -1,9 +1,13 @@
+// Libraries
 import React from 'react'
 import { NavDropdown } from 'react-bootstrap'
 import Toggle from 'react-toggle'
-import 'react-toggle/style.css'
 
+//Utilities
 import { Exchange } from '../../../utils/types'
+
+// Styles
+import 'react-toggle/style.css'
 
 interface Props {
   props: {

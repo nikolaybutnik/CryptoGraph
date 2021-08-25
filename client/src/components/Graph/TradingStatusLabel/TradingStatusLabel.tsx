@@ -1,6 +1,9 @@
+// Libraries
 import React from 'react'
-import { Exchange } from '../../../utils/types'
 import { BiRightArrow } from 'react-icons/bi'
+
+// Utilities
+import { Exchange } from '../../../utils/types'
 
 interface Props {
   index: number

@@ -1,7 +1,8 @@
+// Libraries
 import React, { useEffect } from 'react'
-import '../../css/EthBtcPrice.css'
 import AnimatedNumber from 'animated-number-react'
 
+// Utilities
 import {
   getEthPriceUSD,
   getBtcPriceUSD,
@@ -9,8 +10,10 @@ import {
   getPairs,
 } from '../../utils/ServerCalls'
 import { numberWithCommas } from '../../utils/HelperFunctions'
-
 import { Currency, SymbolData, Options, Exchange } from '../../utils/types'
+
+// Styles
+import '../../css/EthBtcPrice.css'
 
 interface Props {
   props: {

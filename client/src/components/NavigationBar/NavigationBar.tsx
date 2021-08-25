@@ -1,15 +1,20 @@
+// Libraries
 import React, { useEffect } from 'react'
-import { getCurrencyData } from '../../utils/ServerCalls'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, NavDropdown } from 'react-bootstrap'
-import '../../css/NavigationBar.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
-import exchanges from '../../utils/exchanges'
+// Components
 import MarketDropdownItem from './MarketDropdownItem/MarketDropdownItem'
 import FiatDropdownItem from './FiatDropdownItem/FiatDropdownItem'
 
+// Utilities
 import { SymbolData, Currency, Favorite, Exchange } from '../../utils/types'
+import { getCurrencyData } from '../../utils/ServerCalls'
+import exchanges from '../../utils/exchanges'
+
+// Styles
+import '../../css/NavigationBar.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 interface Props {
   props: {
