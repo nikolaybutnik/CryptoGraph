@@ -34,7 +34,7 @@
 
 ![CryptoGraph Image](https://github.com/nikolaybutnik/CryptoGraph/blob/master/client/public/images/cryptograph-screenshotV3.png?raw=true)
 
-CryptoGraph is a work in progress application that allows the user to graph and compare various cryptocurrency pairs on different marketplaces.
+CryptoGraph is a work in progress application that allows the user to graph various cryptocurrency pairs on different crypto exchanges, to allow for easy price comparison between various exchanges.
 
 ### Built With
 
@@ -50,13 +50,10 @@ CryptoGraph is a work in progress application that allows the user to graph and 
 
 ### Features
 
-- [x] Add support for Binance
-- [x] Add support for KuCoin
-- [x] Add support for Kraken
-- [x] Add support for converting between USD and CAD prices
-- [x] Implement ability to save favorite pairs
-- [x] Implement toggles to filter out unwanted exchanges
-- [ ] Add support for more exchanges
-- [ ] Add support for more fiat currencies
+- [x] Added support for Binance, KuCoin, and Kraken
+- [x] Added support for the following fiat currencies: USD, CAD, EUR, GBP, JPY, CNY, HKD, CHF
+- [x] Implemented ability to save favorite pairs
+- [x] Implemented toggles to filter out data by exchange
+- [ ] Add support for additional exchanges
 - [ ] Add support for user accounts
 - [ ] Add support for displaying personal wallet balances (requires API keys)
